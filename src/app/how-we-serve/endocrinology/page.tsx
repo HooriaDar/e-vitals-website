@@ -1,506 +1,158 @@
 "use client";
 
-import Image from "next/image";
+import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { JSX, useEffect, useState } from "react";
-import {
-  Stethoscope,
-  Bell,
-  UserPlus,
-  FileText,
-  Heart,
-  Clock,
-  Quote,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
-import Head from "next/head";
 
 const EndocrinologyPage: React.FC = () => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [currentTestimonial, setCurrentTestimonial] = useState<number>(0);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextTestimonial();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const features: Array<{
-    icon: JSX.Element;
-    title: string;
-    description: string;
-    image: string;
-  }> = [
-    {
-      icon: <Stethoscope className="w-8 h-8 text-purple-900" />,
-      title: "Accurate Glucose Monitoring",
-      description:
-        "Track blood glucose with FDA-cleared 2-in-1 monitors featuring Smart Averaging. Supports CGM integration, reducing clinic visits by 40%.",
-      image: "/assets/glucose.jpg",
-    },
-    {
-      icon: <Bell className="w-8 h-8 text-purple-900" />,
-      title: "Real-Time Glucose Alerts",
-      description:
-        "Automated alerts for hypo/hyperglycemic events with custom thresholds. Reduces severe incidents by 45%, notifying caregivers too.",
-      image: "/assets/Alert.png",
-    },
-    {
-      icon: <UserPlus className="w-8 h-8 text-purple-900" />,
-      title: "Patient and Caregiver Engagement",
-      description:
-        "Voice-guided devices and reminders with patient portal. Achieves 85% adherence for diabetes management.",
-      image: "/assets/CareGiver.jpg",
-    },
-    {
-      icon: <FileText className="w-8 h-8 text-purple-900" />,
-      title: "Reimbursement Optimization",
-      description:
-        "Automate CPT 99453-99458 billing with audit reports. Increases reimbursable services by 25%, saving 10 hours weekly.",
-      image: "/assets/RemOptimization.jpg",
-    },
-  ];
-
-  const benefits: Array<{ title: string; description: string; image: string }> =
-    [
-      {
-        title: "Enhanced Glycemic Control",
-        description:
-          "Real-time monitoring reduces A1C by 1.2%, minimizing complications and improving quality of life by 50%.",
-        image: "/assets/gluStats.jpg",
-      },
-      {
-        title: "Time Efficiency for Providers",
-        description:
-          "EHR integration cuts check-ups by 35%. Endocrinologists save 15 hours weekly for complex cases.",
-        image: "/assets/Calendar.jpg",
-      },
-      {
-        title: "Improved Patient Compliance",
-        description:
-          "80% adherence with multilingual support and reminders. Reduces complications by 30%.",
-        image: "/assets/patient-W-Watch.jpg",
-      },
-      {
-        title: "Maximized Revenue",
-        description:
-          "$5,000 monthly per physician via accurate coding. Cuts claim denials by 20%.",
-        image: "/assets/FinancialGraph.jpg",
-      },
-    ];
-
-  const testimonials = [
-    {
-      quote:
-        "Without incurring any travel, our electronic consultation program provides equally efficacious diabetes care with significantly expedited access.",
-      name: "Archana Bandi, MD",
-      title: "Clinical Director of Telehealth Services",
-      company: "VA Pittsburgh Healthcare System",
-      image:
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "There is tremendous benefit to both patient and provider being able to have critical health data available at their fingertips. The more frequently we connect with patients, the better the outcome.",
-      name: "Sos Mboijana, MD",
-      title: "Endocrinologist",
-      company: "Kaiser Permanente",
-      image:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "We are seeing more and more evidence come with stronger and stronger benefits, and larger effect sizes for continuous glucose monitoring and remote tools.",
-      name: "Aaron Neinstein, MD",
-      title: "Endocrinologist",
-      company: "Independent Practice",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "These devices have been highly invaluable in the world of diabetes, with more people now being aware of how certain foods and behaviors are impacting their blood sugars.",
-      name: "Disha Narang, MD",
-      title: "Endocrinologist",
-      company: "Independent Practice",
-      image:
-        "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "Our real-world experience demonstrates that for select individuals, RPM may possibly be superior to traditional in-person endocrinology and primary care diabetes management.",
-      name: "Katlyn Sawyer, MD",
-      title: "Endocrinologist",
-      company: "Independent Practice",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "They are excited that their patients have more routine touchpoints for their diabetes care and are impressed with the initial results.",
-      name: "David Saxon, MD",
-      title: "Endocrinologist",
-      company: "UCHealth",
-      image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-    },
-  ];
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
-  };
-
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-white via-white to-purple-50">
-      {/* SEO Meta Tags */}
-      <Head>
-        <title>
-          eVitals - Advanced Remote Patient Monitoring for Endocrinology
-        </title>
-        <meta
-          name="description"
-          content="eVitals empowers endocrinologists with remote patient monitoring for diabetes, thyroid disorders. FDA-approved devices, HIPAA-compliant security, and reimbursement support for endocrinology telehealth."
-        />
-        <meta
-          name="keywords"
-          content="remote patient monitoring, endocrinology RPM, diabetes management, glucose monitoring telehealth, thyroid disorders, FDA-approved devices, HIPAA-compliant RPM, endocrinology reimbursement, CGM integration"
-        />
-        <meta name="robots" content="index, follow" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-          rel="canonical"
-          href="https://www.evitals.com/how-we-serve/endocrinology"
-        />
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "MedicalBusiness",
-              "name": "eVitals Endocrinology Solutions",
-              "description": "eVitals provides remote patient monitoring for endocrinology with FDA-approved devices, HIPAA-compliant data security, and reimbursement support for diabetes and thyroid disorders.",
-              "url": "https://www.evitals.com/how-we-serve/endocrinology",
-              "logo": "https://www.evitals.com/logo.png",
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+1-800-123-4567",
-                "contactType": "customer service"
-              },
-              "sameAs": [
-                "https://www.linkedin.com/company/evitals",
-                "https://twitter.com/evitals_health"
-              ]
-            }
-          `}
-        </script>
-      </Head>
-
-      {/* Hero Section */}
-      <section className="relative h-[90vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/assets/EndocrinologyHero.jpg"
-            alt="Endocrinology Remote Patient Monitoring Hero"
-            fill
-            className="object-cover kenburns"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
-        </div>
-        <div className="relative z-10 w-full text-left pl-6 md:pl-12 lg:pl-20 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-white text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6">
-              Advanced <span className="text-[#B187E8]">Endocrinology</span> RPM
-            </h1>
-            <p className="text-white text-base md:text-lg mb-4 max-w-3xl">
-              eVitals delivers remote patient monitoring for diabetes and
-              endocrine disorders with FDA-approved devices and real-time
-              telehealth insights.
-            </p>
-            <Link
-              href="/contact"
-              className="bg-[#36036B] hover:bg-[#4b0d8d] text-white text-base font-semibold px-6 py-3 rounded-md shadow-md transition duration-300 inline-block"
+    <div className="w-full">
+      <section className="mx-auto max-w-6xl px-6 pt-12 pb-16 animate-rise">
+        <nav className="mb-6 text-sm text-slate-500">
+          <Link href="/" className="hover:text-brand">Home</Link> /{" "}
+          <Link href="/how-we-serve" className="hover:text-brand">Who We Serve</Link> /{" "}
+          <span className="text-plum">Endocrinology</span>
+        </nav>
+        
+        <div className="max-w-3xl">
+          <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
+            <span className="h-px w-6 bg-brand"></span>Who we serve · Endocrinology
+          </p>
+          <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl text-plum">
+            Remote care for endocrinology practices.
+          </h1>
+          <p className="mt-5 text-lg text-slate-600">
+            Endocrinology runs on what happens between visits. eVitals brings connected glucose and weight readings into a single trend view your team can act on.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link 
+              href="/demo" 
+              className="inline-flex items-center gap-2 rounded-lg bg-brand px-7 py-3.5 text-sm font-semibold text-white hover:bg-brand-dark transition-colors"
             >
-              Schedule a FREE Demo →
+              Request a demo 
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* RPM in Endocrinology Section */}
-      <section className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-8 text-center">
-            RPM in Endocrinology: Revolutionizing Diabetes Care
-          </h2>
-          <div className="max-w-4xl mx-auto mb-8">
-            <p className="text-lg text-gray-800 mb-4">
-              Remote patient monitoring in endocrinology tracks glucose and
-              vitals outside clinics. eVitals' FDA-approved devices reduce
-              visits by 40% and A1C by 1.2%.
-            </p>
-            <p className="text-lg text-gray-800 mb-8">
-              HIPAA-compliant platform integrates with EHRs and CGMs for
-              seamless telehealth, boosting satisfaction to 90%.
-            </p>
-          </div>
-          <Image
-            src="/assets/SugarChecking.jpg"
-            alt="Endocrinology RPM Illustration"
-            width={800}
-            height={400}
-            className="mx-auto rounded-lg shadow-md mb-8"
-          />
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-8 text-center">
-            How eVitals Supports Endocrinology RPM
-          </h2>
-          <p className="text-lg text-gray-800 mb-8 max-w-3xl mx-auto text-center">
-            Tailored remote patient monitoring for endocrinology with advanced
-            tech, engagement, and reimbursement.
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-purple-100"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <div className="relative w-full h-48 mb-4">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    fill
-                    className="rounded-md object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  />
-                </div>
-                <div className="mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold text-purple-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-700">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-8 text-center">
-            Benefits of Endocrinology Remote Monitoring
-          </h2>
-          <p className="text-lg text-gray-800 mb-8 max-w-3xl mx-auto text-center">
-            Measurable improvements in outcomes, efficiency, and satisfaction
-            for endocrinologists and patients.
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, idx) => (
-              <motion.div
-                key={idx}
-                className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-              >
-                <div className="relative w-full h-48 mb-4">
-                  <Image
-                    src={benefit.image}
-                    alt={benefit.title}
-                    fill
-                    className="rounded-md object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  />
-                </div>
-                <h3 className="text-lg font-semibold text-purple-900 mb-2">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-700">{benefit.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section - Carousel */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-8 text-center">
-            What Endocrinologists Say About eVitals RPM
-          </h2>
-          <p className="text-lg text-gray-800 mb-12 max-w-3xl mx-auto text-center">
-            Real testimonials from leading endocrinology practices on remote
-            patient monitoring success.
-          </p>
-          <div className="relative max-w-4xl mx-auto">
-            <motion.div
-              key={currentTestimonial}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-              className="relative bg-gradient-to-b from-purple-900 to-purple-800 text-white rounded-xl p-8 shadow-2xl"
+            <Link 
+              href="/ReimbursementCalculator" 
+              className="inline-flex items-center rounded-lg bg-white px-7 py-3.5 text-sm font-semibold text-plum ring-1 ring-slate-300 hover:ring-slate-400 transition-colors"
             >
-              <div className="flex items-start mb-6">
-                <Quote className="w-8 h-8 mr-4 mt-1 flex-shrink-0 text-purple-200" />
-                <p className="text-xl italic leading-relaxed">
-                  "{testimonials[currentTestimonial].quote}"
-                </p>
-              </div>
-              <div className="flex items-center">
-                <div className="relative w-20 h-20 mr-6 overflow-hidden rounded-full">
-                  <Image
-                    src={testimonials[currentTestimonial].image}
-                    alt={`${testimonials[currentTestimonial].name} - ${testimonials[currentTestimonial].company}`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-lg">
-                    {testimonials[currentTestimonial].name}
-                  </h4>
-                  <p className="text-purple-200">
-                    {testimonials[currentTestimonial].title}
-                  </p>
-                  <p className="text-purple-100">
-                    {testimonials[currentTestimonial].company}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Dots */}
-            <div className="flex justify-center mt-6 space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentTestimonial
-                      ? "bg-purple-900"
-                      : "bg-purple-300"
-                  }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
-              ))}
-            </div>
+              See reimbursement
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Implementation Process Section */}
-      <section className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-8 text-center">
-            Seamless RPM Integration for Endocrinology
-          </h2>
-          <p className="text-lg text-gray-800 mb-8 max-w-3xl mx-auto text-center">
-            Easy setup with dedicated support for telehealth adoption.
-          </p>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-xl shadow-md">
-              <Heart className="w-8 h-8 text-purple-900 mb-4 mx-auto" />
-              <h3 className="text-xl font-semibold text-purple-900 mb-2">
-                Step 1: Assessment
-              </h3>
-              <p className="text-gray-700">
-                Customize for diabetes and thyroid needs.
-              </p>
+      {/* Benefits Grid */}
+      <section className="bg-slate-50/70 border-y border-slate-100 w-full">
+        <div className="mx-auto max-w-6xl px-6 py-16 animate-rise">
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-2xl bg-white p-7 ring-1 ring-slate-200 shadow-sm">
+              <div className="flex items-center gap-2.5">
+                <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand-tint text-brand">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M19 14c1.5-1.5 3-3.3 3-5.5A4.5 4.5 0 0 0 12 6 4.5 4.5 0 0 0 2 8.5C2 10.7 3.5 12.5 5 14l7 7z"/>
+                  </svg>
+                </span>
+                <h2 className="text-xl font-bold text-plum">Benefits to your patients</h2>
+              </div>
+              <ul className="mt-4 space-y-3">
+                <li className="flex gap-3 text-slate-600">
+                  <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Connected glucose and weight monitoring with clear trends</span>
+                </li>
+                <li className="flex gap-3 text-slate-600">
+                  <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Tighter glycemic control and fewer hypo- and hyperglycemic events</span>
+                </li>
+                <li className="flex gap-3 text-slate-600">
+                  <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Coaching and check-ins that keep them on track</span>
+                </li>
+                <li className="flex gap-3 text-slate-600">
+                  <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Less guesswork between appointments</span>
+                </li>
+              </ul>
             </div>
-            <div className="bg-white p-6 rounded-xl shadow-md">
-              <Clock className="w-8 h-8 text-purple-900 mb-4 mx-auto" />
-              <h3 className="text-xl font-semibold text-purple-900 mb-2">
-                Step 2: Implementation
-              </h3>
-              <p className="text-gray-700">
-                Devices, training, and EHR setup in 2 weeks.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-md">
-              <UserPlus className="w-8 h-8 text-purple-900 mb-4 mx-auto" />
-              <h3 className="text-xl font-semibold text-purple-900 mb-2">
-                Step 3: Support
-              </h3>
-              <p className="text-gray-700">
-                Ongoing billing and 99.9% uptime assistance.
-              </p>
+            
+            <div className="rounded-2xl bg-white p-7 ring-1 ring-slate-200 shadow-sm">
+              <div className="flex items-center gap-2.5">
+                <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand-tint text-brand">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>
+                  </svg>
+                </span>
+                <h2 className="text-xl font-bold text-plum">Benefits to your practice</h2>
+              </div>
+              <ul className="mt-4 space-y-3">
+                <li className="flex gap-3 text-slate-600">
+                  <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Reimbursable RPM and CCM for diabetes and metabolic care</span>
+                </li>
+                <li className="flex gap-3 text-slate-600">
+                  <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Trend analysis that makes each visit more productive</span>
+                </li>
+                <li className="flex gap-3 text-slate-600">
+                  <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Fewer no-shows and better A1c outcomes</span>
+                </li>
+                <li className="flex gap-3 text-slate-600">
+                  <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Documentation handled automatically</span>
+                </li>
+              </ul>
             </div>
           </div>
+          <p className="mt-8 text-sm text-slate-500">
+            <span className="font-semibold text-plum">Conditions we commonly support:</span> Type 1 &amp; 2 diabetes, obesity, and thyroid &amp; metabolic disorders.
+          </p>
         </div>
       </section>
 
-      {/* Trust Section */}
-      <section className="relative py-20 min-h-[600px] flex justify-center items-center text-center">
-        <div className="absolute inset-0">
-          <Image
-            src="/assets/endocrinology-trust-image.png"
-            alt="Trusted Endocrinology RPM Provider"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gray-900/50" />
-        </div>
-        <div className="relative z-10 flex flex-col items-center justify-center max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-shadow-sm">
-            Trusted by Endocrinologists Nationwide
+      {/* CTA Box */}
+      <section className="mx-auto max-w-6xl px-6 py-20 animate-rise">
+        <div className="rounded-3xl bg-brand-tint px-8 py-14 text-center ring-1 ring-brand/15 sm:px-12">
+          <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-plum sm:text-4xl">
+            Bring eVitals to your endocrinology practice.
           </h2>
-          <p className="text-lg text-white mb-6 text-shadow-sm">
-            400+ practices, 8,000+ patients monitored. Reduces complications by
-            35%, boosts satisfaction by 40%.
+          <p className="mx-auto mt-4 max-w-xl text-slate-600">
+            Tell us about your patients and we’ll tailor a demo to your workflows and payers.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-purple-900 px-8 py-3 rounded-full hover:bg-gray-100 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-          >
-            Discover Endocrinology RPM →
-          </Link>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 text-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-6">
-            Transform Your Endocrinology Practice
-          </h2>
-          <p className="text-lg text-gray-800 mb-8 max-w-3xl mx-auto">
-            Enhance outcomes and revenue with eVitals remote patient monitoring.
-            Schedule a demo today.
-          </p>
-          <Link
-            href="/contact"
-            className="bg-[#36036B] hover:bg-[#4b0d8d] text-white text-base font-semibold px-6 py-3 rounded-md shadow-md transition duration-300 inline-block"
-          >
-            Schedule a FREE Demo →
-          </Link>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Link 
+              href="/demo" 
+              className="inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark cursor-pointer"
+            >
+              Book a demo 
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
+            <Link 
+              href="/ReimbursementCalculator" 
+              className="inline-flex items-center rounded-full bg-white px-7 py-3 text-sm font-semibold text-plum ring-1 ring-slate-300 transition hover:ring-slate-400"
+            >
+              Estimate revenue
+            </Link>
+          </div>
         </div>
       </section>
     </div>

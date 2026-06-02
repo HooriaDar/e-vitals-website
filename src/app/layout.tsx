@@ -2,30 +2,30 @@ import './globals.css';
 import Header from '@/components/home/Header';
 import FooterSection from '../components/home/FooterSection';
 import { ReactNode } from 'react';
-import { Inter } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 
 interface RootLayoutProps {
   children: ReactNode;
 }
 
-// Load Inter font globally
-const inter = Inter({
+// Load Plus Jakarta Sans font globally
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'], // adjust as needed
+  weight: ['400', '500', '600', '700', '800'],
 });
 
 export const metadata = {
   title: 'e-Vitals - Remote Patient Monitoring',
   description: 'Care beyond clinic, always connected.',
   icons: {
-    icon: 'assets/eVitals-favicon.png', // Path relative to public/
+    icon: 'assets/logo.png', // Path relative to public/
   },
 };
 
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`min-h-screen flex flex-col bg-slate-50 font-sans ${inter.className}`}>
+      <body className={`min-h-screen flex flex-col bg-white text-plum antialiased ${plusJakartaSans.className}`}>
         <Header />
         <main className="flex-1">
           {children}

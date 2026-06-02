@@ -1,13 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import Link from "next/link";
-
+import React from "react";
 const RpmOverviewSection: React.FC = () => {
-  const [showFullWhoWeServe, setShowFullWhoWeServe] = useState(false);
-
-  const toggleWhoWeServe = () => {
-    setShowFullWhoWeServe(!showFullWhoWeServe);
-  };
 
   return (
     <section className="bg-white py-16 px-4 md:px-8">

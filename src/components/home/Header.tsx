@@ -1,264 +1,245 @@
 "use client";
 
-import Image from "next/image";
+import React, { useState } from "react";
 import Link from "next/link";
-import React, { useState, useRef } from "react";
+import Image from "next/image";
 
 const Header: React.FC = () => {
-  const [isRpmOpen, setIsRpmOpen] = useState(false);
-  const [isSupportOpen, setIsSupportOpen] = useState(false);
-  const [isServeOpen, setIsServeOpen] = useState(false);
-  const rpmDropdownRef = useRef<HTMLDivElement>(null);
-  const supportDropdownRef = useRef<HTMLDivElement>(null);
-  const serveDropdownRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseEnter = (
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  ) => {
-    setOpen(true);
-  };
-
-  const handleMouseLeave = (
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  ) => {
-    setOpen(false);
-  };
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [solutionsDropdownOpen, setSolutionsDropdownOpen] = useState(false);
+  const [whyUsDropdownOpen, setWhyUsDropdownOpen] = useState(false);
 
   return (
-    <div className="w-full">
-      {/* Top Bar */}
-      <div className="bg-white text-black text-sm border-b border-gray-200">
-        <div className="container mx-auto px-4 py-2 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <Link href="/">
-              <Image
-                src="/assets/logo.png"
-                alt="eVitals Logo"
-                width={140}
-                height={50}
-              />
-            </Link>
+    <>
+      {/* HIPAA compliancy top banner */}
+      <div className="bg-deep text-white no-print w-full">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-2.5">
+          <div className="flex items-center gap-3 text-sm">
+            <svg className="h-5 w-5 text-white/90" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6z"/>
+            </svg>
+            <span>Turn-key Remote Patient Monitoring for clinics of any size.</span>
+          </div>
+          <div className="hidden items-center gap-2 rounded-md border border-white/30 px-3 py-1 text-[11px] font-semibold tracking-wide sm:flex">
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            HIPAA COMPLIANT
           </div>
         </div>
       </div>
 
-      {/* Main Navbar */}
-      <header className="bg-[#270949] text-white shadow-sm sticky top-0 z-40">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <nav className="hidden md:flex space-x-8">
-            {/* RPM Solution Dropdown */}
-            <div
+      {/* Main Header */}
+      <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/95 backdrop-blur no-print w-full">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+          <Link href="/" className="flex items-center" aria-label="e-Vitals home">
+            <Image 
+              src="/assets/logo.png" 
+              alt="e-Vitals — Remote Patient Monitoring" 
+              width={160}
+              height={40}
+              className="h-10 w-auto object-contain"
+              priority
+            />
+          </Link>
+          
+          <nav className="hidden items-center gap-7 text-sm font-medium lg:flex">
+            {/* Solutions Dropdown */}
+            <div 
               className="relative group"
-              ref={rpmDropdownRef}
-              onMouseEnter={() => handleMouseEnter(setIsRpmOpen)}
-              onMouseLeave={() => handleMouseLeave(setIsRpmOpen)}
+              onMouseEnter={() => setSolutionsDropdownOpen(true)}
+              onMouseLeave={() => setSolutionsDropdownOpen(false)}
             >
-              <button className="text-m font-medium tracking-wider hover:underline flex items-center">
-                RPM Solution
-                <svg
-                  className={`ml-1 w-4 h-4 transition-transform ${
-                    isRpmOpen ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              <button className="flex items-center gap-1 px-1 py-2 text-plum/75 transition hover:text-brand cursor-pointer">
+                Solutions 
+                <svg 
+                  className={`h-4 w-4 transition-transform duration-200 ${solutionsDropdownOpen ? 'rotate-180' : ''}`} 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
+                  <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>
-              {isRpmOpen && (
-                <div className="absolute left-0 top-full w-56 bg-white rounded-md shadow-lg z-50">
-                  <div className="py-1">
-                    <Link
-                      href="/rpm/RPMSoftware"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-900"
+              <div className={`absolute left-0 top-full z-50 pt-3 transition-all duration-200 ${solutionsDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
+                <div className="w-[250px] rounded-2xl border border-slate-100 bg-white shadow-xl shadow-slate-200/70">
+                  <div className="p-2">
+                    <Link 
+                      href="/remote-patient-monitoring" 
+                      className="block rounded-lg px-3 py-2 text-sm text-plum/80 transition hover:bg-brand/5 hover:text-brand"
                     >
-                      RPM Software
+                      Remote Patient Monitoring (RPM)
                     </Link>
-                    <Link
-                      href="/rpm/RPMDevices"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-900"
+                    <Link 
+                      href="/chronic-care-management" 
+                      className="block rounded-lg px-3 py-2 text-sm text-plum/80 transition hover:bg-brand/5 hover:text-brand"
                     >
-                      RPM Devices
-                    </Link>
-                    <Link
-                      href="/rpm/Reimbursement-and-Billing"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-900"
-                    >
-                      Reimbursement and Billing
+                      Chronic Care Management
                     </Link>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
 
-            <Link
-              href="/services"
-              className="text-m font-medium tracking-wider hover:underline"
-            >
-              Services
+            <Link href="/how-we-serve" className="px-1 py-2 text-plum/75 transition hover:text-brand">
+              Who We Serve
             </Link>
-
-            {/* Support & Compliance Dropdown */}
-            <div
+            
+            <Link href="/about" className="px-1 py-2 text-plum/75 transition hover:text-brand">
+              About
+            </Link>
+            
+            {/* Why Us Dropdown */}
+            <div 
               className="relative group"
-              ref={supportDropdownRef}
-              onMouseEnter={() => handleMouseEnter(setIsSupportOpen)}
-              onMouseLeave={() => handleMouseLeave(setIsSupportOpen)}
+              onMouseEnter={() => setWhyUsDropdownOpen(true)}
+              onMouseLeave={() => setWhyUsDropdownOpen(false)}
             >
-              <button className="text-m font-medium tracking-wider hover:underline flex items-center">
-                Support & Compliance
-                <svg
-                  className={`ml-1 w-4 h-4 transition-transform ${
-                    isSupportOpen ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              <button className="flex items-center gap-1 px-1 py-2 text-plum/75 transition hover:text-brand cursor-pointer">
+                Why us 
+                <svg 
+                  className={`h-4 w-4 transition-transform duration-200 ${whyUsDropdownOpen ? 'rotate-180' : ''}`} 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
+                  <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>
-              {isSupportOpen && (
-                <div className="absolute left-0 top-full w-56 bg-white rounded-md shadow-lg z-50">
-                  <div className="py-1">
-                    <Link
-                      href="/support/compliance-and-security"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-900"
+              <div className={`absolute left-0 top-full z-50 pt-3 transition-all duration-200 ${whyUsDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
+                <div className="w-[250px] rounded-2xl border border-slate-100 bg-white shadow-xl shadow-slate-200/70">
+                  <div className="p-2">
+                    <Link 
+                      href="/how-it-works" 
+                      className="block rounded-lg px-3 py-2 text-sm text-plum/80 transition hover:bg-brand/5 hover:text-brand"
                     >
-                      Compliance & Security
+                      How it works
                     </Link>
-                    <Link
-                      href="/support/resources"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-900"
+                    <Link 
+                      href="/ReimbursementCalculator" 
+                      className="block rounded-lg px-3 py-2 text-sm text-plum/80 transition hover:bg-brand/5 hover:text-brand"
+                    >
+                      Reimbursement calculator
+                    </Link>
+                    <Link 
+                      href="/support/resources" 
+                      className="block rounded-lg px-3 py-2 text-sm text-plum/80 transition hover:bg-brand/5 hover:text-brand"
                     >
                       Resources
                     </Link>
-                    {/* <Link
-                      href="/support/faqs"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-900"
-                    >
-                      FAQs
-                    </Link> */}
                   </div>
                 </div>
-              )}
+              </div>
             </div>
 
-            <Link
-              href="/insights/overview"
-              className="text-m font-medium tracking-wider hover:underline"
-            >
-              Insights
-            </Link>
-
-            {/* How We Serve Dropdown */}
-            <div
-              className="relative group"
-              ref={serveDropdownRef}
-              onMouseEnter={() => handleMouseEnter(setIsServeOpen)}
-              onMouseLeave={() => handleMouseLeave(setIsServeOpen)}
-            >
-              <button className="text-m font-medium tracking-wider hover:underline flex items-center">
-                Who We Serve
-                <svg
-                  className={`ml-1 w-4 h-4 transition-transform ${
-                    isServeOpen ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              {isServeOpen && (
-                <div className="absolute left-0 top-full w-56 bg-white rounded-md shadow-lg z-50">
-                  <div className="py-1">
-                    <Link
-                      href="/how-we-serve/cardiology"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-900"
-                    >
-                      Cardiology
-                    </Link>
-                    <Link
-                      href="/how-we-serve/endocrinology"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-900"
-                    >
-                      Endocrinology
-                    </Link>
-                    <Link
-                      href="/how-we-serve/neurology"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-900"
-                    >
-                      Neurology
-                    </Link>
-                    <Link
-                      href="/how-we-serve/pulmonology"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-900"
-                    >
-                      Pulmonology
-                    </Link>
-                    <Link
-                      href="/how-we-serve/oncology"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-900"
-                    >
-                      Oncology
-                    </Link>
-                    <Link
-                      href="/how-we-serve/geriatrics"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-900"
-                    >
-                      Geriatrics
-                    </Link>
-                    <Link
-                      href="/how-we-serve/nephrology"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-900"
-                    >
-                      Nephrology
-                    </Link>
-                    <Link
-                      href="/how-we-serve/rheumatology"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-900"
-                    >
-                      Rheumatology
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-            <Link
-              href="/ReimbursementCalculator"
-              className="text-m font-medium tracking-wider hover:underline"
-            >
-              RPM Reimbursement Calculator
+            <Link href="/support/resources" className="px-1 py-2 text-plum/75 transition hover:text-brand">
+              Resources
             </Link>
           </nav>
+          
+          <div className="flex items-center gap-4">
+            <Link href="#" className="hidden text-sm font-medium text-plum/75 transition hover:text-brand sm:inline-block">
+              Login
+            </Link>
+            <Link 
+              href="/demo" 
+              className="hidden rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark sm:inline-block"
+            >
+              Request a Demo
+            </Link>
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+              className="lg:hidden p-2 rounded-lg text-plum transition hover:bg-slate-50 cursor-pointer" 
+              aria-label="Menu"
+            >
+              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M3 6h18M3 12h18M3 18h18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
 
-          <Link
-            href="/contact"
-            className="bg-[#B187E8] hover:bg-[#9d6dd6] text-white text-lg text-shadow-lg font-semibold px-5 py-2 rounded-full transition"
+        {/* Mobile menu */}
+        <div className={`border-t border-slate-100 bg-white px-6 py-3 lg:hidden transition-all duration-300 ${mobileMenuOpen ? 'block' : 'hidden'}`}>
+          <div className="border-b border-slate-100 py-2">
+            <div className="font-semibold text-plum mb-1">Solutions</div>
+            <Link 
+              href="/remote-patient-monitoring" 
+              className="block py-1.5 pl-3 text-sm text-plum/75 hover:text-brand"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Remote Patient Monitoring (RPM)
+            </Link>
+            <Link 
+              href="/chronic-care-management" 
+              className="block py-1.5 pl-3 text-sm text-plum/75 hover:text-brand"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Chronic Care Management
+            </Link>
+          </div>
+          
+          <Link 
+            href="/how-we-serve" 
+            className="block py-2.5 font-medium text-plum border-b border-slate-50 hover:text-brand"
+            onClick={() => setMobileMenuOpen(false)}
           >
-            Contact Us
+            Who We Serve
+          </Link>
+          
+          <Link 
+            href="/about" 
+            className="block py-2.5 font-medium text-plum border-b border-slate-50 hover:text-brand"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            About
+          </Link>
+          
+          <div className="border-b border-slate-100 py-2">
+            <div className="font-semibold text-plum mb-1">Why us</div>
+            <Link 
+              href="/how-it-works" 
+              className="block py-1.5 pl-3 text-sm text-plum/75 hover:text-brand"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              How it works
+            </Link>
+            <Link 
+              href="/ReimbursementCalculator" 
+              className="block py-1.5 pl-3 text-sm text-plum/75 hover:text-brand"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Reimbursement calculator
+            </Link>
+            <Link 
+              href="/support/resources" 
+              className="block py-1.5 pl-3 text-sm text-plum/75 hover:text-brand"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Resources
+            </Link>
+          </div>
+          
+          <Link 
+            href="/support/resources" 
+            className="block py-2.5 font-medium text-plum border-b border-slate-50 hover:text-brand"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Resources
+          </Link>
+          
+          <Link 
+            href="/demo" 
+            className="mt-3 block rounded-lg bg-brand px-5 py-2.5 text-center text-sm font-semibold text-white hover:bg-brand-dark"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Request a Demo
           </Link>
         </div>
       </header>
-    </div>
+    </>
   );
 };
 

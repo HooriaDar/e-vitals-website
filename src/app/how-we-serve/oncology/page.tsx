@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { JSX, useEffect, useState } from "react";
+import { JSX, useEffect, useState, useCallback } from "react";
 import {
   Stethoscope,
   Bell,
@@ -15,9 +15,70 @@ import {
 } from "lucide-react";
 import Head from "next/head";
 
+const testimonials = [
+  {
+    quote:
+      "It's our job to take care of our patients, whether they're in clinic or at home. The only way to take care of them is to understand what they go through on a daily basis, and we need tools to help us do that.",
+    name: "Pr Ethan Basch",
+    title: "Oncologist and Director of Research",
+    company: "University of North Carolina",
+    image:
+      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "It provides us with continuous feedback and a way to focus our actions, including for those of our Advanced Practice Nurse, for specific patients in demand.",
+    name: "Dr Thomas Grellety",
+    title: "Oncologist and Head of Department",
+    company: "Centre Hospitalier de la Côte Basque",
+    image:
+      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "I see remote monitoring as a tool that will enable us to be more efficient and to have a vision of a continuum of care for patients.",
+    name: "Dr Antoine Lemaire",
+    title: "Head of Oncology and Medical Specialties",
+    company: "Centre Hospitalier de Valenciennes",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "The idea is that we can have a vision of the patient's progression of care, even outside of hospital walls, and anticipate problems as they come.",
+    name: "Dr Antoine Lemaire",
+    title: "Head of Oncology and Medical Specialties",
+    company: "Centre Hospitalier de Valenciennes",
+    image:
+      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "Remote monitoring has greatly improved the quality of care here (...) It's a win for patients and a win for us.",
+    name: "Dr Joana Ribiero",
+    title: "Medical oncologist",
+    company: "Gustave Roussy",
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "Resilience is an easy tool to understand and is greatly endorsed by patients. It is therefore a very interesting to monitor my patients.",
+    name: "Dr Laura Polastro",
+    title: "Medical oncologist in gynecology and senology",
+    company: "Institut Jules Bordet",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+  },
+];
+
 const OncologyPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [currentTestimonial, setCurrentTestimonial] = useState<number>(0);
+
+  const nextTestimonial = useCallback(() => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  }, []);
 
   useEffect(() => {
     setIsVisible(true);
@@ -28,7 +89,7 @@ const OncologyPage: React.FC = () => {
       nextTestimonial();
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [nextTestimonial]);
 
   const features: Array<{
     icon: JSX.Element;
@@ -92,73 +153,6 @@ const OncologyPage: React.FC = () => {
         image: "/assets/FinancialGraph.jpg",
       },
     ];
-
-  const testimonials = [
-    {
-      quote:
-        "It's our job to take care of our patients, whether they're in clinic or at home. The only way to take care of them is to understand what they go through on a daily basis, and we need tools to help us do that.",
-      name: "Pr Ethan Basch",
-      title: "Oncologist and Director of Research",
-      company: "University of North Carolina",
-      image:
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "It provides us with continuous feedback and a way to focus our actions, including for those of our Advanced Practice Nurse, for specific patients in demand.",
-      name: "Dr Thomas Grellety",
-      title: "Oncologist and Head of Department",
-      company: "Centre Hospitalier de la Côte Basque",
-      image:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "I see remote monitoring as a tool that will enable us to be more efficient and to have a vision of a continuum of care for patients.",
-      name: "Dr Antoine Lemaire",
-      title: "Head of Oncology and Medical Specialties",
-      company: "Centre Hospitalier de Valenciennes",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "The idea is that we can have a vision of the patient's progression of care, even outside of hospital walls, and anticipate problems as they come.",
-      name: "Dr Antoine Lemaire",
-      title: "Head of Oncology and Medical Specialties",
-      company: "Centre Hospitalier de Valenciennes",
-      image:
-        "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "Remote monitoring has greatly improved the quality of care here (...) It's a win for patients and a win for us.",
-      name: "Dr Joana Ribiero",
-      title: "Medical oncologist",
-      company: "Gustave Roussy",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "Resilience is an easy tool to understand and is greatly endorsed by patients. It is therefore a very interesting to monitor my patients.",
-      name: "Dr Laura Polastro",
-      title: "Medical oncologist in gynecology and senology",
-      company: "Institut Jules Bordet",
-      image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-    },
-  ];
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
-  };
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-white via-white to-purple-50">
@@ -247,7 +241,7 @@ const OncologyPage: React.FC = () => {
           <div className="max-w-4xl mx-auto mb-8">
             <p className="text-lg text-gray-800 mb-4">
               Remote patient monitoring in oncology tracks vitals and weight for
-              cancer treatment. eVitals' FDA-approved devices reduce visits by
+              cancer treatment. eVitals&apos; FDA-approved devices reduce visits by
               35% and complications by 40%.
             </p>
             <p className="text-lg text-gray-800 mb-8">
@@ -366,7 +360,7 @@ const OncologyPage: React.FC = () => {
               <div className="flex items-start mb-6">
                 <Quote className="w-8 h-8 mr-4 mt-1 flex-shrink-0 text-purple-200" />
                 <p className="text-xl italic leading-relaxed">
-                  "{testimonials[currentTestimonial].quote}"
+                  &ldquo;{testimonials[currentTestimonial].quote}&rdquo;
                 </p>
               </div>
               <div className="flex items-center">

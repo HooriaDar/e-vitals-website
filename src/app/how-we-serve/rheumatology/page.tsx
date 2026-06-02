@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { JSX, useEffect, useState } from "react";
+import { JSX, useEffect, useState, useCallback } from "react";
 import {
   Stethoscope,
   Bell,
@@ -15,9 +15,70 @@ import {
 } from "lucide-react";
 import Head from "next/head";
 
+const testimonials = [
+  {
+    quote:
+      "The care gap is widening rapidly, making it increasingly difficult to provide timely and continuous monitoring for patients with rheumatic diseases. Remote monitoring helps bridge this gap by ensuring close disease surveillance while also improving efficiency in healthcare systems.",
+    name: "Johannes Knitza, MD, PhD, MHBA",
+    title: "Rheumatologist and Researcher",
+    company: "University Hospital of Giessen and Marburg",
+    image:
+      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "Patients benefit from better access to care, more personalized treatment adjustments, and greater engagement in managing their own health.",
+    name: "Johannes Knitza, MD, PhD, MHBA",
+    title: "Rheumatologist and Researcher",
+    company: "University Hospital of Giessen and Marburg",
+    image:
+      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "Conversely, if something isn’t going well, RPM or remote therapeutic monitoring provides a better way to access one’s healthcare provider and provide objective evidence via imaging, ePROs, or wearable biosensor devices about what’s happening.",
+    name: "Jeffrey Curtis, MD, MS, MPH",
+    title: "Professor of Medicine",
+    company: "University of Alabama at Birmingham",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "That's key because in arthritis we want to predict changes, we want to detect the changes and act as early as possible. More data and granularity lead to greater accuracy and predictive values for potential worsening of conditions or improvements due to a change in treatment.",
+    name: "Marc Blanchard, MSc, PhD",
+    title: "Project Leader in Digital Health",
+    company: "Lausanne University Hospital",
+    image:
+      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "Most importantly, RPM connects patients and healthcare providers. It might not be a human connection, but it's another layer, another dimension of the connection. It does not require much time or resource efforts, but it collects data and involves and empowers the patients from home.",
+    name: "Marc Blanchard, MSc, PhD",
+    title: "Project Leader in Digital Health",
+    company: "Lausanne University Hospital",
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "ePROs have been among the most accessible and impactful solutions in rheumatology. Multiple studies have demonstrated their ability to track disease activity and trigger timely in-person assessments.",
+    name: "Johannes Knitza, MD, PhD, MHBA",
+    title: "Rheumatologist and Researcher",
+    company: "University Hospital of Giessen and Marburg",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+  },
+];
+
 const RheumatologyPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [currentTestimonial, setCurrentTestimonial] = useState<number>(0);
+
+  const nextTestimonial = useCallback(() => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  }, []);
 
   useEffect(() => {
     setIsVisible(true);
@@ -28,7 +89,7 @@ const RheumatologyPage: React.FC = () => {
       nextTestimonial();
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [nextTestimonial]);
 
   const features: Array<{
     icon: JSX.Element;
@@ -92,73 +153,6 @@ const RheumatologyPage: React.FC = () => {
         image: "/assets/FinancialGraph.jpg",
       },
     ];
-
-  const testimonials = [
-    {
-      quote:
-        "The care gap is widening rapidly, making it increasingly difficult to provide timely and continuous monitoring for patients with rheumatic diseases. Remote monitoring helps bridge this gap by ensuring close disease surveillance while also improving efficiency in healthcare systems.",
-      name: "Johannes Knitza, MD, PhD, MHBA",
-      title: "Rheumatologist and Researcher",
-      company: "University Hospital of Giessen and Marburg",
-      image:
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "Patients benefit from better access to care, more personalized treatment adjustments, and greater engagement in managing their own health.",
-      name: "Johannes Knitza, MD, PhD, MHBA",
-      title: "Rheumatologist and Researcher",
-      company: "University Hospital of Giessen and Marburg",
-      image:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "Conversely, if something isn’t going well, RPM or remote therapeutic monitoring provides a better way to access one’s healthcare provider and provide objective evidence via imaging, ePROs, or wearable biosensor devices about what’s happening.",
-      name: "Jeffrey Curtis, MD, MS, MPH",
-      title: "Professor of Medicine",
-      company: "University of Alabama at Birmingham",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "That's key because in arthritis we want to predict changes, we want to detect the changes and act as early as possible. More data and granularity lead to greater accuracy and predictive values for potential worsening of conditions or improvements due to a change in treatment.",
-      name: "Marc Blanchard, MSc, PhD",
-      title: "Project Leader in Digital Health",
-      company: "Lausanne University Hospital",
-      image:
-        "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "Most importantly, RPM connects patients and healthcare providers. It might not be a human connection, but it's another layer, another dimension of the connection. It does not require much time or resource efforts, but it collects data and involves and empowers the patients from home.",
-      name: "Marc Blanchard, MSc, PhD",
-      title: "Project Leader in Digital Health",
-      company: "Lausanne University Hospital",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "ePROs have been among the most accessible and impactful solutions in rheumatology. Multiple studies have demonstrated their ability to track disease activity and trigger timely in-person assessments.",
-      name: "Johannes Knitza, MD, PhD, MHBA",
-      title: "Rheumatologist and Researcher",
-      company: "University Hospital of Giessen and Marburg",
-      image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-    },
-  ];
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
-  };
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-white via-white to-purple-50">
@@ -248,7 +242,7 @@ const RheumatologyPage: React.FC = () => {
           <div className="max-w-4xl mx-auto mb-8">
             <p className="text-lg text-gray-800 mb-4">
               Remote patient monitoring in rheumatology tracks pain, mobility
-              for RA, lupus. eVitals' FDA-approved devices reduce visits by 35%
+              for RA, lupus. eVitals&apos; FDA-approved devices reduce visits by 35%
               and flares by 35%.
             </p>
             <p className="text-lg text-gray-800 mb-8">
@@ -367,7 +361,7 @@ const RheumatologyPage: React.FC = () => {
               <div className="flex items-start mb-6">
                 <Quote className="w-8 h-8 mr-4 mt-1 flex-shrink-0 text-purple-200" />
                 <p className="text-xl italic leading-relaxed">
-                  "{testimonials[currentTestimonial].quote}"
+                  &ldquo;{testimonials[currentTestimonial].quote}&rdquo;
                 </p>
               </div>
               <div className="flex items-center">

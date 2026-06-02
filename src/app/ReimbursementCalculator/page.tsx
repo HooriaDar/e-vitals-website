@@ -1,832 +1,1003 @@
-
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
+import React, { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Download, Printer } from "lucide-react";
-import Head from "next/head";
 
 const RPMReimbursementCalculator: React.FC = () => {
-  // State for input fields and results
-  const [enrolled, setEnrolled] = useState<number>(0);
-  const [newMonthly, setNewMonthly] = useState<number>(0);
-  const [pct54, setPct54] = useState<number>(0);
-  const [pct57, setPct57] = useState<number>(0);
-  const [avg58, setAvg58] = useState<number>(0);
-  const [avg58_2, setAvg58_2] = useState<number>(0);
-  const [rate53, setRate53] = useState<number>(0);
-  const [rate54, setRate54] = useState<number>(0);
-  const [rate57, setRate57] = useState<number>(0);
-  const [rate58, setRate58] = useState<number>(0);
-  const [rate58_2, setRate58_2] = useState<number>(0);
-  const [patients99091, setPatients99091] = useState<number>(0);
-  const [rate99091, setRate99091] = useState<number>(0);
-  const [roundClaims, setRoundClaims] = useState<boolean>(true);
-  const [error, setError] = useState<string>("");
-  const [results, setResults] = useState<{
-    monthly: number;
-    annual: number;
-    arpu: number;
-    breakdown: Array<{
-      code: string;
-      label: string;
-      claims: number;
-      rate: number;
-      subtotal: number;
-    }>;
-  }>({
-    monthly: 0,
-    annual: 0,
-    arpu: 0,
-    breakdown: [],
-  });
+  // Input mode: 'pct' (% of patients) or 'cnt' (# of patients)
+  const [mode, setMode] = useState<"pct" | "cnt">("pct");
 
-  // Memoized calculateReimbursement function based on HTML logic
-  const calculateReimbursement = useCallback(() => {
-    if (enrolled < 0 || newMonthly < 0 || pct54 < 0 || pct54 > 100 || pct57 < 0 || pct57 > 100 || avg58 < 0 || patients99091 < 0) {
-      setError("Please enter valid numbers (percentages between 0-100, positive numbers for others).");
-      setResults({ monthly: 0, annual: 0, arpu: 0, breakdown: [] });
-      return;
+  // Enrolled totals
+  const [rpmPts, setRpmPts] = useState<number>(200);
+  const [rpmNew, setRpmNew] = useState<number>(20);
+
+  // RPM adoption inputs
+  const [rpmD16, setRpmD16] = useState<number>(80); // data-group="gdev"
+  const [rpmD2, setRpmD2] = useState<number>(10);   // data-group="gdev"
+  const [rpmM20, setRpmM20] = useState<number>(75); // data-group="gmgmt"
+  const [rpmM10, setRpmM10] = useState<number>(10); // data-group="gmgmt"
+  const [rpmAdd, setRpmAdd] = useState<number>(30); // data-group="g458"
+  const [rpmAdd2, setRpmAdd2] = useState<number>(0);
+  const [rpm91, setRpm91] = useState<number>(0);
+
+  // CCM totals
+  const [ccmPts, setCcmPts] = useState<number>(120);
+
+  // CCM adoption inputs
+  const [ccmStd, setCcmStd] = useState<number>(85); // data-group="gccm"
+  const [ccmAdd, setCcmAdd] = useState<number>(40);
+  const [ccmAdd2, setCcmAdd2] = useState<number>(0);
+  const [ccmPhys, setCcmPhys] = useState<number>(0);  // data-group="gccm"
+  const [ccmCx, setCcmCx] = useState<number>(0);    // data-group="gccm"
+  const [ccmCxAdd, setCcmCxAdd] = useState<number>(0);
+  const [ccmCxAdd2, setCcmCxAdd2] = useState<number>(0);
+
+  // Rates (Customizable)
+  const [r453, setR453] = useState<number>(20);
+  const [r454, setR454] = useState<number>(48);
+  const [r445, setR445] = useState<number>(15);
+  const [r457, setR457] = useState<number>(51);
+  const [r470, setR470] = useState<number>(18);
+  const [r458, setR458] = useState<number>(41);
+  const [r91, setR91] = useState<number>(53);
+
+  const [r490, setR490] = useState<number>(61);
+  const [r439, setR439] = useState<number>(46);
+  const [r491, setR491] = useState<number>(84);
+  const [r487, setR487] = useState<number>(132);
+  const [r489, setR489] = useState<number>(71);
+
+  // Handle switching modes (converts values so they represent roughly the same quantity)
+  const handleModeChange = (targetMode: "pct" | "cnt") => {
+    if (targetMode === mode) return;
+
+    if (targetMode === "cnt") {
+      // % -> counts
+      setRpmD16(Math.round((rpmPts * rpmD16) / 100));
+      setRpmD2(Math.round((rpmPts * rpmD2) / 100));
+      setRpmM20(Math.round((rpmPts * rpmM20) / 100));
+      setRpmM10(Math.round((rpmPts * rpmM10) / 100));
+      setRpmAdd(Math.round((rpmPts * rpmAdd) / 100));
+      setRpmAdd2(Math.round((rpmPts * rpmAdd2) / 100));
+      setRpm91(Math.round((rpmPts * rpm91) / 100));
+
+      setCcmStd(Math.round((ccmPts * ccmStd) / 100));
+      setCcmAdd(Math.round((ccmPts * ccmAdd) / 100));
+      setCcmAdd2(Math.round((ccmPts * ccmAdd2) / 100));
+      setCcmPhys(Math.round((ccmPts * ccmPhys) / 100));
+      setCcmCx(Math.round((ccmPts * ccmCx) / 100));
+      setCcmCxAdd(Math.round((ccmPts * ccmCxAdd) / 100));
+      setCcmCxAdd2(Math.round((ccmPts * ccmCxAdd2) / 100));
+    } else {
+      // counts -> %
+      setRpmD16(rpmPts > 0 ? Math.round((rpmD16 / rpmPts) * 100) : 0);
+      setRpmD2(rpmPts > 0 ? Math.round((rpmD2 / rpmPts) * 100) : 0);
+      setRpmM20(rpmPts > 0 ? Math.round((rpmM20 / rpmPts) * 100) : 0);
+      setRpmM10(rpmPts > 0 ? Math.round((rpmM10 / rpmPts) * 100) : 0);
+      setRpmAdd(rpmPts > 0 ? Math.round((rpmAdd / rpmPts) * 100) : 0);
+      setRpmAdd2(rpmPts > 0 ? Math.round((rpmAdd2 / rpmPts) * 100) : 0);
+      setRpm91(rpmPts > 0 ? Math.round((rpm91 / rpmPts) * 100) : 0);
+
+      setCcmStd(ccmPts > 0 ? Math.round((ccmStd / ccmPts) * 100) : 0);
+      setCcmAdd(ccmPts > 0 ? Math.round((ccmAdd / ccmPts) * 100) : 0);
+      setCcmAdd2(ccmPts > 0 ? Math.round((ccmAdd2 / ccmPts) * 100) : 0);
+      setCcmPhys(ccmPts > 0 ? Math.round((ccmPhys / ccmPts) * 100) : 0);
+      setCcmCx(ccmPts > 0 ? Math.round((ccmCx / ccmPts) * 100) : 0);
+      setCcmCxAdd(ccmPts > 0 ? Math.round((ccmCxAdd / ccmPts) * 100) : 0);
+      setCcmCxAdd2(ccmPts > 0 ? Math.round((ccmCxAdd2 / ccmPts) * 100) : 0);
     }
-
-    setError("");
-
-    // Calculate percentages
-    const pct54Decimal = Math.max(0, Math.min(100, pct54)) / 100;
-    const pct57Decimal = Math.max(0, Math.min(100, pct57)) / 100;
-
-    // Claims calculation (can be decimals if not rounding)
-    const c53 = Math.max(0, Math.floor(newMonthly));
-    // let c54 = enrolled * pct54Decimal;
-    let c54 = pct54;
-    // let c57 = enrolled * pct57Decimal;
-    let c57 = pct57;
-    let c58 = avg58;       // patients with 1 extra 20-min unit
-    let c58_2 = avg58_2;   // patients with 2 extra 20-min units
-    const c99091 = Math.max(0, Math.floor(patients99091));
-
-    if (roundClaims) {
-      c54 = Math.round(c54);
-      c57 = Math.round(c57);
-      c58 = Math.round(c58);
-      c58_2 = Math.round(c58_2);
-    }
-
-    // Revenue calculation
-    const rev53 = c53 * rate53;
-    const rev54 = c54 * rate54;
-    const rev57 = c57 * rate57;
-    const rev58 = c58 * rate58;       // 99458 (1 unit)
-    const rev58_2 = c58_2 * rate58_2; // 99458 (2 units)
-    const rev99091 = c99091 * rate99091;
-    const monthly =  rev53 + rev54 + rev57 + rev58 + rev58_2+ rev99091;
-    const anual = rev54 + rev57 + rev58 + rev58_2 + rev99091;
-    const annual = rev53 + anual * 12;
-    const arpu = enrolled > 0 ? monthly / enrolled : 0;
-
-    // Breakdown for display
-    const breakdown = [
-      {
-        code: '99453',
-        label: 'Setup/education (one-time per new patient)',
-        claims: c53,
-        rate: rate53,
-        subtotal: rev53,
-      },
-      {
-        code: '99454',
-        label: 'Device supply with daily recordings (per month)',
-        claims: c54,
-        rate: rate54,
-        subtotal: rev54,
-      },
-      {
-        code: '99457',
-        label: 'First 20 min clinical management (per month)',
-        claims: c57,
-        rate: rate57,
-        subtotal: rev57,
-      },
-      {
-        code: '99458 (1 unit)',
-        label: 'Each additional 20 min (per month)',
-        claims: c58,
-        rate: rate58,
-        subtotal: rev58,
-      },
-      {
-        code: '99458 (2 units)',
-        label: 'Each additional 40 min (per month)',
-        claims: c58_2,
-        rate: rate58_2,
-        subtotal: rev58_2,
-      },
-      {
-        code: '99091',
-        label: 'Collection and interpretation of physiologic data (per month)',
-        claims: c99091,
-        rate: rate99091,
-        subtotal: rev99091,
-      },
-    ];
-
-
-    setResults({
-      monthly: Math.round(monthly),
-      annual: Math.round(annual),
-      arpu: Math.round(arpu * 100) / 100,
-      breakdown,
-    });
-  }, [enrolled, newMonthly, pct54, pct57, avg58, rate53, rate54, rate57, rate58, rate58_2, patients99091, rate99091, roundClaims]);
-
-  // Run calculation when any input changes
-  useEffect(() => {
-    calculateReimbursement();
-  }, [calculateReimbursement]);
-
-  // Demo values function
-  const useDemoValues = () => {
-    setEnrolled(120);
-    setNewMonthly(12);
-    setPct54(85);
-    setPct57(60);
-    setAvg58(0.35);
-    setAvg58_2(0.35);
-    setRate53(20);
-    setRate54(48);
-    setRate57(50);
-    setRate58(40);
-    setRate58_2(40);
-    setPatients99091(25);
-    setRate99091(35);
-    setRoundClaims(true);
+    setMode(targetMode);
   };
 
-  // Reset function
-  const resetCalculator = () => {
-    setEnrolled(0);
-    setNewMonthly(0);
-    setPct54(0);
-    setPct57(0);
-    setAvg58(0);
-    setAvg58_2(0);
-    setRate53(0);
-    setRate54(0);
-    setRate57(0);
-    setRate58(0);
-    setRate58_2(0);
-    setPatients99091(0);
-    setRate99091(0);
-    setRoundClaims(false);
+  // Helper helper to get patients count from the input (depending on mode)
+  const getCount = (inputVal: number, total: number) => {
+    return mode === "pct" ? (total * inputVal) / 100 : inputVal;
   };
 
-  // Normalize numeric input to avoid leading zeros like "05" and handle empty
-  const normalizeNumber = (value: string, allowDecimal: boolean) => {
-    if (value === "" || value === "-") return 0;
-    const num = allowDecimal ? parseFloat(value) : parseInt(value, 10);
-    return Number.isFinite(num) ? num : 0;
+  // Enforce sum constraints when inputs change
+  // 1. Device days (rpmD16 + rpmD2 <= max)
+  const handleRpmD16Change = (val: number) => {
+    const limit = mode === "pct" ? 100 : rpmPts;
+    const allowed = Math.max(0, limit - rpmD2);
+    setRpmD16(Math.min(val, allowed));
+  };
+  const handleRpmD2Change = (val: number) => {
+    const limit = mode === "pct" ? 100 : rpmPts;
+    const allowed = Math.max(0, limit - rpmD16);
+    setRpmD2(Math.min(val, allowed));
+  };
+
+  // 2. Management time (rpmM20 + rpmM10 <= max)
+  const handleRpmM20Change = (val: number) => {
+    const limit = mode === "pct" ? 100 : rpmPts;
+    const allowed = Math.max(0, limit - rpmM10);
+    setRpmM20(Math.min(val, allowed));
+  };
+  const handleRpmM10Change = (val: number) => {
+    const limit = mode === "pct" ? 100 : rpmPts;
+    const allowed = Math.max(0, limit - rpmM20);
+    setRpmM10(Math.min(val, allowed));
+  };
+
+  // 3. CCM Standard/Physician/Complex (ccmStd + ccmPhys + ccmCx <= max)
+  const handleCcmStdChange = (val: number) => {
+    const limit = mode === "pct" ? 100 : ccmPts;
+    const allowed = Math.max(0, limit - (ccmPhys + ccmCx));
+    setCcmStd(Math.min(val, allowed));
+  };
+  const handleCcmPhysChange = (val: number) => {
+    const limit = mode === "pct" ? 100 : ccmPts;
+    const allowed = Math.max(0, limit - (ccmStd + ccmCx));
+    setCcmPhys(Math.min(val, allowed));
+  };
+  const handleCcmCxChange = (val: number) => {
+    const limit = mode === "pct" ? 100 : ccmPts;
+    const allowed = Math.max(0, limit - (ccmStd + ccmPhys));
+    setCcmCx(Math.min(val, allowed));
+  };
+
+  // Derived patient counts for calculation
+  const d16Pts = getCount(rpmD16, rpmPts);
+  const d2Pts = getCount(rpmD2, rpmPts);
+  const m20Pts = getCount(rpmM20, rpmPts);
+  const m10Pts = getCount(rpmM10, rpmPts);
+  const add1Pts = getCount(rpmAdd, rpmPts);
+  const add2Pts = getCount(rpmAdd2, rpmPts);
+  const rpm91Pts = getCount(rpm91, rpmPts);
+
+  const ccmStdPts = getCount(ccmStd, ccmPts);
+  const ccmPhysPts = getCount(ccmPhys, ccmPts);
+  const ccmCxPts = getCount(ccmCx, ccmPts);
+  const ccmAddPts = getCount(ccmAdd, ccmPts);
+  const ccmAdd2Pts = getCount(ccmAdd2, ccmPts);
+  const ccmCxAddPts = getCount(ccmCxAdd, ccmPts);
+  const ccmCxAdd2Pts = getCount(ccmCxAdd2, ccmPts);
+
+  // Revenue breakdowns
+  const c453 = rpmNew * r453;
+  const c454 = d16Pts * r454;
+  const c445 = d2Pts * r445;
+  const c457 = m20Pts * r457;
+  const c458 = (add1Pts + add2Pts) * r458;
+  const c470 = m10Pts * r470;
+  const c91 = rpm91Pts * r91;
+  const rpmTotal = c453 + c454 + c445 + c457 + c458 + c470 + c91;
+
+  const c490 = ccmStdPts * r490;
+  const c439 = (ccmAddPts + ccmAdd2Pts) * r439;
+  const c491 = ccmPhysPts * r491;
+  const c487 = ccmCxPts * r487;
+  const c489 = (ccmCxAddPts + ccmCxAdd2Pts) * r489;
+  const ccmTotal = c490 + c439 + c491 + c487 + c489;
+
+  const grandTotal = rpmTotal + ccmTotal;
+
+  // Format currency helpers
+  const money = (val: number) => {
+    return "$" + Math.round(val).toLocaleString();
+  };
+
+  const getPercentageOfTotal = (val: number) => {
+    if (grandTotal <= 0) return "0%";
+    return Math.round((val / grandTotal) * 100) + "%";
   };
 
   // Export CSV function
-  const exportCSV = () => {
-    const header = ['Metric', 'Value'];
-    const lines = [header.join(',')];
-    const add = (k: string, v: string | number) => lines.push(`${k},${String(v).replace(/,/g, '')}`);
+  const handleExportCsv = () => {
+    const pof = (x: number) => (grandTotal > 0 ? Math.round((x / grandTotal) * 100) + "%" : "0%");
+    const _rows = [
+      ["Program", "CPT", "Description", "Monthly USD", "% of total"],
+      ["RPM", "99453", "Setup", Math.round(c453), pof(c453)],
+      ["RPM", "99454", "Device 16+ days", Math.round(c454), pof(c454)],
+      ["RPM", "99445", "Device 2-15 days", Math.round(c445), pof(c445)],
+      ["RPM", "99457", "First 20 min", Math.round(c457), pof(c457)],
+      ["RPM", "99458", "Additional 20 min", Math.round(c458), pof(c458)],
+      ["RPM", "99470", "First 10 min", Math.round(c470), pof(c470)],
+      ["RPM", "99091", "Interpretation", Math.round(c91), pof(c91)],
+      ["RPM", "", "Subtotal", Math.round(rpmTotal), pof(rpmTotal)],
+      ["CCM", "99490", "First 20 min", Math.round(c490), pof(c490)],
+      ["CCM", "99439", "Additional 20 min", Math.round(c439), pof(c439)],
+      ["CCM", "99491", "Physician 30 min", Math.round(c491), pof(c491)],
+      ["CCM", "99487", "Complex 60 min", Math.round(c487), pof(c487)],
+      ["CCM", "99489", "Additional 30 min", Math.round(c489), pof(c489)],
+      ["CCM", "", "Subtotal", Math.round(ccmTotal), pof(ccmTotal)],
+      ["", "", "Combined monthly", Math.round(grandTotal), "100%"],
+      ["", "", "Combined annual", Math.round(grandTotal * 12), ""]
+    ];
 
-    add('Total enrolled patients', enrolled);
-    add('New enrollments (99453)', newMonthly);
-    add('% meeting 99454', pct54.toFixed(1) + '%');
-    add('% meeting 99457', pct57.toFixed(1) + '%');
-    add('Avg extra 99458 units per 99457 pt', avg58);
-    add('Patients for 99091', patients99091);
-    results.breakdown.forEach((r: { code: string; claims: number; rate: number; subtotal: number }) => {
-      add(`${r.code} claims`, r.claims);
-      add(`${r.code} rate`, r.rate);
-      add(`${r.code} subtotal`, r.subtotal.toFixed(2));
-    });
-    add('Monthly total', results.monthly.toFixed(2));
-    add('Annualized (x12)', results.annual.toFixed(2));
-    add('Avg revenue per enrolled patient / month', results.arpu.toFixed(2));
-
-    const blob = new Blob([lines.join('\n')], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'rpm_reimbursement_calc.csv';
+    const csvData = _rows.map((r) => r.join(",")).join("\n");
+    const b = new Blob([csvData], { type: "text/csv" });
+    const u = URL.createObjectURL(b);
+    const a = document.createElement("a");
+    a.href = u;
+    a.download = "evitals-revenue-estimate.csv";
     a.click();
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(u);
   };
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-white via-white to-purple-50 py-16">
-      {/* SEO Meta Tags */}
-      <Head>
-        <title>eVitals - RPM Reimbursement Calculator</title>
-        <meta
-          name="description"
-          content="Estimate your Remote Patient Monitoring (RPM) revenue with eVitals' reimbursement calculator. Input patient numbers and monitoring days to see potential earnings from CPT codes 99453, 99454, 99457, and 99458."
-        />
-        <meta
-          name="keywords"
-          content="RPM reimbursement calculator, remote patient monitoring, CPT codes, healthcare revenue, telehealth, eVitals"
-        />
-        <meta name="robots" content="index, follow" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="canonical" href="https://www.evitals.com/rpm-reimbursement-calculator" />
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              "name": "eVitals RPM Reimbursement Calculator",
-              "description": "A tool to estimate revenue from Remote Patient Monitoring (RPM) using CPT codes, designed for healthcare providers.",
-              "url": "https://www.evitals.com/rpm-reimbursement-calculator",
-              "applicationCategory": "Medical",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-              }
-            }
-          `}
-        </script>
-      </Head>
-
-      {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/assets/RPMcalhero.jpg"
-            alt="RPM Calculator Hero Background"
-            fill
-            className="object-cover kenburns"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
-        </div>
-        <div className="relative z-10 w-full text-left pl-6 md:pl-12 lg:pl-20 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-white text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6">
-              RPM <span className="text-[#B187E8]">Reimbursement</span> Calculator
-            </h1>
-            <p className="text-white text-base md:text-lg mb-8 max-w-3xl">
-              Discover the revenue potential of Remote Patient Monitoring (RPM) with eVitals&apos; comprehensive calculator. Input your practice&apos;s detailed metrics to estimate earnings from CPT codes 99453, 99454, 99457, and 99458.
-            </p>
-          </motion.div>
+    <div className="w-full">
+      {/* Header Info Section */}
+      <section className="mx-auto max-w-6xl px-6 pt-12 pb-10">
+        <nav className="mb-6 text-sm text-slate-500">
+          <Link href="/" className="hover:text-brand">Home</Link> / <span className="text-plum">Reimbursement</span>
+        </nav>
+        <div className="max-w-3xl animate-rise">
+          <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
+            <span className="h-px w-6 bg-brand"></span>Reimbursement
+          </p>
+          <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl text-plum">
+            RPM &amp; CCM reimbursement guide (2026).
+          </h1>
+          <p className="mt-5 text-lg text-slate-600">
+            The correct, current code sets with approximate national-average rates — plus a calculator to estimate your practice&apos;s revenue.
+          </p>
         </div>
       </section>
 
-      {/* Calculator Section */}
-      <section className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-8 text-center">
-            Calculate Your RPM Revenue
-          </h2>
-                      <p className="text-lg text-gray-800 mb-8 max-w-3xl mx-auto text-center">
-              Use our comprehensive tool to estimate monthly and annual revenue from RPM services. Enter detailed patient metrics and custom rates to see how eVitals can boost your practice&apos;s financial performance.
+      {/* RPM Codes Table */}
+      <section className="bg-slate-50/70 border-y border-slate-100 w-full">
+        <div className="mx-auto max-w-6xl px-6 py-14 animate-rise">
+          <h2 className="mb-5 text-2xl font-bold text-plum">Remote Patient Monitoring codes</h2>
+          <div className="overflow-x-auto rounded-2xl ring-1 ring-slate-200 shadow-sm">
+            <table className="w-full min-w-[640px] border-collapse text-left">
+              <thead>
+                <tr className="bg-deep text-xs uppercase tracking-wide text-white/85">
+                  <th className="px-5 py-3.5 font-semibold">CPT</th>
+                  <th className="px-5 py-3.5 font-semibold">What it covers</th>
+                  <th className="px-5 py-3.5 font-semibold">Frequency</th>
+                  <th className="px-5 py-3.5 text-right font-semibold">Approx. avg*</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 bg-white">
+                <tr className="align-top transition-colors hover:bg-slate-50">
+                  <td className="whitespace-nowrap px-5 py-4">
+                    <span className="mono text-sm font-semibold text-brand">99453</span>
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="font-semibold text-plum">Setup &amp; patient education</div>
+                    <div className="mt-0.5 text-sm text-slate-500">Initial setup and education on the monitoring device(s).</div>
+                  </td>
+                  <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">Once per episode</td>
+                  <td className="whitespace-nowrap px-5 py-4 text-right font-semibold text-plum">$20</td>
+                </tr>
+                <tr className="align-top transition-colors hover:bg-slate-50">
+                  <td className="whitespace-nowrap px-5 py-4">
+                    <span className="mono text-sm font-semibold text-brand">99454</span>
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="font-semibold text-plum">Device supply + data (16+ days)</div>
+                    <div className="mt-0.5 text-sm text-slate-500">Device supply with daily recordings; requires &ge;16 days of readings.</div>
+                  </td>
+                  <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">Each 30 days</td>
+                  <td className="whitespace-nowrap px-5 py-4 text-right font-semibold text-plum">$45&ndash;50</td>
+                </tr>
+                <tr className="align-top transition-colors hover:bg-slate-50">
+                  <td className="whitespace-nowrap px-5 py-4">
+                    <span className="mono text-sm font-semibold text-brand">99445</span>
+                    <span className="ml-2 rounded-md bg-brand-tint px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-brand ring-1 ring-inset ring-brand/20">New 2026</span>
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="font-semibold text-plum">Device supply + data (2&ndash;15 days)</div>
+                    <div className="mt-0.5 text-sm text-slate-500">Device supply when only 2&ndash;15 days of readings are collected.</div>
+                    <div className="mt-1.5 text-xs font-medium text-brand">New in 2026. Use instead of 99454 when fewer than 16 days of data are collected.</div>
+                  </td>
+                  <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">Each 30 days</td>
+                  <td className="whitespace-nowrap px-5 py-4 text-right font-semibold text-plum"><span className="font-normal text-slate-400">varies</span></td>
+                </tr>
+                <tr className="align-top transition-colors hover:bg-slate-50">
+                  <td className="whitespace-nowrap px-5 py-4">
+                    <span className="mono text-sm font-semibold text-brand">99470</span>
+                    <span className="ml-2 rounded-md bg-brand-tint px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-brand ring-1 ring-inset ring-brand/20">New 2026</span>
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="font-semibold text-plum">First 10 minutes of management</div>
+                    <div className="mt-0.5 text-sm text-slate-500">Management with interactive communication; 10&ndash;19 total minutes.</div>
+                    <div className="mt-1.5 text-xs font-medium text-brand">New in 2026. Mutually exclusive with 99457 in the same month.</div>
+                  </td>
+                  <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">Monthly</td>
+                  <td className="whitespace-nowrap px-5 py-4 text-right font-semibold text-plum">$10&ndash;26</td>
+                </tr>
+                <tr className="align-top transition-colors hover:bg-slate-50">
+                  <td className="whitespace-nowrap px-5 py-4">
+                    <span className="mono text-sm font-semibold text-brand">99457</span>
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="font-semibold text-plum">First 20 minutes of management</div>
+                    <div className="mt-0.5 text-sm text-slate-500">Treatment management requiring interactive communication.</div>
+                  </td>
+                  <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">Monthly</td>
+                  <td className="whitespace-nowrap px-5 py-4 text-right font-semibold text-plum">$48&ndash;52</td>
+                </tr>
+                <tr className="align-top transition-colors hover:bg-slate-50">
+                  <td className="whitespace-nowrap px-5 py-4">
+                    <span className="mono text-sm font-semibold text-brand">99458</span>
+                    <span className="ml-2 rounded-md bg-plum-tint px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-plum-2">Add-on</span>
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="font-semibold text-plum">Each additional 20 minutes</div>
+                    <div className="mt-0.5 text-sm text-slate-500">Add-on to 99457 for each additional 20 minutes.</div>
+                    <div className="mt-1.5 text-xs font-medium text-brand">Only after the initial 20 minutes (99457) is met.</div>
+                  </td>
+                  <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">Monthly (add-on)</td>
+                  <td className="whitespace-nowrap px-5 py-4 text-right font-semibold text-plum">$41</td>
+                </tr>
+                <tr className="align-top transition-colors hover:bg-slate-50">
+                  <td className="whitespace-nowrap px-5 py-4">
+                    <span className="mono text-sm font-semibold text-brand">99091</span>
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="font-semibold text-plum">Physician data interpretation</div>
+                    <div className="mt-0.5 text-sm text-slate-500">Collection &amp; interpretation of physiologic data by a physician/QHP.</div>
+                  </td>
+                  <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">Each 30 days</td>
+                  <td className="whitespace-nowrap px-5 py-4 text-right font-semibold text-plum">$50&ndash;56</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* CCM Codes Table */}
+      <section className="mx-auto max-w-6xl px-6 py-14 animate-rise">
+        <h2 className="mb-5 text-2xl font-bold text-plum">Chronic Care Management codes</h2>
+        <div className="overflow-x-auto rounded-2xl ring-1 ring-slate-200 shadow-sm">
+          <table className="w-full min-w-[640px] border-collapse text-left">
+            <thead>
+              <tr className="bg-deep text-xs uppercase tracking-wide text-white/85">
+                <th className="px-5 py-3.5 font-semibold">CPT</th>
+                <th className="px-5 py-3.5 font-semibold">What it covers</th>
+                <th className="px-5 py-3.5 font-semibold">Frequency</th>
+                <th className="px-5 py-3.5 text-right font-semibold">Approx. avg*</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 bg-white">
+              <tr className="align-top transition-colors hover:bg-slate-50">
+                <td className="whitespace-nowrap px-5 py-4">
+                  <span className="mono text-sm font-semibold text-brand">99490</span>
+                </td>
+                <td className="px-5 py-4">
+                  <div className="font-semibold text-plum">CCM &mdash; first 20 minutes</div>
+                  <div className="mt-0.5 text-sm text-slate-500">Clinical staff time directed by a physician/QHP; first 20 minutes.</div>
+                </td>
+                <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">Monthly</td>
+                <td className="whitespace-nowrap px-5 py-4 text-right font-semibold text-plum">$60&ndash;62</td>
+              </tr>
+              <tr className="align-top transition-colors hover:bg-slate-50">
+                <td className="whitespace-nowrap px-5 py-4">
+                  <span className="mono text-sm font-semibold text-brand">99439</span>
+                  <span className="ml-2 rounded-md bg-plum-tint px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-plum-2">Add-on</span>
+                </td>
+                <td className="px-5 py-4">
+                  <div className="font-semibold text-plum">CCM &mdash; each additional 20 minutes</div>
+                  <div className="mt-0.5 text-sm text-slate-500">Add-on to 99490 for each additional 20 minutes (up to 2 units).</div>
+                </td>
+                <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">Monthly (add-on)</td>
+                <td className="whitespace-nowrap px-5 py-4 text-right font-semibold text-plum">$45&ndash;48</td>
+              </tr>
+              <tr className="align-top transition-colors hover:bg-slate-50">
+                <td className="whitespace-nowrap px-5 py-4">
+                  <span className="mono text-sm font-semibold text-brand">99491</span>
+                </td>
+                <td className="px-5 py-4">
+                  <div className="font-semibold text-plum">CCM by physician/QHP</div>
+                  <div className="mt-0.5 text-sm text-slate-500">30 minutes provided personally by the physician or QHP.</div>
+                </td>
+                <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">Monthly</td>
+                <td className="whitespace-nowrap px-5 py-4 text-right font-semibold text-plum">$82&ndash;86</td>
+              </tr>
+              <tr className="align-top transition-colors hover:bg-slate-50">
+                <td className="whitespace-nowrap px-5 py-4">
+                  <span className="mono text-sm font-semibold text-brand">99437</span>
+                  <span className="ml-2 rounded-md bg-plum-tint px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-plum-2">Add-on</span>
+                </td>
+                <td className="px-5 py-4">
+                  <div className="font-semibold text-plum">CCM by physician/QHP &mdash; each additional 30 minutes</div>
+                  <div className="mt-0.5 text-sm text-slate-500">Add-on to 99491 for each additional 30 minutes of physician/QHP time.</div>
+                </td>
+                <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">Monthly (add-on)</td>
+                <td className="whitespace-nowrap px-5 py-4 text-right font-semibold text-plum">$58&ndash;60</td>
+              </tr>
+              <tr className="align-top transition-colors hover:bg-slate-50">
+                <td className="whitespace-nowrap px-5 py-4">
+                  <span className="mono text-sm font-semibold text-brand">99487</span>
+                </td>
+                <td className="px-5 py-4">
+                  <div className="font-semibold text-plum">Complex CCM &mdash; 60 minutes</div>
+                  <div className="mt-0.5 text-sm text-slate-500">Complex CCM requiring moderate/high-complexity decision making.</div>
+                </td>
+                <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">Monthly</td>
+                <td className="whitespace-nowrap px-5 py-4 text-right font-semibold text-plum">$130&ndash;134</td>
+              </tr>
+              <tr className="align-top transition-colors hover:bg-slate-50">
+                <td className="whitespace-nowrap px-5 py-4">
+                  <span className="mono text-sm font-semibold text-brand">99489</span>
+                  <span className="ml-2 rounded-md bg-plum-tint px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-plum-2">Add-on</span>
+                </td>
+                <td className="px-5 py-4">
+                  <div className="font-semibold text-plum">Complex CCM &mdash; each additional 30 minutes</div>
+                  <div className="mt-0.5 text-sm text-slate-500">Add-on to 99487 for each additional 30 minutes.</div>
+                </td>
+                <td className="whitespace-nowrap px-5 py-4 text-sm text-slate-600">Monthly (add-on)</td>
+                <td className="whitespace-nowrap px-5 py-4 text-right font-semibold text-plum">$70&ndash;72</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* Estimator Calculator Card Block */}
+      <section className="bg-slate-50/70 border-y border-slate-100 w-full">
+        <div className="mx-auto max-w-6xl px-6 py-16 animate-rise">
+          <div className="max-w-2xl">
+            <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
+              <span className="h-px w-6 bg-brand"></span>Calculator
             </p>
-          
-          <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-            {/* Inputs Card */}
-            <motion.div
-              className="bg-white rounded-xl p-8 shadow-lg"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-purple-900">Inputs</h3>
-                <div className="flex gap-2">
-                  {/* <button
-                    onClick={useDemoValues}
-                    className="text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded-md transition-colors"
-                  >
-                    Demo Values
-                  </button> */}
-                  <button
-                    onClick={resetCalculator}
-                    className="text-sm bg-red-100 hover:bg-red-200 text-red-700 px-3 py-1 rounded-md transition-colors"
-                  >
-                    Reset
-                  </button>
-                </div>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-plum">Estimate your revenue</h2>
+            <p className="mt-3 text-slate-600">
+              Enter how many patients you have in each program and adjust the assumptions. For an eligible patient, RPM and CCM can be billed in the same month when the time counted toward each is distinct.
+            </p>
+          </div>
+
+          <div id="calc" className="mt-8 space-y-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="text-sm font-medium text-slate-600">Enter code adoption as:</span>
+              <div className="inline-flex rounded-lg bg-white p-1 ring-1 ring-slate-200 shadow-sm">
+                <button 
+                  onClick={() => handleModeChange("pct")}
+                  type="button" 
+                  className={`rounded-md px-3 py-1.5 text-sm font-semibold cursor-pointer transition ${mode === 'pct' ? 'bg-brand text-white' : 'text-slate-600 hover:text-plum'}`}
+                >
+                  % of patients
+                </button>
+                <button 
+                  onClick={() => handleModeChange("cnt")}
+                  type="button" 
+                  className={`rounded-md px-3 py-1.5 text-sm font-semibold cursor-pointer transition ${mode === 'cnt' ? 'bg-brand text-white' : 'text-slate-600 hover:text-plum'}`}
+                >
+                  # of patients
+                </button>
               </div>
+              <span id="modehint" className="text-xs text-slate-400">
+                {mode === 'pct' ? "Adoption fields are % of enrolled patients" : "Adoption fields are number of patients"}
+              </span>
+            </div>
 
-              <div className="space-y-6">
-                {/* Patient Metrics */}
-                {/* <div>
-                  <h4 className="text-lg font-semibold text-purple-900 mb-4">Patient Metrics</h4>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2 min-h-[40px] leading-snug">
-                        Total enrolled patients
-                      </label>
-                      <input
-                        inputMode="numeric"
-                        pattern="[0-9]*"
-                        onKeyDown={(e)=> (e.key === 'ArrowUp' || e.key === 'ArrowDown') && e.preventDefault()}
-                        value={enrolled}
-                        onChange={(e) => setEnrolled(normalizeNumber(e.target.value, false))}
-                        min="0"
-                        className="w-full p-3 border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B187E8]"
-                        placeholder="e.g., 120"
-                      />
-                      <p className="text-xs text-gray-500 mt-1">Patients actively enrolled in RPM this month</p>
-                    </div>
-                    {/* <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2 min-h-[40px] leading-snug">
-                        New patient enrollments this month (for 99453)
-                      </label>
-                      <input
-                        inputMode="numeric"
-                        pattern="[0-9]*"
-                        onKeyDown={(e)=> (e.key === 'ArrowUp' || e.key === 'ArrowDown') && e.preventDefault()}
-                        value={newMonthly}
-                        onChange={(e) => setNewMonthly(normalizeNumber(e.target.value, false))}
-                        min="0"
-                        className="w-full p-3 border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B187E8]"
-                        placeholder="e.g., 15"
-                      />
-                      <p className="text-xs text-gray-500 mt-1">One-time setup/education billed per newly enrolled patient</p>
-                    </div>
-                  </div>
-                </div> */}
-
-                {/* CPT Settings - compact rows */}
-                <div>
-                  <h4 className="text-lg font-semibold text-purple-900 mb-2">CPT Settings</h4>
-                  <p className="text-xs text-gray-500 mb-3">Each row pairs the patient metric with its corresponding rate.</p>
-
-                  <div className="space-y-3">
-                    {/* 99453 - New enrollments + rate */}
-                    <div className="grid md:grid-cols-2 gap-3 items-start">
-                      <div className="flex flex-col">
-                        <label className="block text-sm font-medium text-gray-700 mb-1 min-h-[40px] leading-snug">99453 • New enrollments this month</label>
-                        <input
-                          inputMode="numeric"
-                          pattern="[0-9]*"
-                          onKeyDown={(e)=> (e.key === 'ArrowUp' || e.key === 'ArrowDown') && e.preventDefault()}
-                          value={newMonthly}
-                          onChange={(e) => setNewMonthly(normalizeNumber(e.target.value, false))}
-                          min="0"
-                          className="w-full p-2.5 border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B187E8]"
-                          placeholder="e.g., 12"
-                        />
-                        <p className="text-xs text-gray-500 mt-1">One-time setup/education billed per newly enrolled patient</p>
-                      </div>
-                      <div className="flex flex-col">
-                        <label className="block text-sm font-medium text-gray-700 mb-1 min-h-[40px] leading-snug">Rate for 99453</label>
-                        <input
-                          inputMode="decimal"
-                          pattern="[0-9]*[.,]?[0-9]*"
-                          value={rate53}
-                          onChange={(e) => setRate53(normalizeNumber(e.target.value, true))}
-                          min="0"
-                          step="0.01"
-                          className="w-full p-2.5 border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B187E8]"
-                          placeholder="e.g., 20.00"
-                        />
-                      </div>
-                    </div>
-
-                    {/* 99454 - % meeting + rate */}
-                    <div className="grid md:grid-cols-2 gap-3 items-start">
-                      <div className="flex flex-col">
-                        <label className="block text-sm font-medium text-gray-700 mb-1 min-h-[40px] leading-snug">99454 • Patients meeting ≥16 days data</label>
-                        <input
-                          inputMode="numeric"
-                          pattern="[0-9]*"
-                          onKeyDown={(e)=> (e.key === 'ArrowUp' || e.key === 'ArrowDown') && e.preventDefault()}
-                          value={pct54}
-                          onChange={(e) => setPct54(normalizeNumber(e.target.value, false))}
-                          min="0"
-                          max="100"
-                          className="w-full p-2.5 border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B187E8]"
-                          placeholder="e.g., 85"
-                        />
-                      </div>
-                      <div className="flex flex-col">
-                        <label className="block text-sm font-medium text-gray-700 mb-1 min-h-[40px] leading-snug">Rate for 99454</label>
-                        <input
-                          inputMode="decimal"
-                          pattern="[0-9]*[.,]?[0-9]*"
-                          value={rate54}
-                          onChange={(e) => setRate54(normalizeNumber(e.target.value, true))}
-                          min="0"
-                          step="0.01"
-                          className="w-full p-2.5 border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B187E8]"
-                          placeholder="e.g., 50.00"
-                        />
-                      </div>
-                    </div>
-
-                    {/* 99457 - % meeting + rate */}
-                    <div className="grid md:grid-cols-2 gap-3 items-start">
-                      <div className="flex flex-col">
-                        <label className="block text-sm font-medium text-gray-700 mb-1 min-h-[40px] leading-snug">99457 • Patients meeting ≥20 min</label>
-                        <input
-                          inputMode="numeric"
-                          pattern="[0-9]*"
-                          onKeyDown={(e)=> (e.key === 'ArrowUp' || e.key === 'ArrowDown') && e.preventDefault()}
-                          value={pct57}
-                          onChange={(e) => setPct57(normalizeNumber(e.target.value, false))}
-                          min="0"
-                          max="100"
-                          className="w-full p-2.5 border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B187E8]"
-                          placeholder="e.g., 60"
-                        />
-                      </div>
-                      <div className="flex flex-col">
-                        <label className="block text-sm font-medium text-gray-700 mb-1 min-h-[40px] leading-snug">Rate for 99457</label>
-                        <input
-                          inputMode="decimal"
-                          pattern="[0-9]*[.,]?[0-9]*"
-                          value={rate57}
-                          onChange={(e) => setRate57(normalizeNumber(e.target.value, true))}
-                          min="0"
-                          step="0.01"
-                          className="w-full p-2.5 border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B187E8]"
-                          placeholder="e.g., 51.00"
-                        />
-                      </div>
-                    </div>
-
-                    {/* 99458 - avg units + rate */}
-                    <div className="grid md:grid-cols-2 gap-3 items-start">
-                      <div className="flex flex-col">
-                        <label className="block text-sm font-medium text-gray-700 mb-1 min-h-[40px] leading-snug">99458 • Additional 20‑min 1 units per patient</label>
-                        <input
-                          inputMode="decimal"
-                          pattern="[0-9]*[.,]?[0-9]*"
-                          onKeyDown={(e)=> (e.key === 'ArrowUp' || e.key === 'ArrowDown') && e.preventDefault()}
-                          value={avg58}
-                          onChange={(e) => setAvg58(normalizeNumber(e.target.value, true))}
-                          min="0"
-                          step="0.1"
-                          className="w-full p-2.5 border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B187E8]"
-                          placeholder="e.g., 0.35"
-                        />
-                      </div>
-                      <div className="flex flex-col">
-                        <label className="block text-sm font-medium text-gray-700 mb-1 min-h-[40px] leading-snug">Rate for 99458</label>
-                        <input
-                          inputMode="decimal"
-                          pattern="[0-9]*[.,]?[0-9]*"
-                          value={rate58}
-                          onChange={(e) => setRate58(normalizeNumber(e.target.value, true))}
-                          min="0"
-                          step="0.01"
-                          className="w-full p-2.5 border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B187E8]"
-                          placeholder="e.g., 42.00"
-                        />
-                      </div>
-                    </div>
-                      {/* 99458 - avg units + rate */}
-                      <div className="grid md:grid-cols-2 gap-3 items-start">
-                      <div className="flex flex-col">
-                        <label className="block text-sm font-medium text-gray-700 mb-1 min-h-[40px] leading-snug">99458 • Additional 20‑min 2 units per patient</label>
-                        <input
-                          inputMode="decimal"
-                          pattern="[0-9]*[.,]?[0-9]*"
-                          onKeyDown={(e)=> (e.key === 'ArrowUp' || e.key === 'ArrowDown') && e.preventDefault()}
-                          value={avg58_2}
-                          onChange={(e) => setAvg58_2(normalizeNumber(e.target.value, true))}
-                          min="0"
-                          step="0.1"
-                          className="w-full p-2.5 border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B187E8]"
-                          placeholder="e.g., 0.35"
-                        />
-                      </div>
-                      <div className="flex flex-col">
-                        <label className="block text-sm font-medium text-gray-700 mb-1 min-h-[40px] leading-snug">Rate for 99458</label>
-                        <input
-                          inputMode="decimal"
-                          pattern="[0-9]*[.,]?[0-9]*"
-                          value={rate58_2}
-                          onChange={(e) => setRate58_2(normalizeNumber(e.target.value, true))}
-                          min="0"
-                          step="0.01"
-                          className="w-full p-2.5 border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B187E8]"
-                          placeholder="e.g., 42.00"
-                        />
-                      </div>
-                    </div>
-
-                    {/* 99091 - patients + rate */}
-                    <div className="grid md:grid-cols-2 gap-3 items-start">
-                      <div className="flex flex-col">
-                        <label className="block text-sm font-medium text-gray-700 mb-1 min-h-[40px] leading-snug">99091 • Number of patients</label>
-                        <input
-                          inputMode="numeric"
-                          pattern="[0-9]*"
-                          onKeyDown={(e)=> (e.key === 'ArrowUp' || e.key === 'ArrowDown') && e.preventDefault()}
-                          value={patients99091}
-                          onChange={(e) => setPatients99091(normalizeNumber(e.target.value, false))}
-                          min="0"
-                          className="w-full p-2.5 border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B187E8]"
-                          placeholder="e.g., 25"
-                        />
-                      </div>
-                      <div className="flex flex-col">
-                        <label className="block text-sm font-medium text-gray-700 mb-1 min-h-[40px] leading-snug">Rate for 99091</label>
-                        <input
-                          inputMode="decimal"
-                          pattern="[0-9]*[.,]?[0-9]*"
-                          value={rate99091}
-                          onChange={(e) => setRate99091(normalizeNumber(e.target.value, true))}
-                          min="0"
-                          step="0.01"
-                          className="w-full p-2.5 border border-purple-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B187E8]"
-                          placeholder="e.g., 35.00"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Options */}
-                <div className="flex items-center gap-4">
-                  <label className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      checked={roundClaims}
-                      onChange={(e) => setRoundClaims(e.target.checked)}
-                      className="rounded border-purple-300 text-[#B187E8] focus:ring-[#B187E8]"
+            <div className="grid gap-6 lg:grid-cols-2">
+              {/* RPM card */}
+              <div className="rounded-2xl bg-white p-7 ring-1 ring-slate-200 shadow-sm">
+                <h3 className="flex items-center gap-2 text-lg font-bold text-plum">
+                  <span className="h-2.5 w-2.5 rounded-full bg-brand animate-pulse"></span> 
+                  Remote Patient Monitoring
+                </h3>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">Enrolled RPM patients</span>
+                    <input 
+                      type="number" 
+                      value={rpmPts} 
+                      onChange={(e) => setRpmPts(Math.max(0, parseInt(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
                     />
-                    <span className="text-sm text-gray-700">Round patient/claim counts to whole numbers</span>
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">New enrollments / mo · 99453</span>
+                    <input 
+                      type="number" 
+                      value={rpmNew} 
+                      onChange={(e) => setRpmNew(Math.max(0, parseInt(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">16+ days of data · 99454 ({mode === 'pct' ? '%' : '#'})</span>
+                    <input 
+                      type="number" 
+                      value={rpmD16} 
+                      onChange={(e) => handleRpmD16Change(Math.max(0, parseFloat(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">2–15 days of data · 99445 ({mode === 'pct' ? '%' : '#'})</span>
+                    <input 
+                      type="number" 
+                      value={rpmD2} 
+                      onChange={(e) => handleRpmD2Change(Math.max(0, parseFloat(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">20+ min management · 99457 ({mode === 'pct' ? '%' : '#'})</span>
+                    <input 
+                      type="number" 
+                      value={rpmM20} 
+                      onChange={(e) => handleRpmM20Change(Math.max(0, parseFloat(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">10–19 min management · 99470 ({mode === 'pct' ? '%' : '#'})</span>
+                    <input 
+                      type="number" 
+                      value={rpmM10} 
+                      onChange={(e) => handleRpmM10Change(Math.max(0, parseFloat(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">Patients with +20 min · 99458 ({mode === 'pct' ? '%' : '#'})</span>
+                    <input 
+                      type="number" 
+                      value={rpmAdd} 
+                      onChange={(e) => setRpmAdd(Math.max(0, parseFloat(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">Patients with a 2nd +20 min · 99458 ({mode === 'pct' ? '%' : '#'})</span>
+                    <input 
+                      type="number" 
+                      value={rpmAdd2} 
+                      onChange={(e) => setRpmAdd2(Math.max(0, parseFloat(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                  <label className="block sm:col-span-2">
+                    <span className="text-xs font-medium text-slate-600">Physician interpretation · 99091 ({mode === 'pct' ? '%' : '#'})</span>
+                    <input 
+                      type="number" 
+                      value={rpm91} 
+                      onChange={(e) => setRpm91(Math.max(0, parseFloat(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
                   </label>
                 </div>
+                <div className="mt-4 space-y-1 border-t border-slate-100 pt-3 text-xs">
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">Device supply (99454 + 99445)</span>
+                    <span className="font-semibold text-plum">
+                      {Math.round(d16Pts + d2Pts)} of {rpmPts} patients
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">Management (99457 + 99470)</span>
+                    <span className="font-semibold text-plum">
+                      {Math.round(m20Pts + m10Pts)} of {rpmPts} patients
+                    </span>
+                  </div>
+                </div>
               </div>
-            </motion.div>
 
-            {/* Results Card */}
-            <motion.div
-              className="bg-white rounded-xl p-8 shadow-lg"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-purple-900">Results</h3>
-                <div className="flex gap-2">
-                  <button
-                    onClick={exportCSV}
-                    className="text-sm bg-blue-100 hover:bg-blue-200 text-blue-700 px-3 py-1 rounded-md transition-colors flex items-center gap-1"
+              {/* CCM card */}
+              <div className="rounded-2xl bg-white p-7 ring-1 ring-slate-200 shadow-sm">
+                <h3 className="flex items-center gap-2 text-lg font-bold text-plum">
+                  <span className="h-2.5 w-2.5 rounded-full bg-accent animate-pulse"></span> 
+                  Chronic Care Management
+                </h3>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">Enrolled CCM patients</span>
+                    <input 
+                      type="number" 
+                      value={ccmPts} 
+                      onChange={(e) => setCcmPts(Math.max(0, parseInt(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">20-min CCM · 99490 ({mode === 'pct' ? '%' : '#'})</span>
+                    <input 
+                      type="number" 
+                      value={ccmStd} 
+                      onChange={(e) => handleCcmStdChange(Math.max(0, parseFloat(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">Patients with +20 min · 99439 ({mode === 'pct' ? '%' : '#'})</span>
+                    <input 
+                      type="number" 
+                      value={ccmAdd} 
+                      onChange={(e) => setCcmAdd(Math.max(0, parseFloat(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">Patients with a 2nd +20 min · 99439 ({mode === 'pct' ? '%' : '#'})</span>
+                    <input 
+                      type="number" 
+                      value={ccmAdd2} 
+                      onChange={(e) => setCcmAdd2(Math.max(0, parseFloat(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">Physician 30-min · 99491 ({mode === 'pct' ? '%' : '#'})</span>
+                    <input 
+                      type="number" 
+                      value={ccmPhys} 
+                      onChange={(e) => handleCcmPhysChange(Math.max(0, parseFloat(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">Complex 60-min · 99487 ({mode === 'pct' ? '%' : '#'})</span>
+                    <input 
+                      type="number" 
+                      value={ccmCx} 
+                      onChange={(e) => handleCcmCxChange(Math.max(0, parseFloat(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">Patients with +30 min · 99489 ({mode === 'pct' ? '%' : '#'})</span>
+                    <input 
+                      type="number" 
+                      value={ccmCxAdd} 
+                      onChange={(e) => setCcmCxAdd(Math.max(0, parseFloat(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-medium text-slate-600">Patients with a 2nd +30 min · 99489 ({mode === 'pct' ? '%' : '#'})</span>
+                    <input 
+                      type="number" 
+                      value={ccmCxAdd2} 
+                      onChange={(e) => setCcmCxAdd2(Math.max(0, parseFloat(e.target.value) || 0))}
+                      className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none" 
+                    />
+                  </label>
+                </div>
+                <div className="mt-4 space-y-1 border-t border-slate-100 pt-3 text-xs">
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">CCM billing (99490 + 99491 + 99487)</span>
+                    <span className="font-semibold text-plum">
+                      {Math.round(ccmStdPts + ccmPhysPts + ccmCxPts)} of {ccmPts} patients
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Live totals display */}
+            <div className="grid gap-6 rounded-2xl bg-deep p-7 text-white md:grid-cols-2 shadow-xl animate-rise">
+              <div>
+                <div className="text-sm text-white/70">Combined estimated monthly reimbursement</div>
+                <div className="mt-1 text-5xl font-extrabold text-brand-tint">{money(grandTotal)}</div>
+                <div className="mt-2 text-sm text-white/60">
+                  ≈ <span className="font-semibold text-white/80">{money(grandTotal * 12)}</span> per year
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="rounded-xl bg-white/5 p-3 ring-1 ring-white/10">
+                  <div className="text-xs text-white/60">RPM / mo</div>
+                  <div className="mt-0.5 text-lg font-bold">{money(rpmTotal)}</div>
+                </div>
+                <div className="rounded-xl bg-white/5 p-3 ring-1 ring-white/10">
+                  <div className="text-xs text-white/60">CCM / mo</div>
+                  <div className="mt-0.5 text-lg font-bold">{money(ccmTotal)}</div>
+                </div>
+                <div className="rounded-xl bg-white/5 p-3 ring-1 ring-white/10">
+                  <div className="text-xs text-white/60">RPM avg / patient</div>
+                  <div className="mt-0.5 text-lg font-bold">
+                    {rpmPts > 0 ? money(rpmTotal / rpmPts) : "$0"}
+                  </div>
+                </div>
+                <div className="rounded-xl bg-white/5 p-3 ring-1 ring-white/10">
+                  <div className="text-xs text-white/60">CCM avg / patient</div>
+                  <div className="mt-0.5 text-lg font-bold">
+                    {ccmPts > 0 ? money(ccmTotal / ccmPts) : "$0"}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Code contribution list */}
+            <div className="rounded-2xl bg-white p-6 ring-1 ring-slate-200 shadow-sm animate-rise">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
+                <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">Monthly contribution by CPT code</h3>
+                <div className="flex gap-2 no-print">
+                  <button 
+                    onClick={handleExportCsv}
+                    type="button" 
+                    className="rounded-lg bg-white px-3 py-1.5 text-xs font-semibold text-plum ring-1 ring-slate-300 transition hover:ring-slate-400 cursor-pointer"
                   >
-                    <Download className="w-3 h-3" />
                     Export CSV
                   </button>
-                  <button
+                  <button 
                     onClick={() => window.print()}
-                    className="text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded-md transition-colors flex items-center gap-1"
+                    type="button" 
+                    className="rounded-lg bg-brand px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-brand-dark cursor-pointer"
                   >
-                    <Printer className="w-3 h-3" />
-                    Print
+                    Print / Save PDF
                   </button>
                 </div>
               </div>
 
-              {error && <p className="text-red-600 text-center mb-4">{error}</p>}
-
-              {/* Key Metrics */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-purple-50 p-4 rounded-lg">
-                  <div className="text-sm text-purple-600 font-medium">Monthly total</div>
-                  <div className="text-2xl font-bold text-purple-900">${results.monthly.toLocaleString()}</div>
+              <div className="mt-3 grid gap-x-10 gap-y-1 md:grid-cols-2">
+                <div>
+                  <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-brand">RPM CPT Codes</div>
+                  <div className="flex items-center justify-between border-b border-slate-100 py-1.5 text-sm">
+                    <span className="text-slate-600"><span className="mono font-semibold text-brand">99453</span> Setup</span>
+                    <span className="whitespace-nowrap text-right">
+                      <span className="font-semibold text-plum">{money(c453)}</span> 
+                      <span className="text-xs text-slate-400 ml-1.5">{getPercentageOfTotal(c453)}</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between border-b border-slate-100 py-1.5 text-sm">
+                    <span className="text-slate-600"><span className="mono font-semibold text-brand">99454</span> Device · 16+ days</span>
+                    <span className="whitespace-nowrap text-right">
+                      <span className="font-semibold text-plum">{money(c454)}</span> 
+                      <span className="text-xs text-slate-400 ml-1.5">{getPercentageOfTotal(c454)}</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between border-b border-slate-100 py-1.5 text-sm">
+                    <span className="text-slate-600"><span className="mono font-semibold text-brand">99445</span> Device · 2–15 days</span>
+                    <span className="whitespace-nowrap text-right">
+                      <span className="font-semibold text-plum">{money(c445)}</span> 
+                      <span className="text-xs text-slate-400 ml-1.5">{getPercentageOfTotal(c445)}</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between border-b border-slate-100 py-1.5 text-sm">
+                    <span className="text-slate-600"><span className="mono font-semibold text-brand">99457</span> First 20 min</span>
+                    <span className="whitespace-nowrap text-right">
+                      <span className="font-semibold text-plum">{money(c457)}</span> 
+                      <span className="text-xs text-slate-400 ml-1.5">{getPercentageOfTotal(c457)}</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between border-b border-slate-100 py-1.5 text-sm">
+                    <span className="text-slate-600"><span className="mono font-semibold text-brand">99458</span> Add&apos;l 20 min</span>
+                    <span className="whitespace-nowrap text-right">
+                      <span className="font-semibold text-plum">{money(c458)}</span> 
+                      <span className="text-xs text-slate-400 ml-1.5">{getPercentageOfTotal(c458)}</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between border-b border-slate-100 py-1.5 text-sm">
+                    <span className="text-slate-600"><span className="mono font-semibold text-brand">99470</span> First 10 min</span>
+                    <span className="whitespace-nowrap text-right">
+                      <span className="font-semibold text-plum">{money(c470)}</span> 
+                      <span className="text-xs text-slate-400 ml-1.5">{getPercentageOfTotal(c470)}</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between py-1.5 text-sm">
+                    <span className="text-slate-600"><span className="mono font-semibold text-brand">99091</span> Interpretation</span>
+                    <span className="whitespace-nowrap text-right">
+                      <span className="font-semibold text-plum">{money(c91)}</span> 
+                      <span className="text-xs text-slate-400 ml-1.5">{getPercentageOfTotal(c91)}</span>
+                    </span>
+                  </div>
                 </div>
-                <div className="bg-green-50 p-4 rounded-lg">
-                  <div className="text-sm text-green-600 font-medium">Annualized (×12)</div>
-                  <div className="text-2xl font-bold text-green-900">${results.annual.toLocaleString()}</div>
-                </div>
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <div className="text-sm text-blue-600 font-medium">Avg. revenue per patient/month</div>
-                  <div className="text-2xl font-bold text-blue-900">${results.arpu.toFixed(2)}</div>
+                <div>
+                  <div className="mb-1 mt-4 text-xs font-semibold uppercase tracking-wide text-accent md:mt-0">CCM CPT Codes</div>
+                  <div className="flex items-center justify-between border-b border-slate-100 py-1.5 text-sm">
+                    <span className="text-slate-600"><span className="mono font-semibold text-brand">99490</span> First 20 min</span>
+                    <span className="whitespace-nowrap text-right">
+                      <span className="font-semibold text-plum">{money(c490)}</span> 
+                      <span className="text-xs text-slate-400 ml-1.5">{getPercentageOfTotal(c490)}</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between border-b border-slate-100 py-1.5 text-sm">
+                    <span className="text-slate-600"><span className="mono font-semibold text-brand">99439</span> Add&apos;l 20 min</span>
+                    <span className="whitespace-nowrap text-right">
+                      <span className="font-semibold text-plum">{money(c439)}</span> 
+                      <span className="text-xs text-slate-400 ml-1.5">{getPercentageOfTotal(c439)}</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between border-b border-slate-100 py-1.5 text-sm">
+                    <span className="text-slate-600"><span className="mono font-semibold text-brand">99491</span> Physician 30 min</span>
+                    <span className="whitespace-nowrap text-right">
+                      <span className="font-semibold text-plum">{money(c491)}</span> 
+                      <span className="text-xs text-slate-400 ml-1.5">{getPercentageOfTotal(c491)}</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between border-b border-slate-100 py-1.5 text-sm">
+                    <span className="text-slate-600"><span className="mono font-semibold text-brand">99487</span> Complex 60 min</span>
+                    <span className="whitespace-nowrap text-right">
+                      <span className="font-semibold text-plum">{money(c487)}</span> 
+                      <span className="text-xs text-slate-400 ml-1.5">{getPercentageOfTotal(c487)}</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between py-1.5 text-sm">
+                    <span className="text-slate-600"><span className="mono font-semibold text-brand">99489</span> Add&apos;l 30 min</span>
+                    <span className="whitespace-nowrap text-right">
+                      <span className="font-semibold text-plum">{money(c489)}</span> 
+                      <span className="text-xs text-slate-400 ml-1.5">{getPercentageOfTotal(c489)}</span>
+                    </span>
+                  </div>
                 </div>
               </div>
+            </div>
 
-              {/* Breakdown Table */}
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h4 className="text-lg font-semibold text-purple-900 mb-4">Breakdown by CPT Code</h4>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b border-gray-300">
-                        <th className="text-left py-2 font-semibold text-gray-700">Code</th>
-                        <th className="text-right py-2 font-semibold text-gray-700">Claims</th>
-                        <th className="text-right py-2 font-semibold text-gray-700">Rate</th>
-                        <th className="text-right py-2 font-semibold text-gray-700">Subtotal</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {results.breakdown.map((item, index) => (
-                        <tr key={index} className="border-b border-gray-200">
-                          <td className="py-2">
-                            <div className="font-semibold text-purple-900">{item.code}</div>
-                            <div className="text-xs text-gray-600">{item.label}</div>
-                          </td>
-                          <td className="text-right py-2">
-                            {roundClaims ? item.claims.toLocaleString() : item.claims.toFixed(2)}
-                          </td>
-                          <td className="text-right py-2">${item.rate.toFixed(2)}</td>
-                          <td className="text-right py-2 font-semibold">${item.subtotal.toLocaleString()}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                    <tfoot>
-                      <tr className="border-t-2 border-purple-300">
-                        <td colSpan={3} className="py-2 font-bold text-purple-900">Total (monthly)</td>
-                        <td className="text-right py-2 font-bold text-purple-900">${results.monthly.toLocaleString()}</td>
-                      </tr>
-                    </tfoot>
-                  </table>
+            {/* Adjustable Rates details collapse */}
+            <details className="rounded-2xl bg-white p-5 ring-1 ring-slate-200 shadow-sm animate-rise group">
+              <summary className="cursor-pointer text-sm font-semibold text-plum hover:text-brand transition flex items-center justify-between">
+                <span>Adjust 2026 CPT rates ($) &amp; view billing rules</span>
+                <svg className="w-5 h-5 text-slate-400 transition group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </summary>
+              <div className="mt-4 grid gap-6 md:grid-cols-2 border-t border-slate-100 pt-4">
+                <div>
+                  <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-brand">RPM Rates ($)</div>
+                  <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+                    <label className="block">
+                      <span className="text-[11px] font-medium text-slate-500">99453</span>
+                      <input 
+                        type="number" 
+                        value={r453} 
+                        onChange={(e) => setR453(Math.max(0, parseFloat(e.target.value) || 0))}
+                        className="mt-0.5 w-full rounded-md border border-slate-300 px-2 py-1 text-sm outline-none focus:border-brand" 
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-[11px] font-medium text-slate-500">99454</span>
+                      <input 
+                        type="number" 
+                        value={r454} 
+                        onChange={(e) => setR454(Math.max(0, parseFloat(e.target.value) || 0))}
+                        className="mt-0.5 w-full rounded-md border border-slate-300 px-2 py-1 text-sm outline-none focus:border-brand" 
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-[11px] font-medium text-slate-500">99445</span>
+                      <input 
+                        type="number" 
+                        value={r445} 
+                        onChange={(e) => setR445(Math.max(0, parseFloat(e.target.value) || 0))}
+                        className="mt-0.5 w-full rounded-md border border-slate-300 px-2 py-1 text-sm outline-none focus:border-brand" 
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-[11px] font-medium text-slate-500">99457</span>
+                      <input 
+                        type="number" 
+                        value={r457} 
+                        onChange={(e) => setR457(Math.max(0, parseFloat(e.target.value) || 0))}
+                        className="mt-0.5 w-full rounded-md border border-slate-300 px-2 py-1 text-sm outline-none focus:border-brand" 
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-[11px] font-medium text-slate-500">99470</span>
+                      <input 
+                        type="number" 
+                        value={r470} 
+                        onChange={(e) => setR470(Math.max(0, parseFloat(e.target.value) || 0))}
+                        className="mt-0.5 w-full rounded-md border border-slate-300 px-2 py-1 text-sm outline-none focus:border-brand" 
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-[11px] font-medium text-slate-500">99458</span>
+                      <input 
+                        type="number" 
+                        value={r458} 
+                        onChange={(e) => setR458(Math.max(0, parseFloat(e.target.value) || 0))}
+                        className="mt-0.5 w-full rounded-md border border-slate-300 px-2 py-1 text-sm outline-none focus:border-brand" 
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-[11px] font-medium text-slate-500">99091</span>
+                      <input 
+                        type="number" 
+                        value={r91} 
+                        onChange={(e) => setR91(Math.max(0, parseFloat(e.target.value) || 0))}
+                        className="mt-0.5 w-full rounded-md border border-slate-300 px-2 py-1 text-sm outline-none focus:border-brand" 
+                      />
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-accent">CCM Rates ($)</div>
+                  <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+                    <label className="block">
+                      <span className="text-[11px] font-medium text-slate-500">99490</span>
+                      <input 
+                        type="number" 
+                        value={r490} 
+                        onChange={(e) => setR490(Math.max(0, parseFloat(e.target.value) || 0))}
+                        className="mt-0.5 w-full rounded-md border border-slate-300 px-2 py-1 text-sm outline-none focus:border-accent" 
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-[11px] font-medium text-slate-500">99439</span>
+                      <input 
+                        type="number" 
+                        value={r439} 
+                        onChange={(e) => setR439(Math.max(0, parseFloat(e.target.value) || 0))}
+                        className="mt-0.5 w-full rounded-md border border-slate-300 px-2 py-1 text-sm outline-none focus:border-accent" 
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-[11px] font-medium text-slate-500">99491</span>
+                      <input 
+                        type="number" 
+                        value={r491} 
+                        onChange={(e) => setR491(Math.max(0, parseFloat(e.target.value) || 0))}
+                        className="mt-0.5 w-full rounded-md border border-slate-300 px-2 py-1 text-sm outline-none focus:border-accent" 
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-[11px] font-medium text-slate-500">99487</span>
+                      <input 
+                        type="number" 
+                        value={r487} 
+                        onChange={(e) => setR487(Math.max(0, parseFloat(e.target.value) || 0))}
+                        className="mt-0.5 w-full rounded-md border border-slate-300 px-2 py-1 text-sm outline-none focus:border-accent" 
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-[11px] font-medium text-slate-500">99489</span>
+                      <input 
+                        type="number" 
+                        value={r489} 
+                        onChange={(e) => setR489(Math.max(0, parseFloat(e.target.value) || 0))}
+                        className="mt-0.5 w-full rounded-md border border-slate-300 px-2 py-1 text-sm outline-none focus:border-accent" 
+                      />
+                    </label>
+                  </div>
                 </div>
               </div>
-
-              {/* Warnings */}
-              <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                <p className="text-sm text-yellow-800">
-                  <strong>Notes:</strong> This tool is for planning only. Actual coverage, documentation requirements, time thresholds, and rates vary by payer and locality. Enter your own rates; demo values are placeholders.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-
-          <Image
-            src="/assets/calculator.jpg"
-            alt="RPM Calculator Illustration"
-            width={800}
-            height={400}
-            className="mx-auto rounded-lg shadow-md mt-8"
-          />
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-8 text-center">
-            How the Calculator Works
-          </h2>
-                      <p className="text-lg text-gray-800 mb-8 max-w-3xl mx-auto text-center">
-              Our calculator uses standard Medicare CPT code rates to estimate RPM revenue based on your detailed input. Here&apos;s how it breaks down:
+              <ul className="mt-5 space-y-1.5 text-xs text-slate-500 border-t border-slate-100 pt-3 leading-relaxed">
+                <li>• 99453 is billed once per newly enrolled patient (setup &amp; education).</li>
+                <li>• Device supply each month: 99454 (16+ days of data) or 99445 (2–15 days) — one or the other.</li>
+                <li>• Management each month: 99457 (20+ min) or 99470 (10–19 min) — not both; 99458 repeats per extra 20 min.</li>
+                <li>• 99091 is a separate physician interpretation of physiologic data.</li>
+                <li>• CCM: 99490 + 99439 (clinical-staff time) or 99491 (physician 30 min); 99487 + 99489 for complex CCM.</li>
+                <li>• RPM and CCM may be billed together for an eligible patient when the time is distinct.</li>
+              </ul>
+            </details>
+            
+            <p className="text-xs leading-relaxed text-slate-400">
+              Estimates use editable, approximate national-average 2026 rates and your adoption assumptions. Actual reimbursement varies by payer, locality, documentation, and medical necessity. Educational only — not billing advice; verify against the current Medicare Physician Fee Schedule.
             </p>
-          <div className="grid md:grid-cols-5 gap-6">
-            <motion.div
-              className="bg-white p-6 rounded-xl shadow-md"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <div className="text-2xl font-bold text-purple-900 mb-2">99453</div>
-              <h3 className="text-lg font-semibold text-purple-900 mb-2">Setup/Education</h3>
-              <p className="text-gray-700 text-sm">
-                New patients enrolled this month × entered rate (one‑time per patient).
-              </p>
-            </motion.div>
-            <motion.div
-              className="bg-white p-6 rounded-xl shadow-md"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="text-2xl font-bold text-purple-900 mb-2">99454</div>
-              <h3 className="text-lg font-semibold text-purple-900 mb-2">Device Supply</h3>
-              <p className="text-gray-700 text-sm">
-                Enrolled × % meeting ≥16 days of data × rate (billed once each eligible month).
-              </p>
-            </motion.div>
-            <motion.div
-              className="bg-white p-6 rounded-xl shadow-md"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <div className="text-2xl font-bold text-purple-900 mb-2">99457</div>
-              <h3 className="text-lg font-semibold text-purple-900 mb-2">First 20 Min</h3>
-              <p className="text-gray-700 text-sm">
-                Enrolled × % meeting ≥20 minutes × rate (billed once per eligible month).
-              </p>
-            </motion.div>
-            <motion.div
-              className="bg-white p-6 rounded-xl shadow-md"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-            >
-              <div className="text-2xl font-bold text-purple-900 mb-2">99458</div>
-              <h3 className="text-lg font-semibold text-purple-900 mb-2">Additional Time</h3>
-              <p className="text-gray-700 text-sm">
-                99457 patients × average extra 20‑min units × rate (can be 0, 1, 2… units).
-              </p>
-            </motion.div>
-            <motion.div
-              className="bg-white p-6 rounded-xl shadow-md"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-            >
-              <div className="text-2xl font-bold text-purple-900 mb-2">99091</div>
-              <h3 className="text-lg font-semibold text-purple-900 mb-2">Physiologic Data</h3>
-              <p className="text-gray-700 text-sm">
-                Number of patients × rate (collection and interpretation of physiologic data per month).
-              </p>
-            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-8 text-center">
-            Why Use eVitals for RPM Reimbursement
-          </h2>
-          <p className="text-lg text-gray-800 mb-8 max-w-3xl mx-auto text-center">
-            eVitals’ RPM platform maximizes your practice’s revenue while improving patient outcomes. Here’s how we help:
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                title: "Accurate Billing",
-                description:
-                  "Automate billing for CPT codes 99453, 99454, 99457, and 99458 with audit-ready reports, reducing claim denials by 15%.",
-                image: "/assets/AccurateBilling.jpg",
-              },
-              {
-                title: "Revenue Growth",
-                description:
-                  "Practices see an average revenue increase of $3,500 per physician monthly with our optimized RPM workflows.",
-                image: "/assets/RevenueGrowth.jpg",
-              },
-              {
-                title: "Time Savings",
-                description:
-                  "Automated data collection and EHR integration save up to 18 hours per week, allowing focus on patient care.",
-      image: "/assets/TimeSaving.jpg",
-              },
-              {
-                title: "Patient Compliance",
-                description:
-                  "User-friendly devices and educational resources achieve 80% adherence, enhancing outcomes and reimbursement.",
-      image: "/assets/patient-W-Watch.jpg",
-              },
-            ].map((benefit, idx) => (
-              <motion.div
-                key={idx}
-                className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-              >
-                <div className="relative w-full h-48 mb-4">
-                  <Image
-                    src={benefit.image}
-                    alt={benefit.title}
-                    fill
-                    className="rounded-md object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  />
-                </div>
-                <h3 className="text-lg font-semibold text-purple-900 mb-2">{benefit.title}</h3>
-                <p className="text-gray-700">{benefit.description}</p>
-              </motion.div>
-            ))}
+      {/* Monthly Workflow Section */}
+      <section className="mx-auto max-w-6xl px-6 py-16 animate-rise">
+        <h2 className="text-2xl font-bold text-plum">Sample monthly workflow</h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="rounded-xl bg-white p-5 ring-1 ring-slate-200 shadow-sm flex flex-col items-start">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-tint text-brand">
+              <svg className="h-5 w-5 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <p className="mt-3 font-semibold text-plum">Flag abnormal measurement</p>
+            <p className="text-xs text-slate-500 mt-1 leading-relaxed">System immediately identifies values that cross custom specialty-defined thresholds.</p>
           </div>
-        </div>
-      </section>
+          
+          <div className="rounded-xl bg-white p-5 ring-1 ring-slate-200 shadow-sm flex flex-col items-start">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-tint text-brand">
+              <svg className="h-5 w-5 flex-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <p className="mt-3 font-semibold text-plum">Clinical review of data</p>
+            <p className="text-xs text-slate-500 mt-1 leading-relaxed">US-based clinical monitors analyze flags and escalate severe deviations to clinicians.</p>
+          </div>
 
-      {/* CTA Section */}
-      <section className="py-16 text-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-6">
-            Maximize Your RPM Revenue with eVitals
-          </h2>
-          <p className="text-lg text-gray-800 mb-4 max-w-3xl mx-auto">
-            Unlock the full financial potential of Remote Patient Monitoring with eVitals’ comprehensive platform. Our team customizes solutions to your practice’s needs, ensuring seamless integration and maximum reimbursement.
-          </p>
-          <p className="text-lg text-gray-800 mb-8 max-w-3xl mx-auto">
-            Schedule a personalized demo today to see how eVitals can transform your practice’s revenue and patient care.
-          </p>
-          <Link
-            href="/contact"
-            className="bg-[#36036B] hover:bg-[#4b0d8d] text-white text-base font-semibold px-6 py-3 rounded-md shadow-md transition duration-300 inline-block"
-          >
-            Schedule a FREE Demo →
-          </Link>
+          <div className="rounded-xl bg-white p-5 ring-1 ring-slate-200 shadow-sm flex flex-col items-start">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-tint text-brand">
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <p className="mt-3 font-semibold text-plum">Document interventions</p>
+            <p className="text-xs text-slate-500 mt-1 leading-relaxed">Keep clear audit trails directly inside the platform for every outbound checking/call action.</p>
+          </div>
+
+          <div className="rounded-xl bg-white p-5 ring-1 ring-slate-200 shadow-sm flex flex-col items-start">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-tint text-brand">
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <p className="mt-3 font-semibold text-plum">Document time &amp; generate codes</p>
+            <p className="text-xs text-slate-500 mt-1 leading-relaxed">Auto-calculate exact clinical monitoring minutes and prep correct monthly claims bills.</p>
+          </div>
         </div>
       </section>
     </div>

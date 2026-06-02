@@ -1,197 +1,68 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
-} from "react-icons/fa";
+import Image from "next/image";
 
-const FooterSection = () => {
+const FooterSection: React.FC = () => {
   return (
-    <footer className="bg-[#fafafa] text-slate-700 py-16 px-4 sm:px-6 lg:px-8">
-      <div className="container-lg">
-        {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* Brand Info */}
-          <div className="space-y-6">
-            <div className="flex items-center">
-              <Image
-                src="/assets/logo.png"
-                alt="e-Vitals Logo"
-                width={160}
-                height={64}
-              />
-            </div>
-            <p className="text-slate-600 leading-relaxed">
-            eVitals is a cutting-edge Remote Patient Monitoring (RPM) platform that empowers healthcare 
-            providers with real-time, secure patient insights. Boost efficiency, ensure compliance, and 
-            elevate care quality effortlessly with eVitals.
-
-            </p>
-            <div className="flex space-x-4">
-              {[
-                {
-                  icon: <FaFacebookF className="w-5 h-5" />,
-                  color: "text-blue-600",
-                },
-                {
-                  icon: <FaTwitter className="w-5 h-5" />,
-                  color: "text-sky-600",
-                },
-                {
-                  icon: <FaLinkedinIn className="w-5 h-5" />,
-                  color: "text-blue-700",
-                },
-                {
-                  icon: <FaInstagram className="w-5 h-5" />,
-                  color: "text-pink-600",
-                },
-              ].map((social, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  className={`${social.color} hover:text-white p-2 rounded-full bg-slate-200 hover:bg-slate-300 transition-colors`}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-6">
-              Quick Links
-            </h3>
-            <ul className="space-y-3">
-              {[
-                "Home",
-                "RPM Software",
-                "RPM Devices",
-                "Reimbursement & Billing",
-                "Reimbursement Estimator",
-              ].map((link) => {
-                let href = "#";
-
-                if (link === "Home") href = "/";
-                else if (link === "RPM Software") href = "/rpm/RPMSoftware";
-                else if (link === "RPM Devices") href = "/rpm/RPMDevices";
-                else if (link === "Reimbursement & Billing") href = "/rpm/Reimbursement-and-Billing";
-                else if (link === "Reimbursement Estimator") href = "/ReimbursementCalculator";
-
-                return (
-                  <li key={link}>
-                    <Link
-                      href={href}
-                      className="text-slate-600 hover:text-slate-900 hover:underline transition-colors"
-                    >
-                      {link}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          {/* Support */}
-          <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-6">
-              Support
-            </h3>
-            <ul className="space-y-3">
-              {[
-                "Services",
-                "Compliance & Security",
-                "Downloads",
-                "Reimbursement & Billing",
-                "Insights",
-              ].map((link) => {
-                let href = "#";
-
-                if (link === "Services") href = "/services";
-                else if (link === "Compliance & Security") href = "/support/compliance-and-security";
-                else if (link === "Downloads") href = "/support/resources";
-                else if (link === "FAQs") href = "/";
-                else if (link === "Insights") href = "/insights/overview";
-                
-
-                return (
-                  <li key={link}>
-                    <Link
-                      href={href}
-                      className="text-slate-600 hover:text-slate-900 transition-colors hover:underline"
-                    >
-                      {link}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-6">
-              Support
-            </h3>
-            <ul className="space-y-3">
-              {[
-                "Book Demo",
-                "General Inquiry",
-                "Technical Support",
-                "Explore Partnership",
-              ].map((link) => {
-                let href = "#";
-
-                if (link === "Book Demo") href = "/contact?booking=demo";
-                else if (link === "General Inquiry") href = "/contact?booking=inquiry";
-                else if (link === "Technical Support") href = "/contact?booking=technical-support";
-                else if (link === "Explore Partnership") href = "/contact?booking=partnership";
-
-                return (
-                  <li key={link}>
-                    <Link
-                      href={href}
-                      className="text-slate-600 hover:text-slate-900 transition-colors hover:underline"
-                    >
-                      {link}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-
-
-        </div>
-
-        {/* Divider */}
-        <div className="border-t border-slate-300 my-8"></div>
-
-        {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-500 text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} eVitals. All rights reserved.
+    <footer className="bg-deep text-white/80 no-print w-full mt-auto">
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
+        <div>
+          <span className="inline-flex rounded-lg bg-white px-3 py-2">
+            <Image src="/assets/logo.png" alt="e-Vitals" width={144} height={36} className="h-9 w-auto" />
+          </span>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
+            Turn-key Remote Patient Monitoring and Chronic Care Management — devices, clinical dashboards, and compliant billing for practices of any size.
           </p>
-          <div className="flex space-x-6">
-           <Link href="/privacy-policy" className="text-slate-500 hover:text-slate-700 text-sm transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms-of-service" className="text-slate-500 hover:text-slate-700 text-sm transition-colors">
-              Terms of Service
-            </Link>
-            {/* <a
-              href="#"
-              className="text-slate-500 hover:text-slate-700 text-sm transition-colors"
-            >
-              Cookies
-            </a> */}
+        </div>
+        <div>
+          <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white">Product</h4>
+          <Link href="/remote-patient-monitoring" className="block py-1 text-sm hover:text-white transition-colors">
+            RPM
+          </Link>
+          <Link href="/chronic-care-management" className="block py-1 text-sm hover:text-white transition-colors">
+            Chronic Care Management
+          </Link>
+          <Link href="/how-it-works" className="block py-1 text-sm hover:text-white transition-colors">
+            How it works
+          </Link>
+          <Link href="/ReimbursementCalculator" className="block py-1 text-sm hover:text-white transition-colors">
+            Reimbursement
+          </Link>
+        </div>
+        <div>
+          <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white">Company</h4>
+          <Link href="/about" className="block py-1 text-sm hover:text-white transition-colors">
+            About
+          </Link>
+          <Link href="/how-we-serve" className="block py-1 text-sm hover:text-white transition-colors">
+            Who we serve
+          </Link>
+          <Link href="/support/resources" className="block py-1 text-sm hover:text-white transition-colors">
+            Resources
+          </Link>
+          <Link href="/demo" className="block py-1 text-sm hover:text-white transition-colors">
+            Request a demo
+          </Link>
+        </div>
+        <div>
+          <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-white">Contact</h4>
+          <a href="mailto:info@evitalsrpm.com" className="block py-1 text-sm hover:text-white transition-colors">
+            info@evitalsrpm.com
+          </a>
+          <div className="mt-3 flex gap-2">
+            <span className="rounded border border-white/25 px-2 py-1 text-[10px] mono">HIPAA</span>
+            <span className="rounded border border-white/25 px-2 py-1 text-[10px] mono">SOC 2</span>
           </div>
+        </div>
+      </div>
+      <div className="border-t border-white/10 w-full">
+        <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-white/55">
+          <p>&copy; {new Date().getFullYear()} eVitals. All rights reserved.</p>
+          <p className="mt-2 max-w-3xl leading-relaxed">
+            Reimbursement figures are approximate national averages for educational purposes only and are not billing, legal, or financial advice. CPT codes and Medicare rates change annually and vary by payer and locality — verify against the current Medicare Physician Fee Schedule before billing. CPT® is a registered trademark of the American Medical Association.
+          </p>
         </div>
       </div>
     </footer>

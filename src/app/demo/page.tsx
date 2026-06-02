@@ -1,145 +1,197 @@
 "use client";
+
 import React, { useState } from "react";
+import Link from "next/link";
 
-const BookSlotPage = () => {
+const DemoPage: React.FC = () => {
+  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    date: "",
-    time: "",
-    name: "",
+    firstName: "",
+    lastName: "",
+    email: "",
     phone: "",
-    notes: "",
+    practiceName: "",
+    website: "",
+    specialty: "Primary Care",
+    providersCount: "",
+    message: ""
   });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Booking Details:", formData);
-    alert("Slot booked successfully!");
-    // You can integrate this with backend or database
+    setSubmitted(true);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   return (
-    <main className="min-h-screen bg-white px-6 py-16 text-black">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-10 text-[#2E003E]">
-          Book Your Slot
-        </h1>
-
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-6 bg-gray-50 p-8 rounded-3xl shadow-xl border border-gray-200"
-        >
-          {/* Date Picker */}
-          <div>
-            <label
-              htmlFor="date"
-              className="block font-medium mb-2 text-[#2E003E]"
-            >
-              Select Date
-            </label>
-            <input
-              type="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
+    <div className="w-full">
+      <section className="mx-auto max-w-5xl px-6 pt-12 pb-20">
+        <nav className="mb-6 text-sm text-slate-500">
+          <Link href="/" className="hover:text-brand">Home</Link> / <span className="text-plum">Request a demo</span>
+        </nav>
+        
+        <div className="grid gap-12 md:grid-cols-2">
+          <div className="animate-rise">
+            <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
+              <span className="h-px w-6 bg-brand"></span>Request a demo
+            </p>
+            <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl text-plum">
+              See eVitals in action.
+            </h1>
+            <p className="mt-5 text-lg text-slate-600">
+              Tell us about your practice and we&apos;ll tailor a demo to your patient population, workflows, and payers.
+            </p>
+            <ul className="mt-8 space-y-3 text-slate-600">
+              <li className="flex gap-3">
+                <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg> 
+                A 20-minute tailored walkthrough
+              </li>
+              <li className="flex gap-3">
+                <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg> 
+                Reimbursement modeled for your payer mix
+              </li>
+              <li className="flex gap-3">
+                <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg> 
+                Device &amp; EHR-integration overview
+              </li>
+            </ul>
           </div>
-
-          {/* Time Picker */}
-          <div>
-            <label
-              htmlFor="time"
-              className="block font-medium mb-2 text-[#2E003E]"
-            >
-              Select Time
-            </label>
-            <input
-              type="time"
-              name="time"
-              value={formData.time}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-          </div>
-
-          {/* Name */}
-          <div>
-            <label
-              htmlFor="name"
-              className="block font-medium mb-2 text-[#2E003E]"
-            >
-              Full Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Your name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-          </div>
-
-          {/* Phone */}
-          <div>
-            <label
-              htmlFor="phone"
-              className="block font-medium mb-2 text-[#2E003E]"
-            >
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              name="phone"
-              placeholder="03XX-XXXXXXX"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-          </div>
-
-          {/* Notes */}
-          <div>
-            <label
-              htmlFor="notes"
-              className="block font-medium mb-2 text-[#2E003E]"
-            >
-              Additional Notes
-            </label>
-            <textarea
-              name="notes"
-              placeholder="Any specific reason for visit?"
-              value={formData.notes}
-              onChange={handleChange}
-              rows={4}
-              className="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-          </div>
-
-          {/* Submit Button */}
-          <div className="pt-4">
-            <button
-              type="submit"
-              className="w-full text-white font-semibold py-3 rounded-full bg-[#270949] hover:from-[#6B21A8] hover:to-[#2E003E] transition duration-300 shadow-lg"
-            >
-              Book Slot Now
+          
+          <form onSubmit={handleSubmit} className="rounded-2xl bg-slate-50 p-7 ring-1 ring-slate-200 shadow-sm animate-rise">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <label className="block">
+                <span className="text-xs font-semibold text-slate-600">First name</span>
+                <input 
+                  type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleInputChange}
+                  className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 outline-none focus:border-brand focus:ring-1 focus:ring-brand" 
+                  required 
+                />
+              </label>
+              <label className="block">
+                <span className="text-xs font-semibold text-slate-600">Last name</span>
+                <input 
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleInputChange}
+                  className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 outline-none focus:border-brand focus:ring-1 focus:ring-brand" 
+                  required 
+                />
+              </label>
+              <label className="block">
+                <span className="text-xs font-semibold text-slate-600">Email</span>
+                <input 
+                  type="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 outline-none focus:border-brand focus:ring-1 focus:ring-brand" 
+                  required 
+                />
+              </label>
+              <label className="block">
+                <span className="text-xs font-semibold text-slate-600">Phone</span>
+                <input 
+                  type="tel" 
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 outline-none focus:border-brand focus:ring-1 focus:ring-brand" 
+                />
+              </label>
+              <label className="block">
+                <span className="text-xs font-semibold text-slate-600">Practice name</span>
+                <input 
+                  type="text"
+                  name="practiceName"
+                  value={formData.practiceName}
+                  onChange={handleInputChange}
+                  className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 outline-none focus:border-brand focus:ring-1 focus:ring-brand" 
+                />
+              </label>
+              <label className="block">
+                <span className="text-xs font-semibold text-slate-600">Website</span>
+                <input 
+                  type="url" 
+                  name="website"
+                  value={formData.website}
+                  onChange={handleInputChange}
+                  className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 outline-none focus:border-brand focus:ring-1 focus:ring-brand" 
+                />
+              </label>
+              <label className="block">
+                <span className="text-xs font-semibold text-slate-600">Specialty</span>
+                <select 
+                  name="specialty"
+                  value={formData.specialty}
+                  onChange={handleInputChange}
+                  className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 bg-white outline-none focus:border-brand focus:ring-1 focus:ring-brand"
+                >
+                  <option>Primary Care</option>
+                  <option>Cardiology</option>
+                  <option>Endocrinology</option>
+                  <option>Pulmonology</option>
+                  <option>Nephrology</option>
+                  <option>Internal Medicine</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label className="block">
+                <span className="text-xs font-semibold text-slate-600"># of providers</span>
+                <input 
+                  type="number" 
+                  name="providersCount"
+                  value={formData.providersCount}
+                  onChange={handleInputChange}
+                  className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 outline-none focus:border-brand focus:ring-1 focus:ring-brand" 
+                />
+              </label>
+              <label className="block sm:col-span-2">
+                <span className="text-xs font-semibold text-slate-600">Message</span>
+                <textarea 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows={3} 
+                  className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 outline-none focus:border-brand focus:ring-1 focus:ring-brand"
+                ></textarea>
+              </label>
+            </div>
+            
+            <button type="submit" className="mt-5 w-full rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-dark cursor-pointer transition-colors">
+              Submit
             </button>
-          </div>
-        </form>
-      </div>
-    </main>
+            
+            {submitted && (
+              <p id="done" className="mt-3 rounded-lg bg-green-50 px-4 py-3 text-sm text-green-700 ring-1 ring-green-200">
+                Thanks! This is a demo form — connect it to your CRM to capture submissions.
+              </p>
+            )}
+            
+            <p className="mt-3 text-xs text-slate-400">
+              By submitting, you agree to be contacted about eVitals. You can opt out at any time.
+            </p>
+          </form>
+        </div>
+      </section>
+    </div>
   );
 };
 
-export default BookSlotPage;
+export default DemoPage;

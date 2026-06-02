@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { JSX, useEffect, useState } from "react";
+import { JSX, useEffect, useState, useCallback } from "react";
 import {
   Stethoscope,
   Bell,
@@ -15,9 +15,70 @@ import {
 } from "lucide-react";
 import Head from "next/head";
 
+const testimonials = [
+  {
+    quote:
+      "With telehealth, patients can consult their healthcare providers remotely... This method saves time, energy, costs and eliminates the need to transport the geriatric patient to and from the clinic.",
+    name: "Dr. Elizabeth Landsverk",
+    title: "Geriatrician",
+    company: "DrLiz Geriatrics",
+    image:
+      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "As a result, telehealth can reduce the number of unnecessary hospital visits, reduce travel costs, ease the stress of at-home caregivers, and increase the satisfaction of geriatric patients.",
+    name: "Dr. Elizabeth Landsverk",
+    title: "Geriatrician",
+    company: "DrLiz Geriatrics",
+    image:
+      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "By providing quick and direct access to healthcare providers from the comfort of the home, telehealth will change the future of senior care.",
+    name: "Dr. Elizabeth Landsverk",
+    title: "Geriatrician",
+    company: "DrLiz Geriatrics",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "RPM eliminates the need for travel and wait times, allowing geriatric patients to get the support they need from the comfort of their homes.",
+    name: "Tenovi Expert",
+    title: "Healthcare Provider",
+    company: "Tenovi",
+    image:
+      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "Remote patient monitoring provides patients the accountability to make healthier decisions and follow their treatment plans.",
+    name: "Tenovi Expert",
+    title: "Healthcare Provider",
+    company: "Tenovi",
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "The integration of RPM devices allows healthcare providers to detect early warning signs and intervene before medical conditions escalate, reducing emergency room visits by up to 40%.",
+    name: "Claris Healthcare Expert",
+    title: "Senior Care Specialist",
+    company: "Claris Healthcare",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+  },
+];
+
 const GeriatricsPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [currentTestimonial, setCurrentTestimonial] = useState<number>(0);
+
+  const nextTestimonial = useCallback(() => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  }, []);
 
   useEffect(() => {
     setIsVisible(true);
@@ -28,7 +89,7 @@ const GeriatricsPage: React.FC = () => {
       nextTestimonial();
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [nextTestimonial]);
 
   const features: Array<{
     icon: JSX.Element;
@@ -92,73 +153,6 @@ const GeriatricsPage: React.FC = () => {
         image: "/assets/FinancialGraph.jpg",
       },
     ];
-
-  const testimonials = [
-    {
-      quote:
-        "With telehealth, patients can consult their healthcare providers remotely... This method saves time, energy, costs and eliminates the need to transport the geriatric patient to and from the clinic.",
-      name: "Dr. Elizabeth Landsverk",
-      title: "Geriatrician",
-      company: "DrLiz Geriatrics",
-      image:
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "As a result, telehealth can reduce the number of unnecessary hospital visits, reduce travel costs, ease the stress of at-home caregivers, and increase the satisfaction of geriatric patients.",
-      name: "Dr. Elizabeth Landsverk",
-      title: "Geriatrician",
-      company: "DrLiz Geriatrics",
-      image:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "By providing quick and direct access to healthcare providers from the comfort of the home, telehealth will change the future of senior care.",
-      name: "Dr. Elizabeth Landsverk",
-      title: "Geriatrician",
-      company: "DrLiz Geriatrics",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "RPM eliminates the need for travel and wait times, allowing geriatric patients to get the support they need from the comfort of their homes.",
-      name: "Tenovi Expert",
-      title: "Healthcare Provider",
-      company: "Tenovi",
-      image:
-        "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "Remote patient monitoring provides patients the accountability to make healthier decisions and follow their treatment plans.",
-      name: "Tenovi Expert",
-      title: "Healthcare Provider",
-      company: "Tenovi",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "The integration of RPM devices allows healthcare providers to detect early warning signs and intervene before medical conditions escalate, reducing emergency room visits by up to 40%.",
-      name: "Claris Healthcare Expert",
-      title: "Senior Care Specialist",
-      company: "Claris Healthcare",
-      image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-    },
-  ];
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
-  };
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-white via-white to-purple-50">
@@ -249,7 +243,7 @@ const GeriatricsPage: React.FC = () => {
           <div className="max-w-4xl mx-auto mb-8">
             <p className="text-lg text-gray-800 mb-4">
               Remote patient monitoring in geriatrics tracks vitals and mobility
-              for chronic conditions. eVitals' FDA-approved devices reduce
+              for chronic conditions. eVitals&apos; FDA-approved devices reduce
               visits by 35% and complications by 35%.
             </p>
             <p className="text-lg text-gray-800 mb-8">
@@ -368,7 +362,7 @@ const GeriatricsPage: React.FC = () => {
               <div className="flex items-start mb-6">
                 <Quote className="w-8 h-8 mr-4 mt-1 flex-shrink-0 text-purple-200" />
                 <p className="text-xl italic leading-relaxed">
-                  "{testimonials[currentTestimonial].quote}"
+                  &ldquo;{testimonials[currentTestimonial].quote}&rdquo;
                 </p>
               </div>
               <div className="flex items-center">

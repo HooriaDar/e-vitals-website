@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { JSX, useEffect, useState } from "react";
+import { JSX, useEffect, useState, useCallback } from "react";
 import {
   Stethoscope,
   Bell,
@@ -15,9 +15,69 @@ import {
 } from "lucide-react";
 import Head from "next/head";
 
+const testimonials = [
+  {
+    quote:
+      "Telehealth is a great tool to keep the lines of communication open with patients.",
+    name: "Dr. Jeffrey Gelblum, MD",
+    title: "Senior Attending Board Member",
+    company: "First Choice Neurology",
+    image:
+      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "Telehealth gives patients and doctors more care options, providing access to quality care that fits their schedule.",
+    name: "Dr. Jeffrey Gelblum, MD",
+    title: "Senior Attending Board Member",
+    company: "First Choice Neurology",
+    image:
+      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "Telehealth has improved health outcomes and compliance with treatment plans through rapid communication.",
+    name: "Dr. Jeffrey Gelblum, MD",
+    title: "Senior Attending Board Member",
+    company: "First Choice Neurology",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote: "Telehealth visits are here to stay, and our patients love it.",
+    name: "Dr. Jeffrey Gelblum, MD",
+    title: "Senior Attending Board Member",
+    company: "First Choice Neurology",
+    image:
+      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "We’re excited to use this platform to educate the community about neurological conditions.",
+    name: "Dr. Jeffrey Gelblum, MD",
+    title: "Senior Attending Board Member",
+    company: "First Choice Neurology",
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    quote:
+      "I only see the expansion of telehealth and remote healthcare technologies; the possibilities are endless.",
+    name: "Dr. Jeffrey Gelblum, MD",
+    title: "Senior Attending Board Member",
+    company: "First Choice Neurology",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+  },
+];
+
 const NeurologyPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [currentTestimonial, setCurrentTestimonial] = useState<number>(0);
+
+  const nextTestimonial = useCallback(() => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  }, []);
 
   useEffect(() => {
     setIsVisible(true);
@@ -28,7 +88,7 @@ const NeurologyPage: React.FC = () => {
       nextTestimonial();
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [nextTestimonial]);
 
   const features: Array<{
     icon: JSX.Element;
@@ -93,72 +153,6 @@ const NeurologyPage: React.FC = () => {
         image: "/assets/FinancialGraph.jpg",
       },
     ];
-
-  const testimonials = [
-    {
-      quote:
-        "Telehealth is a great tool to keep the lines of communication open with patients.",
-      name: "Dr. Jeffrey Gelblum, MD",
-      title: "Senior Attending Board Member",
-      company: "First Choice Neurology",
-      image:
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "Telehealth gives patients and doctors more care options, providing access to quality care that fits their schedule.",
-      name: "Dr. Jeffrey Gelblum, MD",
-      title: "Senior Attending Board Member",
-      company: "First Choice Neurology",
-      image:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "Telehealth has improved health outcomes and compliance with treatment plans through rapid communication.",
-      name: "Dr. Jeffrey Gelblum, MD",
-      title: "Senior Attending Board Member",
-      company: "First Choice Neurology",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote: "Telehealth visits are here to stay, and our patients love it.",
-      name: "Dr. Jeffrey Gelblum, MD",
-      title: "Senior Attending Board Member",
-      company: "First Choice Neurology",
-      image:
-        "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "We’re excited to use this platform to educate the community about neurological conditions.",
-      name: "Dr. Jeffrey Gelblum, MD",
-      title: "Senior Attending Board Member",
-      company: "First Choice Neurology",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-    },
-    {
-      quote:
-        "I only see the expansion of telehealth and remote healthcare technologies; the possibilities are endless.",
-      name: "Dr. Jeffrey Gelblum, MD",
-      title: "Senior Attending Board Member",
-      company: "First Choice Neurology",
-      image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-    },
-  ];
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
-  };
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-white via-white to-purple-50">
@@ -249,7 +243,7 @@ const NeurologyPage: React.FC = () => {
           <div className="max-w-4xl mx-auto mb-8">
             <p className="text-lg text-gray-800 mb-4">
               Remote patient monitoring in neurology tracks vitals and EEG for
-              epilepsy, stroke, Parkinson’s. eVitals' FDA-approved devices
+              epilepsy, stroke, Parkinson&apos;s. eVitals&apos; FDA-approved devices
               reduce visits by 40% and admissions by 35%.
             </p>
             <p className="text-lg text-gray-800 mb-8">
@@ -368,7 +362,7 @@ const NeurologyPage: React.FC = () => {
               <div className="flex items-start mb-6">
                 <Quote className="w-8 h-8 mr-4 mt-1 flex-shrink-0 text-purple-200" />
                 <p className="text-xl italic leading-relaxed">
-                  "{testimonials[currentTestimonial].quote}"
+                  &ldquo;{testimonials[currentTestimonial].quote}&rdquo;
                 </p>
               </div>
               <div className="flex items-center">
@@ -429,7 +423,7 @@ const NeurologyPage: React.FC = () => {
                 Step 1: Assessment
               </h3>
               <p className="text-gray-700">
-                Customize for epilepsy and Parkinson's needs.
+                Customize for epilepsy and Parkinson&apos;s needs.
               </p>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-md">
