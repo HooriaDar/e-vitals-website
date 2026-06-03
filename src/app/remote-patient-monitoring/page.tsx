@@ -80,7 +80,7 @@ export default function RPMPage() {
     <>
       {/* Hero */}
       <section className="bg-gradient-to-b from-brand/5 to-white">
-        <div className="mx-auto max-w-6xl px-6 pt-12 pb-16">
+        <div className="mx-auto max-w-7xl px-6 pt-12 pb-16">
           <nav className="mb-6 text-sm text-slate-500">
             <Link href="/" className="hover:text-brand">Home</Link>
             {' / '}
@@ -110,7 +110,7 @@ export default function RPMPage() {
       </section>
 
       {/* What is RPM */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid items-start gap-12 md:grid-cols-2">
           <div>
             <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
@@ -161,7 +161,7 @@ export default function RPMPage() {
 
       {/* Requirements */}
       <section className="bg-slate-50/70 border-y border-slate-100">
-        <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="mx-auto max-w-7xl px-6 py-16">
           <div className="max-w-2xl">
             <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
               <span className="h-px w-6 bg-brand" />Requirements
@@ -203,7 +203,7 @@ export default function RPMPage() {
       </section>
 
       {/* 4-step workflow */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="max-w-2xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
             <span className="h-px w-6 bg-brand" />How it works
@@ -231,7 +231,7 @@ export default function RPMPage() {
 
       {/* Platform features */}
       <section className="bg-slate-50/70 border-y border-slate-100">
-        <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="mx-auto max-w-7xl px-6 py-16">
           <div className="max-w-2xl">
             <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
               <span className="h-px w-6 bg-brand" />Platform
@@ -253,7 +253,7 @@ export default function RPMPage() {
       </section>
 
       {/* Devices */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="max-w-2xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
             <span className="h-px w-6 bg-brand" />Devices
@@ -305,7 +305,7 @@ export default function RPMPage() {
 
       {/* CPT Codes */}
       <section className="bg-slate-50/70 border-y border-slate-100">
-        <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="mx-auto max-w-7xl px-6 py-16">
           <div className="max-w-2xl">
             <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
               <span className="h-px w-6 bg-brand" />Reimbursement
@@ -358,7 +358,7 @@ export default function RPMPage() {
       </section>
 
       {/* Concurrent billing */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="max-w-2xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
             <span className="h-px w-6 bg-brand" />Concurrent billing

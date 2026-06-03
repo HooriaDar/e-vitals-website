@@ -132,7 +132,7 @@ const ForOrganizations = () => {
 
       {/* Features Section */}
       <section className="py-20 px-6 sm:px-12 lg:px-24 bg-gradient-to-b from-white to-purple-50">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -178,7 +178,7 @@ const ForOrganizations = () => {
 
       {/* Stats Section - No Background */}
       <section className="py-20 px-6 sm:px-12 lg:px-24">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -219,7 +219,7 @@ const ForOrganizations = () => {
 
       {/* Testimonials Section */}
       <section className="py-20 px-6 sm:px-12 lg:px-24 bg-[#F9F5FF]">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

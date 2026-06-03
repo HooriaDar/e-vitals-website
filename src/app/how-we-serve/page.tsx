@@ -50,7 +50,7 @@ export default function WhoWeServePage() {
   return (
     <>
       {/* Hero */}
-      <section className="mx-auto max-w-6xl px-6 pt-12 pb-16">
+      <section className="mx-auto max-w-7xl px-6 pt-12 pb-16">
         <nav className="mb-6 text-sm text-slate-500">
           <Link href="/" className="hover:text-brand">Home</Link>
           {' / '}
@@ -106,7 +106,7 @@ export default function WhoWeServePage() {
 
       {/* Bottom banner */}
       <section className="bg-slate-50/70 border-y border-slate-100">
-        <div className="mx-auto max-w-6xl px-6 py-14 text-center">
+        <div className="mx-auto max-w-7xl px-6 py-14 text-center">
           <h2 className="text-2xl font-bold sm:text-3xl text-plum">Empowering every practice with smart monitoring</h2>
           <p className="mx-auto mt-3 max-w-2xl text-slate-600">
             Whether you run a small clinic or a large multi-specialty group, eVitals provides an end-to-end solution —

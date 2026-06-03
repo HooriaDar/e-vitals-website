@@ -11,7 +11,7 @@ const SubPageLayout: React.FC<SubPageLayoutProps> = ({ children, title, descript
     <>
       {/* Hero Section */}
       <section className="bg-[#29003C] text-white py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto max-w-7xl">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
           {description && <p className="text-xl text-[#B187E8] max-w-3xl">{description}</p>}
         </div>
@@ -19,7 +19,7 @@ const SubPageLayout: React.FC<SubPageLayoutProps> = ({ children, title, descript
       
       {/* Page Content */}
       <div className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto max-w-7xl">
           {children}
         </div>
       </div>

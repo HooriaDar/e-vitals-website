@@ -42,7 +42,7 @@ export default function ContactFormWrapper() {
     <main className="bg-white text-gray-800">
       {/* Options Section */}
       <section className="py-16 bg-gradient-to-r from-purple-50 to-white">
-        <div className="max-w-6xl mx-auto px-6 sm:px-12">
+        <div className="max-w-7xl mx-auto px-6 sm:px-12">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-[#270949] mb-10">
             How can we help you?
           </h2>
@@ -91,7 +91,7 @@ export default function ContactFormWrapper() {
         ref={formRef}
         className="py-20 px-6 sm:px-12 lg:px-24 bg-gradient-to-br from-purple-50 to-white"
       >
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
           {/* Left Info */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}

@@ -18,7 +18,7 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-tint/50 to-white"></div>
-        <div className="mx-auto max-w-6xl px-6 pb-20 pt-16 animate-rise">
+        <div className="mx-auto max-w-7xl px-6 pb-20 pt-16 animate-rise">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl text-plum">
@@ -120,7 +120,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Care Programs Section */}
-      <section id="programs" className="mx-auto max-w-6xl px-6 py-16 animate-rise">
+      <section id="programs" className="mx-auto max-w-7xl px-6 py-16 animate-rise">
         <div className="max-w-2xl">
 
           <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl text-plum">
@@ -172,7 +172,7 @@ const Home: React.FC = () => {
 
       {/* Platform Section */}
       <section className="bg-slate-50/70 border-y border-slate-100 w-full">
-        <div className="mx-auto max-w-6xl px-6 py-16 animate-rise">
+        <div className="mx-auto max-w-7xl px-6 py-16 animate-rise">
           <div className="max-w-2xl">
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl text-plum">
               One platform for every care program
@@ -264,7 +264,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Provider Benefits Section */}
-      <section className="mx-auto max-w-6xl px-6 py-16 animate-rise">
+      <section className="mx-auto max-w-7xl px-6 py-16 animate-rise">
         <div className="max-w-2xl">
 
           <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl text-plum">
@@ -339,7 +339,7 @@ const Home: React.FC = () => {
 
       {/* Conditions Managed Section */}
       <section className="bg-slate-50/70 border-y border-slate-100 w-full">
-        <div className="mx-auto max-w-6xl px-6 py-16 animate-rise">
+        <div className="mx-auto max-w-7xl px-6 py-16 animate-rise">
           <div className="max-w-2xl">
 
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl text-plum">
@@ -370,7 +370,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Reimbursement Section */}
-      <section className="mx-auto max-w-6xl px-6 py-16 animate-rise">
+      <section className="mx-auto max-w-7xl px-6 py-16 animate-rise">
         <div className="grid items-center gap-10 md:grid-cols-2">
           <div>
 
@@ -440,7 +440,7 @@ const Home: React.FC = () => {
 
       {/* Ready to Launch CTA Section */}
       <section className="bg-slate-50/70 border-y border-slate-100 w-full">
-        <div className="mx-auto max-w-6xl px-6 py-20 animate-rise">
+        <div className="mx-auto max-w-7xl px-6 py-20 animate-rise">
           <div className="rounded-3xl bg-brand-tint px-8 py-14 text-center ring-1 ring-brand/15 sm:px-12">
             <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-plum sm:text-4xl">
               Ready to launch your care programs the easy way?

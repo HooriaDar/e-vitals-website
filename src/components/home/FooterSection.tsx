@@ -7,7 +7,7 @@ import Image from "next/image";
 const FooterSection: React.FC = () => {
   return (
     <footer className="bg-deep text-white/80 no-print w-full mt-auto">
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
         <div>
           <span className="inline-flex rounded-lg bg-white px-3 py-2">
             <Image src="/assets/logo.png" alt="e-Vitals" width={144} height={36} className="h-9 w-auto" />
@@ -58,7 +58,7 @@ const FooterSection: React.FC = () => {
         </div>
       </div>
       <div className="border-t border-white/10 w-full">
-        <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-white/55">
+        <div className="mx-auto max-w-7xl px-6 py-5 text-xs text-white/55">
           <p>&copy; {new Date().getFullYear()} eVitals. All rights reserved.</p>
           <p className="mt-2 max-w-3xl leading-relaxed">
             Reimbursement figures are approximate national averages for educational purposes only and are not billing, legal, or financial advice. CPT codes and Medicare rates change annually and vary by payer and locality — verify against the current Medicare Physician Fee Schedule before billing. CPT® is a registered trademark of the American Medical Association.

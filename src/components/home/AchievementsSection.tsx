@@ -140,7 +140,7 @@ const StatsGrid: React.FC = () => {
 
       <div
         ref={ref}
-        className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+        className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
       >
         {/* COLUMN 1 */}
         <div className="flex flex-col space-y-6 h-full">

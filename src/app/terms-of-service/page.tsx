@@ -25,7 +25,7 @@ const TermsOfService = () => {
       </section> */}
 
       {/* Content Section */}
-      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-6xl mx-auto">
+      <section className="py-20 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

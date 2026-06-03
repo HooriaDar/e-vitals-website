@@ -6,7 +6,7 @@ import Link from "next/link";
 const ResourcesPage: React.FC = () => {
   return (
     <div className="w-full">
-      <section className="mx-auto max-w-6xl px-6 pt-12 pb-16 animate-rise">
+      <section className="mx-auto max-w-7xl px-6 pt-12 pb-16 animate-rise">
         <nav className="mb-6 text-sm text-slate-500">
           <Link href="/" className="hover:text-brand">Home</Link> / <span className="text-plum">Resources</span>
         </nav>
@@ -100,7 +100,7 @@ const ResourcesPage: React.FC = () => {
 
       {/* CTA Box */}
       <section className="bg-slate-50/70 border-y border-slate-100 w-full animate-rise">
-        <div className="mx-auto max-w-6xl px-6 py-20">
+        <div className="mx-auto max-w-7xl px-6 py-20">
           <div className="rounded-3xl bg-brand-tint px-8 py-14 text-center ring-1 ring-brand/15 sm:px-12">
             <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-plum sm:text-4xl">
               Have a question we didn’t cover?

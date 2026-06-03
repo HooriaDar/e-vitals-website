@@ -218,7 +218,7 @@ const RPMReimbursementCalculator: React.FC = () => {
   return (
     <div className="w-full">
       {/* Header Info Section */}
-      <section className="mx-auto max-w-6xl px-6 pt-12 pb-10">
+      <section className="mx-auto max-w-7xl px-6 pt-12 pb-10">
         <nav className="mb-6 text-sm text-slate-500">
           <Link href="/" className="hover:text-brand">Home</Link> / <span className="text-plum">Reimbursement</span>
         </nav>
@@ -237,7 +237,7 @@ const RPMReimbursementCalculator: React.FC = () => {
 
       {/* RPM Codes Table */}
       <section className="bg-slate-50/70 border-y border-slate-100 w-full">
-        <div className="mx-auto max-w-6xl px-6 py-14 animate-rise">
+        <div className="mx-auto max-w-7xl px-6 py-14 animate-rise">
           <h2 className="mb-5 text-2xl font-bold text-plum">Remote Patient Monitoring codes</h2>
           <div className="overflow-x-auto rounded-2xl ring-1 ring-slate-200 shadow-sm">
             <table className="w-full min-w-[640px] border-collapse text-left">
@@ -340,7 +340,7 @@ const RPMReimbursementCalculator: React.FC = () => {
       </section>
 
       {/* CCM Codes Table */}
-      <section className="mx-auto max-w-6xl px-6 py-14 animate-rise">
+      <section className="mx-auto max-w-7xl px-6 py-14 animate-rise">
         <h2 className="mb-5 text-2xl font-bold text-plum">Chronic Care Management codes</h2>
         <div className="overflow-x-auto rounded-2xl ring-1 ring-slate-200 shadow-sm">
           <table className="w-full min-w-[640px] border-collapse text-left">
@@ -429,7 +429,7 @@ const RPMReimbursementCalculator: React.FC = () => {
 
       {/* Estimator Calculator Card Block */}
       <section className="bg-slate-50/70 border-y border-slate-100 w-full">
-        <div className="mx-auto max-w-6xl px-6 py-16 animate-rise">
+        <div className="mx-auto max-w-7xl px-6 py-16 animate-rise">
           <div className="max-w-2xl">
             <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
               <span className="h-px w-6 bg-brand"></span>Calculator
@@ -956,7 +956,7 @@ const RPMReimbursementCalculator: React.FC = () => {
       </section>
 
       {/* Monthly Workflow Section */}
-      <section className="mx-auto max-w-6xl px-6 py-16 animate-rise">
+      <section className="mx-auto max-w-7xl px-6 py-16 animate-rise">
         <h2 className="text-2xl font-bold text-plum">Sample monthly workflow</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-xl bg-white p-5 ring-1 ring-slate-200 shadow-sm flex flex-col items-start">

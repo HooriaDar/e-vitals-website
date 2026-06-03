@@ -55,7 +55,7 @@ const TestimonialSection = () => {
           </p>
         </div>
 
-        <div className="relative rounded-2xl overflow-hidden mb-20 max-w-6xl mx-auto h-[300px] md:h-[400px]">
+        <div className="relative rounded-2xl overflow-hidden mb-20 max-w-7xl mx-auto h-[300px] md:h-[400px]">
           <Image
             src="/assets/testimonial.jpg"
             alt="Hospital corridor"

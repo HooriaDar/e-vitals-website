@@ -25,7 +25,7 @@ const RpmOverviewSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-[#2E1065] mb-6 text-center">
             RPM That Pays: Elevating Chronic Care and Maximizing Reimbursement
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {[
               {
                 title: "Optimized Reimbursement",

@@ -13,32 +13,39 @@ const Header: React.FC = () => {
     <>
       {/* HIPAA compliancy top banner */}
       <div className="bg-deep text-white no-print w-full">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-2.5">
-          <div className="flex items-center gap-3 text-sm">
-            <svg className="h-5 w-5 text-white/90" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6z"/>
-            </svg>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-0.5">
+          <div className="flex items-center gap-3 text-[15px] leading-none">
+            <Image
+              src="/assets/stars.png"
+              alt="Stars icon"
+              width={34}
+              height={34}
+              className="h-8.5 w-8.5 object-contain"
+            />
             <span>Turn-key Remote Patient Monitoring for clinics of any size.</span>
           </div>
-          <div className="hidden items-center gap-2 rounded-md border border-white/30 px-3 py-1 text-[11px] font-semibold tracking-wide sm:flex">
-            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            HIPAA COMPLIANT
+          <div className="hidden items-center sm:flex">
+            <Image
+              src="/assets/hipa-logo.png"
+              alt="HIPAA Compliant"
+              width={680}
+              height={280}
+              className="h-[5rem] w-auto object-contain"
+            />
           </div>
         </div>
       </div>
 
       {/* Main Header */}
       <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/95 backdrop-blur no-print w-full">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
           <Link href="/" className="flex items-center" aria-label="e-Vitals home">
             <Image 
               src="/assets/logo.png" 
               alt="e-Vitals — Remote Patient Monitoring" 
-              width={160}
-              height={40}
-              className="h-10 w-auto object-contain"
+              width={364}
+              height={72}
+              className="h-14 w-auto object-contain"
               priority
             />
           </Link>

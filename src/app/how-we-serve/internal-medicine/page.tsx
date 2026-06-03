@@ -37,7 +37,7 @@ export default function InternalMedicinePage() {
   return (
     <>
       {/* Hero */}
-      <section className="mx-auto max-w-6xl px-6 pt-12 pb-16">
+      <section className="mx-auto max-w-7xl px-6 pt-12 pb-16">
         <nav className="mb-6 text-sm text-slate-500">
           <Link href="/" className="hover:text-brand">Home</Link>
           {' / '}
@@ -77,7 +77,7 @@ export default function InternalMedicinePage() {
 
       {/* Benefits */}
       <section className="bg-slate-50/70 border-y border-slate-100">
-        <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="mx-auto max-w-7xl px-6 py-16">
           <div className="grid gap-6 md:grid-cols-2">
             {/* Patient benefits */}
             <div className="rounded-2xl bg-white p-7 ring-1 ring-slate-200">
@@ -129,7 +129,7 @@ export default function InternalMedicinePage() {
       </section>
 
       {/* CTA */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section className="mx-auto max-w-7xl px-6 py-20">
         <div className="rounded-3xl bg-brand/5 px-8 py-14 text-center ring-1 ring-brand/15 sm:px-12">
           <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-plum sm:text-4xl">
             Bring eVitals to your internal medicine practice.

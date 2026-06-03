@@ -9,7 +9,7 @@ const AboutPage: React.FC = () => {
     <div className="w-full">
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-brand-tint/40 to-white w-full">
-        <div className="mx-auto max-w-6xl px-6 pt-12 pb-16 animate-rise">
+        <div className="mx-auto max-w-7xl px-6 pt-12 pb-16 animate-rise">
           <nav className="mb-6 text-sm text-slate-500">
             <Link href="/" className="hover:text-brand">Home</Link> / <span className="text-plum">About</span>
           </nav>
@@ -46,7 +46,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Mission Section */}
-      <section className="mx-auto max-w-6xl px-6 py-16 animate-rise">
+      <section className="mx-auto max-w-7xl px-6 py-16 animate-rise">
         <div className="grid items-center gap-12 md:grid-cols-2">
           <div>
             <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
@@ -103,7 +103,7 @@ const AboutPage: React.FC = () => {
 
       {/* Team Section */}
       <section id="team" className="bg-slate-50/70 border-y border-slate-100 w-full">
-        <div className="mx-auto max-w-6xl px-6 py-16 animate-rise">
+        <div className="mx-auto max-w-7xl px-6 py-16 animate-rise">
           <div className="max-w-2xl">
             <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
               <span className="h-px w-6 bg-brand"></span>Our team
@@ -154,7 +154,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Beliefs Section */}
-      <section className="mx-auto max-w-6xl px-6 py-16 animate-rise">
+      <section className="mx-auto max-w-7xl px-6 py-16 animate-rise">
         <div className="max-w-2xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
             <span className="h-px w-6 bg-brand"></span>What drives us
@@ -209,7 +209,7 @@ const AboutPage: React.FC = () => {
 
       {/* CTA Box */}
       <section className="bg-slate-50/70 border-y border-slate-100 w-full animate-rise">
-        <div className="mx-auto max-w-6xl px-6 py-20">
+        <div className="mx-auto max-w-7xl px-6 py-20">
           <div className="rounded-3xl bg-brand-tint px-8 py-14 text-center ring-1 ring-brand/15 sm:px-12">
             <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-plum sm:text-4xl">
               Want to see e-Vitals in action?
