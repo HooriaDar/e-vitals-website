@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const FooterSection: React.FC = () => {
   return (
-    <footer className="relative bg-[#4E1026] text-[#FAF8F4]/85 no-print w-full mt-auto">
+    <footer className="relative bg-gradient-to-br from-[#1B1630] via-[#2A1830] to-[#7A1F3D] text-[#FAF8F4]/85 no-print w-full mt-auto">
       <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#F5EFE6]/40 to-transparent" aria-hidden="true" />
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
         <div>

@@ -22,7 +22,7 @@
   <path d="M325 94c-8-10-2-23 11-23 7 0 12 4 14 9 2-5 7-9 14-9 13 0 19 13 11 23l-25 26-25-26z" stroke="#7A1F3D" stroke-width="5" stroke-linejoin="round"/>
   <defs>
     <filter id="soft" x="58" y="40" width="642" height="236" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="0" dy="18" stdDeviation="17" flood-color="#6B4F3A" flood-opacity=".15"/>
+      <feDropShadow dx="0" dy="18" stdDeviation="17" flood-color="#1B1630" flood-opacity=".15"/>
     </filter>
   </defs>
 </svg>

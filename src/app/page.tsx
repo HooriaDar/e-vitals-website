@@ -270,17 +270,6 @@ const Home: React.FC = () => {
                     <path className="condition-wave" d="M0,30 H34 l8,-17 l9,34 l10,-24 l8,7 H98 l8,-15 l9,30 l11,-21 l8,6 H180" fill="none" />
                   </svg>
                 </div>
-                <div className="condition-visual__panel condition-visual__panel--bottom">
-                  <svg viewBox="0 0 220 74" preserveAspectRatio="none">
-                    <path d="M8 58 C40 20 66 42 92 29 S143 16 166 36 S195 50 212 18" fill="none" />
-                    <path d="M8 58 C40 20 66 42 92 29 S143 16 166 36 S195 50 212 18" fill="none" className="condition-trend" />
-                    <g className="condition-dots">
-                      <circle cx="92" cy="29" r="4" />
-                      <circle cx="166" cy="36" r="4" />
-                      <circle cx="212" cy="18" r="4" />
-                    </g>
-                  </svg>
-                </div>
               </div>
             </Reveal>
           </div>
