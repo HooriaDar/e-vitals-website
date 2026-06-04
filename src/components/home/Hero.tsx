@@ -1,108 +1,154 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
-// import { Inter } from "next/font/google";
-
-// // Load Inter
-// const inter = Inter({
-//   subsets: ["latin"],
-//   weight: ["400", "600", "700"], // adjust weights as needed
-// });
-
-const features = [
-  "HIPAA Compliance",
-  "FDA-Approved Devices",
-  "Reimbursement Support",
-];
-
-const backgroundImages = [
-  "/assets/herobg.webp",
-  "/assets/bg2hero.png",
-  "/assets/bghero3.webp",
-];
+import React from "react";
+import { motion } from "framer-motion";
 
 const Hero: React.FC = () => {
-  const [text, setText] = useState("");
-  const [index, setIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [currentBg, setCurrentBg] = useState(0);
+  const containerVariants: import("framer-motion").Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
+      },
+    },
+  };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentBg((prev) => (prev + 1) % backgroundImages.length);
-    }, 5000); // Change every 5 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const current = features[index % features.length];
-    const speed = isDeleting ? 20 : 50; // speed in ms
-
-    const handler = setTimeout(() => {
-      if (!isDeleting) {
-        setText(current.substring(0, text.length + 1));
-        if (text === current) {
-          setTimeout(() => setIsDeleting(true), 1000); // pause before deleting
-        }
-      } else {
-        setText(current.substring(0, text.length - 1));
-        if (text === "") {
-          setIsDeleting(false);
-          setIndex((prev) => prev + 1);
-        }
-      }
-    }, speed);
-
-    return () => clearTimeout(handler);
-  }, [text, isDeleting, index]);
+  const itemVariants: import("framer-motion").Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.2, 0.7, 0.2, 1] },
+    },
+  };
 
   return (
-    <section className="relative h-[90vh] flex items-center overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          key={currentBg} // Key to force remount on change for smooth transition
-          src={backgroundImages[currentBg]}
-          alt="eVitals Hero Background"
-          fill
-          className="object-cover kenburns transition-opacity duration-1000 ease-in-out"
-          priority
-        />
-
-        {/* Left-side black gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-white pt-24 pb-20">
+      {/* Soft Animated Background Gradients */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand/10 rounded-full blur-[120px] mix-blend-multiply animate-blob" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent/10 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-2000" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 w-full">
-        <div className="text-left pl-6 md:pl-12 lg:pl-20 max-w-3xl">
-          <h1 className="text-white text-4xl md:text-6xl font-bold leading-tight mb-6">
-            Elevating Patient Care <br />
-            with Advanced Remote
-            <span className="text-[#B187E8]"> Patient Monitoring</span>
-          </h1>
-
-          <p className="text-white text-base md:text-lg mb-8">
-            eVitals delivers comprehensive RPM to US healthcare facilities,
-            enhancing patient outcomes while maximizing provider reimbursement
-            and practice efficiency.
-          </p>
-
-          {/* Typewriter Effect */}
-          <p className="text-[#B187E8] text-base md:text-4xl mb-8 font-bold">
-            {text}
-            <span className="border-r-2 border-white animate-pulse ml-1"></span>
-          </p>
-
-          {/* CTA Button */}
-          <Link
-            href="/for-organizations"
-            className="bg-[#36036B] hover:bg-[#4b0d8d] text-white text-base font-semibold px-6 py-3 rounded-md shadow-md transition duration-300 inline-block"
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Left Column: Text Content */}
+          <motion.div 
+            className="text-left"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
           >
-            Schedule a FREE demo →
-          </Link>
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-tint border border-brand/20 text-brand font-medium text-sm mb-6 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+              Next-Gen Medical Platform
+            </motion.div>
+
+            <motion.h1 
+              variants={itemVariants}
+              className="text-slate-900 text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 tracking-tight"
+            >
+              Elevating Patient <br />
+              Care with <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-accent">Advanced RPM</span>
+            </motion.h1>
+
+            <motion.p 
+              variants={itemVariants}
+              className="text-slate-600 text-lg md:text-xl mb-10 leading-relaxed font-light max-w-xl"
+            >
+              eVitals delivers comprehensive Remote Patient Monitoring to US healthcare facilities. 
+              Enhance outcomes, maximize reimbursement, and optimize practice efficiency with zero friction.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+              <Link
+                href="/for-organizations"
+                className="bg-brand hover:bg-brand-dark text-white text-lg font-semibold px-8 py-4 rounded-full shadow-xl hover:shadow-brand/30 transition-all duration-300 inline-flex items-center justify-center gap-2 group hover:-translate-y-1"
+              >
+                Schedule a FREE demo 
+                <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </Link>
+              
+              <Link
+                href="/how-it-works"
+                className="bg-white text-slate-700 hover:text-brand border border-slate-200 text-lg font-semibold px-8 py-4 rounded-full shadow-sm hover:shadow-md transition-all duration-300 inline-flex items-center justify-center gap-2 hover:-translate-y-1"
+              >
+                See how it works
+              </Link>
+            </motion.div>
+            
+            {/* Social Proof */}
+            <motion.div variants={itemVariants} className="mt-12 flex items-center gap-4 text-sm font-medium text-slate-500">
+              <div className="flex -space-x-3">
+                {[1,2,3,4].map((i) => (
+                  <div key={i} className={`w-10 h-10 rounded-full border-2 border-white bg-slate-200 shadow-sm z-[${10-i}] overflow-hidden`}>
+                     <Image src={`/assets/testimonials/a${i}.jpg`} alt="User" width={40} height={40} className="object-cover" />
+                  </div>
+                ))}
+              </div>
+              <p>Trusted by <span className="text-slate-900 font-bold">500+</span> healthcare providers</p>
+            </motion.div>
+
+          </motion.div>
+
+          {/* Right Column: Floating Graphics */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.2, 0.7, 0.2, 1] }}
+            className="relative lg:h-[600px] flex justify-center items-center"
+          >
+            {/* Main Mockup */}
+            <div className="relative w-full max-w-lg aspect-square floaty z-10">
+              <Image 
+                src="/assets/hero_dashboard.png" 
+                alt="Modern Medical Dashboard" 
+                fill 
+                className="object-contain drop-shadow-2xl rounded-3xl"
+                priority
+              />
+            </div>
+
+            {/* Floating metric chips */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="absolute top-10 -left-10 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/50 z-20 flex items-center gap-4 floaty"
+              style={{ animationDelay: '1s' }}
+            >
+              <div className="w-12 h-12 rounded-full bg-brand-tint flex items-center justify-center text-brand">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+              </div>
+              <div>
+                <p className="text-sm text-slate-500 font-medium">Reimbursement</p>
+                <p className="text-xl font-bold text-slate-900">+45%</p>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.5, duration: 0.8 }}
+              className="absolute bottom-10 -right-5 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/50 z-20 flex items-center gap-4 floaty"
+              style={{ animationDelay: '2s' }}
+            >
+              <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              </div>
+              <div>
+                <p className="text-sm text-slate-500 font-medium">FDA-Cleared</p>
+                <p className="text-xl font-bold text-slate-900">Devices</p>
+              </div>
+            </motion.div>
+
+          </motion.div>
+
         </div>
       </div>
     </section>
@@ -111,76 +157,4 @@ const Hero: React.FC = () => {
 
 export default Hero;
 
-// // Hero.tsx
-// import Image from 'next/image';
-// import Link from 'next/link';
-// import React from 'react';
 
-// const Hero: React.FC = () => {
-//   return (
-//     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-//       {/* Background image with overlay */}
-//       <div className="absolute inset-0 bg-[rgba(var(--primary-rgb),0.7)] z-0">
-//         <Image
-//           src="/assets/background.jpg"
-//           alt="Background"
-//           fill
-//           className="object-cover"
-//           priority
-//         />
-//       </div>
-
-//       {/* Content container */}
-//       <div className="container mx-auto px-4 relative z-10">
-//         <div className="max-w-4xl mx-auto text-center">
-//           {/* Main heading */}
-//           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-//             Welcome to <span className="text-[rgb(var(--secondary-rgb))]">eVitals</span>
-//           </h1>
-
-//           {/* Subheading */}
-//           <p className="text-xl md:text-2xl text-blue-100 mb-10 max-w-2xl mx-auto">
-//             Care beyond clinic, always connected.
-//           </p>
-
-//           {/* White card with content */}
-//           <div className="bg-white/90 backdrop-blur-sm rounded-xl p-8 mb-12 shadow-2xl max-w-3xl mx-auto animate-fadeIn">
-//             <p className="text-slate-700 text-lg md:text-xl mb-8 leading-relaxed">
-//               eVitals is a remote patient monitoring solution designed to help clinicians deliver proactive, personalized care—right from a distance.
-//               <br className="hidden sm:block" />
-//               Because better insights lead to better outcomes.
-//             </p>
-
-//             {/* Get Started button */}
-//             <div className="flex justify-center gap-4">
-//               <Link
-//                 href="#"
-//                 className="btn-primary inline-flex items-center"
-//               >
-//                 Get Started <span className="ml-2">→</span>
-//               </Link>
-//               <Link
-//                 href="#"
-//                 className="btn-outline inline-flex items-center"
-//               >
-//                 Learn More
-//               </Link>
-//             </div>
-//           </div>
-
-//           {/* Bottom links */}
-//           <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-12">
-//             <Link href="#" className="text-blue-100 hover:text-white font-medium text-lg transition-colors">
-//               For Individuals
-//             </Link>
-//             <Link href="#" className="text-blue-100 hover:text-white font-medium text-lg transition-colors">
-//               For Organizations
-//             </Link>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Hero;

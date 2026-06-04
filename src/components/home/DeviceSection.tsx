@@ -6,13 +6,13 @@ import Link from "next/link";
 
 const DeviceSection = () => {
   return (
-    <section className="bg-[#fff] py-24">
+    <section className="bg-white py-24">
       <div
-        className="bg-[#f9f5ff] container mx-auto px-4 py-24"
+        className="bg-brand-tint container mx-auto px-4 py-24 shadow-sm border border-brand/5"
         style={{ borderRadius: "45px" }}
       >
         {/* Section Heading */}
-        <h2 className="text-center text-[#c092e8] text-3xl md:text-5xl font-extrabold mb-16 tracking-tight ">
+        <h2 className="text-center text-brand text-3xl md:text-5xl font-extrabold mb-16 tracking-tight">
           Learn about our RPM Devices
         </h2>
 
@@ -20,20 +20,20 @@ const DeviceSection = () => {
         <div className="w-full relative rounded-3xl overflow-hidden p-8 md:p-16 mb-20 duration-300 min-h-[350px] flex">
           {/* Text on the left */}
           <div className="relative z-10 max-w-xl flex-1">
-            <span className="inline-block bg-[#c092e8] rounded-full px-4 py-1 text-sm font-semibold text-[#fff] shadow-sm mb-2">
+            <span className="inline-block bg-brand rounded-full px-4 py-1 text-sm font-semibold text-white shadow-sm mb-2">
               New
             </span>
-            <h3 className="text-2xl md:text-3xl font-bold text-[#2f1266] mb-4 flex items-center gap-2">
+            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 flex items-center gap-2 tracking-tight">
               Blood Pressure & Glucose Monitoring System
             </h3>
-            <p className="text-black mb-6 leading-relaxed text-lg">
+            <p className="text-slate-700 mb-6 leading-relaxed text-lg">
               Remotely monitor and adjust treatment plans to keep chronic
               diseases under control. Patients can easily monitor their blood
               glucose and pressure themselves or with a caregiver — anytime,
               anywhere. Device data is automatically transmitted to the eVitals
               RPM Telehealth System via built-in cellular connectivity.
             </p>
-            <ul className="list-disc pl-6 text-black space-y-2 text-base">
+            <ul className="list-disc pl-6 text-slate-700 space-y-2 text-base">
               <li>2-in-1 blood glucose and blood pressure measurements</li>
               <li>Audible results in English/Spanish</li>
               <li>Alternative site testing approved</li>
@@ -64,14 +64,14 @@ const DeviceSection = () => {
         <div className="w-full relative rounded-3xl overflow-hidden p-8 md:p-16 mb-20 duration-300 min-h-[700px] flex">
           {/* Text on the left */}
           <div className="relative z-10 max-w-xl flex-1">
-            <span className="inline-block bg-[#c092e8] rounded-full px-4 py-1 text-sm font-semibold text-[#fff] shadow-sm mb-2">
+            <span className="inline-block bg-brand rounded-full px-4 py-1 text-sm font-semibold text-white shadow-sm mb-2">
               New
             </span>
-            <h3 className="text-2xl md:text-3xl font-bold text-[#2f1266] mb-4 flex items-center gap-2">
+            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 flex items-center gap-2 tracking-tight">
               Weight Scale
             </h3>
 
-            <ul className="list-disc pl-6 text-black space-y-2 text-base">
+            <ul className="list-disc pl-6 text-slate-700 space-y-2 text-base">
               <li>Supports up to 550 lbs</li>
               <li>Low profile, wide platform</li>
               <li>Large backlit LCD display</li>
@@ -96,7 +96,7 @@ const DeviceSection = () => {
         <div className="mt-20 flex justify-center">
           <Link
             href="/for-organizations"
-            className="bg-[#270949] text-white px-6 py-3 rounded-full hover:opacity-90 transition font-semibold shadow-lg animate-pulse"
+            className="bg-brand text-white px-8 py-4 rounded-full hover:bg-brand-dark transition-all duration-300 font-semibold shadow-lg hover:shadow-brand/25 hover:-translate-y-1"
           >
             Become our Technology Partner
           </Link>

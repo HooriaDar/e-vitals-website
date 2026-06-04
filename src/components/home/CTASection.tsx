@@ -4,8 +4,9 @@ import Link from 'next/link';
 
 const CTASection = () => {
   return (
-    <section className="bg-gradient-to-br from-[#36036B] to-[#B187E8] py-24">
-      <div className="container mx-auto px-4">
+    <section className="relative overflow-hidden bg-gradient-to-br from-plum via-plum-2 to-brand-dark py-24">
+      <div className="rpm-hero-glow absolute inset-0 opacity-40" aria-hidden="true" />
+      <div className="container relative mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Heading */}
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">
@@ -52,7 +53,7 @@ const CTASection = () => {
           <div className="flex flex-col items-center justify-center gap-6">
             <Link
               href="/contact?booking=demo"
-              className="group bg-white text-[#36036B] px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 inline-flex items-center gap-3"
+              className="group bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 inline-flex items-center gap-3"
             >
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

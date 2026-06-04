@@ -203,30 +203,32 @@ export default function RPMPage() {
       </section>
 
       {/* 4-step workflow */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
-        <div className="max-w-2xl">
-          <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
-            <span className="h-px w-6 bg-brand" />How it works
-          </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl text-plum">From enrolling to billing in 4 steps</h2>
+      <section className="rpm-workflow-card-section mx-auto max-w-7xl px-6 py-10">
+        <div className="p-7 md:p-9">
+          <div className="max-w-2xl">
+            <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-[#F5EFE6]/80">
+              <span className="h-px w-6 bg-[#F5EFE6]/70" />How it works
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#FAF8F4] sm:text-4xl">From enrolling to billing in 4 steps</h2>
+          </div>
+          <div className="mt-8 grid gap-5 md:grid-cols-4">
+            {[
+              { n: '01', t: 'Enroll eligible patients', b: 'We identify and enroll eligible patients and provision the device.' },
+              { n: '02', t: 'Connect device', b: 'Cellular devices sync to patient charts the moment they\'re switched on.' },
+              { n: '03', t: 'Monitor & intervene', b: 'Your clinical team reviews data, documents time, and escalates when needed.' },
+              { n: '04', t: 'Bill & reconcile', b: 'A monthly, audit-ready RPM & CCM codes report is generated.' },
+            ].map((s) => (
+              <div key={s.n}>
+                <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[#F5EFE6]/65 bg-white/10 font-bold text-[#FAF8F4]">{s.n}</div>
+                <h3 className="mt-4 text-lg font-semibold text-[#FAF8F4]">{s.t}</h3>
+                <p className="mt-1 text-sm text-[#FAF8F4]/76">{s.b}</p>
+              </div>
+            ))}
+          </div>
+          <Link href="/how-it-works" className="mt-7 inline-flex items-center gap-2 font-semibold text-[#FAF8F4] hover:text-white">
+            See the full workflow <ArrowIcon />
+          </Link>
         </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-4">
-          {[
-            { n: '01', t: 'Enroll eligible patients', b: 'We identify and enroll eligible patients and provision the device.' },
-            { n: '02', t: 'Connect device', b: 'Cellular devices sync to patient charts the moment they\'re switched on.' },
-            { n: '03', t: 'Monitor & intervene', b: 'Your clinical team reviews data, documents time, and escalates when needed.' },
-            { n: '04', t: 'Bill & reconcile', b: 'A monthly, audit-ready RPM & CCM codes report is generated.' },
-          ].map((s) => (
-            <div key={s.n}>
-              <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-brand font-bold text-brand">{s.n}</div>
-              <h3 className="mt-4 text-lg font-semibold text-plum">{s.t}</h3>
-              <p className="mt-1 text-sm text-slate-600">{s.b}</p>
-            </div>
-          ))}
-        </div>
-        <Link href="/how-it-works" className="mt-8 inline-flex items-center gap-2 font-semibold text-brand">
-          See the full workflow <ArrowIcon />
-        </Link>
       </section>
 
       {/* Platform features */}

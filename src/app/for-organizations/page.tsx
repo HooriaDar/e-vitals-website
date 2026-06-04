@@ -13,7 +13,7 @@ const ForOrganizations = () => {
         "Comprehensive remote monitoring for your entire patient population",
       icon: (
         <svg
-          className="w-12 h-12 text-[#B187E8]"
+          className="w-12 h-12 text-brand"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -32,7 +32,7 @@ const ForOrganizations = () => {
       description: "AI-powered insights with customizable dashboards",
       icon: (
         <svg
-          className="w-12 h-12 text-[#B187E8]"
+          className="w-12 h-12 text-brand"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -51,7 +51,7 @@ const ForOrganizations = () => {
       description: "HIPAA, GDPR, and HITRUST certified security",
       icon: (
         <svg
-          className="w-12 h-12 text-[#B187E8]"
+          className="w-12 h-12 text-brand"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -101,7 +101,7 @@ const ForOrganizations = () => {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-900/50 to-blue-900/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-plum/50 to-brand-dark/50"></div>
         </div>
         <div className="relative z-10 h-full flex items-center justify-center text-center px-6">
           <motion.div
@@ -119,7 +119,7 @@ const ForOrganizations = () => {
               monitoring platform designed for healthcare organizations
             </p>
             {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-purple-900 hover:bg-purple-100 px-8 py-3 rounded-full font-semibold shadow-lg transition-all duration-300">
+              <button className="bg-white text-plum hover:bg-brand-tint px-8 py-3 rounded-full font-semibold shadow-lg transition-all duration-300">
                 Request Demo
               </button>
               <button className="border-2 border-white text-white hover:bg-white/10 px-8 py-3 rounded-full font-semibold shadow-lg transition-all duration-300">
@@ -142,9 +142,9 @@ const ForOrganizations = () => {
           >
             <h2 className="text-3xl md:text-4xl font-bold text-[#2E1065] mb-6">
               Designed for{" "}
-              <span className="text-[#B187E8]">Healthcare Organizations</span>
+              <span className="text-brand">Healthcare Organizations</span>
             </h2>
-            <div className="w-24 h-1 bg-[#B187E8] mx-auto mb-6"></div>
+            <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Scalable solutions that integrate seamlessly with your existing
               infrastructure
@@ -159,7 +159,7 @@ const ForOrganizations = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-[#B187E8]"
+                className="bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-brand"
               >
                 <div className="flex items-center justify-center mb-6">
                   {feature.icon}
@@ -187,9 +187,9 @@ const ForOrganizations = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-[#2E1065] mb-6">
-              Proven <span className="text-[#B187E8]">Impact</span>
+              Proven <span className="text-brand">Impact</span>
             </h2>
-            <div className="w-24 h-1 bg-[#B187E8] mx-auto mb-6"></div>
+            <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -206,7 +206,7 @@ const ForOrganizations = () => {
                   <span className="text-5xl font-bold text-[#2E1065] mr-2">
                     {stat.value}
                   </span>
-                  <span className="text-2xl text-[#B187E8]">{stat.trend}</span>
+                  <span className="text-2xl text-brand">{stat.trend}</span>
                 </div>
                 <p className="text-lg text-center text-gray-700">
                   {stat.label}
@@ -229,9 +229,9 @@ const ForOrganizations = () => {
           >
             <h2 className="text-3xl md:text-4xl font-bold text-[#2E1065] mb-6">
               Trusted by{" "}
-              <span className="text-[#B187E8]">Healthcare Leaders</span>
+              <span className="text-brand">Healthcare Leaders</span>
             </h2>
-            <div className="w-24 h-1 bg-[#B187E8] mx-auto mb-6"></div>
+            <div className="w-24 h-1 bg-brand mx-auto mb-6"></div>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -242,10 +242,10 @@ const ForOrganizations = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-[#B187E8]"
+                className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-brand"
               >
                 <svg
-                  className="w-8 h-8 text-[#B187E8] mb-4"
+                  className="w-8 h-8 text-brand mb-4"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -286,7 +286,7 @@ const ForOrganizations = () => {
 
         {/* CTA Content */}
         <div className="relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-plum mb-6">
             Let’s Make Care Easier — Together
           </h2>
           <p className="text-xl text-gray-800 mb-8 max-w-3xl mx-auto">

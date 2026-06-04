@@ -196,26 +196,27 @@ export default function CCMPage() {
           {/* SVG Care Coordination Diagram */}
           <div className="rounded-3xl bg-white p-6 ring-1 ring-slate-200">
             <svg viewBox="0 0 480 400" className="h-auto w-full" role="img" aria-label="CCM care coordination around the patient">
-              <g stroke="#CBD5E1" strokeWidth="2">
+              <g stroke="#D8CBBE" strokeWidth="2">
                 <line x1="240" y1="200" x2="240" y2="70" />
                 <line x1="240" y1="200" x2="370" y2="160" />
                 <line x1="240" y1="200" x2="320" y2="310" />
                 <line x1="240" y1="200" x2="160" y2="310" />
                 <line x1="240" y1="200" x2="110" y2="160" />
               </g>
-              <circle cx="240" cy="200" r="48" fill="#0D7C84" />
-              <text x="240" y="204" textAnchor="middle" fill="#ffffff" fontSize="14" fontWeight="700" fontFamily="Plus Jakarta Sans, sans-serif">Patient</text>
-              <text x="240" y="220" textAnchor="middle" fill="#BEE3E3" fontSize="10" fontFamily="Plus Jakarta Sans, sans-serif">2+ chronic conditions</text>
-              <g fontFamily="Plus Jakarta Sans, sans-serif" fontSize="12" fontWeight="600" fill="#0A2540" textAnchor="middle">
-                <circle cx="240" cy="70" r="30" fill="#ffffff" stroke="#0D7C84" strokeWidth="2" />
+              <circle cx="240" cy="200" r="64" fill="#7A1F3D" />
+              <text x="240" y="190" textAnchor="middle" fill="#ffffff" fontSize="15" fontWeight="800" fontFamily="Plus Jakarta Sans, sans-serif">Patient</text>
+              <text x="240" y="210" textAnchor="middle" fill="#F5EFE6" fontSize="11" fontWeight="700" fontFamily="Plus Jakarta Sans, sans-serif">2+ chronic</text>
+              <text x="240" y="225" textAnchor="middle" fill="#F5EFE6" fontSize="11" fontWeight="700" fontFamily="Plus Jakarta Sans, sans-serif">conditions</text>
+              <g fontFamily="Plus Jakarta Sans, sans-serif" fontSize="12" fontWeight="600" fill="#1F1F1F" textAnchor="middle">
+                <circle cx="240" cy="70" r="30" fill="#ffffff" stroke="#7A1F3D" strokeWidth="2" />
                 <text x="240" y="26">Care plan</text>
-                <circle cx="370" cy="160" r="30" fill="#ffffff" stroke="#0D7C84" strokeWidth="2" />
+                <circle cx="370" cy="160" r="30" fill="#ffffff" stroke="#7A1F3D" strokeWidth="2" />
                 <text x="370" y="118">24/7 access</text>
-                <circle cx="320" cy="310" r="30" fill="#ffffff" stroke="#0D7C84" strokeWidth="2" />
+                <circle cx="320" cy="310" r="30" fill="#ffffff" stroke="#7A1F3D" strokeWidth="2" />
                 <text x="320" y="356">Coordinate</text>
-                <circle cx="160" cy="310" r="30" fill="#ffffff" stroke="#0D7C84" strokeWidth="2" />
+                <circle cx="160" cy="310" r="30" fill="#ffffff" stroke="#7A1F3D" strokeWidth="2" />
                 <text x="160" y="356">Health record</text>
-                <circle cx="110" cy="160" r="30" fill="#ffffff" stroke="#0D7C84" strokeWidth="2" />
+                <circle cx="110" cy="160" r="30" fill="#ffffff" stroke="#7A1F3D" strokeWidth="2" />
                 <text x="110" y="118">Medications</text>
               </g>
             </svg>

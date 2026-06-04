@@ -69,7 +69,7 @@ export const InfiniteMovingCards = ({
           >
             <div className="flex-1 mb-6">
               <svg
-                className="w-8 h-8 text-[#411C6B] mb-4"
+                className="w-8 h-8 text-brand/40 mb-4"
                 fill="currentColor"
                 viewBox="0 0 32 32"
               >

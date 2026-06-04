@@ -28,55 +28,55 @@ const ServicesPage = () => {
 
   const services = [
     {
-      icon: <Stethoscope className="w-8 h-8 text-purple-900" />,
+      icon: <Stethoscope className="w-8 h-8 text-brand" />,
       title: "Patient Education on Device Usage",
       description:
         "We guide each patient through device setup with clear instructions, ensuring they can start tracking their health right away.",
     },
     {
-      icon: <Bell className="w-8 h-8 text-purple-900" />,
+      icon: <Bell className="w-8 h-8 text-brand" />,
       title: "Monitoring & Compliance Reminders",
       description:
         "We track patient usage and send timely reminders to keep them compliant with CMS guidelines.",
     },
     {
-      icon: <Headset className="w-8 h-8 text-purple-900" />,
+      icon: <Headset className="w-8 h-8 text-brand" />,
       title: "Technical Support & Assistance",
       description:
         "Our support team is ready to resolve device pairing issues, reading errors, and more via phone, email, or remote help.",
     },
     {
-      icon: <AlertCircle className="w-8 h-8 text-purple-900" />,
+      icon: <AlertCircle className="w-8 h-8 text-brand" />,
       title: "Physician Notifications",
       description:
         "We alert the physician or care team immediately when readings cross predefined thresholds.",
     },
     {
-      icon: <Repeat className="w-8 h-8 text-purple-900" />,
+      icon: <Repeat className="w-8 h-8 text-brand" />,
       title: "Troubleshooting & Device Replacement",
       description:
         "If a device is faulty, we coordinate a quick replacement to minimize downtime.",
     },
     {
-      icon: <FileText className="w-8 h-8 text-purple-900" />,
+      icon: <FileText className="w-8 h-8 text-brand" />,
       title: "Monthly & On-Demand Patient Reports",
       description:
         "We deliver detailed reports to support clinical decision-making, monthly or on request.",
     },
     {
-      icon: <Eye className="w-8 h-8 text-purple-900" />,
+      icon: <Eye className="w-8 h-8 text-brand" />,
       title: "Data Monitoring per Physician Criteria",
       description:
         "Our clinical monitoring team flags critical values based on parameters you define.",
     },
     {
-      icon: <ClipboardList className="w-8 h-8 text-purple-900" />,
+      icon: <ClipboardList className="w-8 h-8 text-brand" />,
       title: "Monthly Billing & Coding Documentation",
       description:
         "We prepare accurate billing and coding documents for seamless reimbursement.",
     },
     {
-      icon: <UserPlus className="w-8 h-8 text-purple-900" />,
+      icon: <UserPlus className="w-8 h-8 text-brand" />,
       title: "Optional: Patient Screening & Enrollment",
       description:
         "We assist with patient eligibility screening and enrollment if requested.",
@@ -128,12 +128,12 @@ const ServicesPage = () => {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            <p className="inline-block bg-[#B187E8]/70 text-white text-sm font-semibold px-4 py-1 rounded-full mb-4 shadow-lg animate-pulse">
+            <p className="inline-block bg-brand/80 text-white text-sm font-semibold px-4 py-1 rounded-full mb-4 shadow-lg animate-pulse">
               Services We Offer
             </p>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-white text-shadow-lg">
               Smart, Secure, and Clinician-Friendly{" "}
-              <span className="text-[#B187E8] animate-pulse">RPM Software</span>
+              <span className="text-brand animate-pulse">RPM Software</span>
             </h1>
             
           </div>
@@ -169,7 +169,7 @@ const ServicesPage = () => {
               transition={{ delay: index * 0.05 }}
             >
               <div className="mb-4">{service.icon}</div>
-              <h3 className="text-xl font-bold text-purple-900 mb-2">
+              <h3 className="text-xl font-bold text-brand mb-2">
                 {service.title}
               </h3>
               <p className="text-gray-700">{service.description}</p>
@@ -202,7 +202,7 @@ const ServicesPage = () => {
           </p>
           <Link
             href="#"
-            className="inline-flex items-center gap-2 bg-white text-purple-900 px-8 py-3 rounded-full hover:bg-gray-100 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="inline-flex items-center gap-2 bg-white text-brand px-8 py-3 rounded-full hover:bg-gray-100 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
             Learn More About Who We Serve →
           </Link>
@@ -214,7 +214,7 @@ const ServicesPage = () => {
       {/* Why Choose Us */}
       <section className="bg-gradient-to-r from-purple-100 via-purple-50 to-purple-100 py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-purple-900 mb-8">
+          <h2 className="text-3xl font-bold text-brand mb-8">
             Why Choose Our Services?
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -227,7 +227,7 @@ const ServicesPage = () => {
                 transition={{ delay: idx * 0.1 }}
                 className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
               >
-                <h3 className="text-lg font-semibold text-purple-900 mb-2">
+                <h3 className="text-lg font-semibold text-brand mb-2">
                   {reason.title}
                 </h3>
                 <p className="text-gray-700">{reason.description}</p>
@@ -243,7 +243,7 @@ const ServicesPage = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-purple-900 mb-6"
+          className="text-3xl font-bold text-brand mb-6"
         >
           Lets Make Care Easier — Together
         </motion.h2>

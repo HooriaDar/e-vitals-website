@@ -65,15 +65,15 @@ const WhyChooseUs = () => {
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-20">
-                         <div className="inline-block bg-gradient-to-r from-[#B187E8] to-[#36036B] bg-clip-text text-transparent">
-               <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                         <div className="inline-block bg-gradient-to-r from-teal-500 to-brand bg-clip-text text-transparent">
+               <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
                  Why Choose Us
                </h1>
              </div>
-             <h2 className="text-2xl md:text-3xl font-semibold text-[#36036B] mb-4">
+             <h2 className="text-2xl md:text-3xl font-semibold text-slate-800 mb-4 tracking-tight">
                Your Trusted Partner for RPM Success
              </h2>
-             <div className="w-24 h-1 bg-gradient-to-r from-[#B187E8] to-[#36036B] mx-auto rounded-full"></div>
+             <div className="w-24 h-1 bg-gradient-to-r from-teal-500 to-brand mx-auto rounded-full"></div>
           </div>
 
           {/* Features Grid */}
@@ -84,18 +84,18 @@ const WhyChooseUs = () => {
                 className="group relative bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 overflow-hidden"
               >
                                  {/* Background gradient on hover */}
-                 <div className="absolute inset-0 bg-gradient-to-br from-[#B187E8]/5 to-[#36036B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                 <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-brand/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                  
                  {/* Icon container */}
                  <div className="relative z-10 flex justify-center mb-6">
-                   <div className="p-4 rounded-2xl bg-gradient-to-br from-[#B187E8] to-[#36036B] text-white group-hover:scale-110 transition-transform duration-500 shadow-lg">
+                   <div className="p-4 rounded-2xl bg-gradient-to-br from-teal-500 to-brand text-white group-hover:scale-110 transition-transform duration-500 shadow-lg hover:shadow-brand/20">
                      {feature.icon}
                    </div>
                  </div>
 
                  {/* Content */}
                  <div className="relative z-10 text-center">
-                   <h3 className="text-xl font-bold text-[#36036B] mb-4 group-hover:text-[#B187E8] transition-colors duration-300">
+                   <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-brand transition-colors duration-300">
                      {feature.title}
                    </h3>
                   <p className="text-gray-600 leading-relaxed text-sm md:text-base">
@@ -104,7 +104,7 @@ const WhyChooseUs = () => {
                 </div>
 
                                  {/* Bottom accent line */}
-                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#B187E8] to-[#36036B] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 to-brand transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
               </div>
             ))}
           </div>

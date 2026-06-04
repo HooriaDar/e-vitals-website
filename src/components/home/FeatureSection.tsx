@@ -1,121 +1,116 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import RpmOverviewSection from "./Crisis";
+import MedicalIllustration from "./MedicalIllustration";
 
 const FeatureSection = () => {
+  const scrollVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.8, ease: [0.2, 0.7, 0.2, 1] as const }
+    }
+  };
+
   return (
-    <section className="section-padding bg-white">
-      <div className="container-lg mx-auto px-4">
+    <section className="section-padding bg-slate-50 relative overflow-hidden pb-32">
+      {/* Decorative Background element */}
+      <div className="absolute top-1/4 right-0 w-[800px] h-[800px] bg-brand/5 rounded-full blur-[120px] pointer-events-none mix-blend-multiply" />
+
+      <div className="container-lg mx-auto px-4 relative z-10">
         {/* Heading Section */}
-        <div className="text-center mb-16">
-          <p
-            className="font-semibold text-slate-900 mb-6 leading-snug"
-            style={{ fontSize: "2.2rem", lineHeight: 1.4 }}
-          >
-            <span className="text-[#401b62]">Because superior </span>
-            <span className="text-[#a18adb]">patient management</span>
-            <span className="text-[#401b62]">
-              {" "}
-              is continuous, not confined to clinic hours.
-            </span>
-
-            <br />
-            <br />
-
-            <span className="text-[#401b62]">The HIPAA-compliant </span>
-            <span className="text-[#a18adb]">
-              eVitals Remote Patient Monitoring (RPM)
-            </span>
-            <span className="text-[#401b62]"> platform empowers </span>
-            <span className="text-[#a18adb]">US providers</span>
-            <span className="text-[#401b62]"> to streamline </span>
-            <span className="text-[#a18adb]">chronic care</span>
-            <span className="text-[#401b62]"> secure </span>
-            <span className="text-[#a18adb]">Medicare reimbursement</span>
-            <span className="text-[#401b62]">, and deliver better </span>
-            <span className="text-[#a18adb]">patient outcomes</span>
-            <span className="text-[#401b62]"> beyond the clinic.</span>
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={scrollVariants}
+          className="text-center mb-24 max-w-4xl mx-auto pt-12"
+        >
+          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-8 tracking-tight">
+            Superior <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-accent">patient management</span> is continuous.
+          </h2>
+          <p className="text-xl text-slate-600 leading-relaxed font-light">
+            The HIPAA-compliant eVitals Remote Patient Monitoring (RPM) platform empowers US providers to streamline chronic care, secure Medicare reimbursement, and deliver better patient outcomes beyond the clinic.
           </p>
-        </div>
+        </motion.div>
+        
         <RpmOverviewSection />
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-6 justify-items-center">
-          {[
-            {
-              image: "/assets/eVitals-RPMDashboard.png",
-              title: "Smart RPM Dashboard",
-              description:
-                "Our platform delivers real-time monitoring, automated alerts, and an intuitive interface that’s designed for both clinicians and patients. With a dedicated patient portal, everyone stays engaged and informed—making remote care seamless, efficient, and effective.",
-            },
-            {
-              image: "/assets/eVitals-Devices.png",
-              title: "FDA-Approved Devices",
-              description:
-                "We provide top-tier, FDA-approved devices for accurate and reliable vitals tracking. From blood pressure monitors to pulse oximeters, every tool is chosen for clinical precision—so you can trust the data that drives your care decisions.",
-            },
-            {
-              image: "/assets/eVitals-reimbusement.png",
-              title: "Reimbursement Support",
-              description:
-                "We handle the complexity of RPM billing so your team can focus on care. Our process covers Medicare and most private payers, including 99453, 99454, 99457/99458",
-            },
-          ].map((feature, index) => (
-            <div
-              key={index}
-              className="bg-white p-10 rounded-3xl hover:shadow-xl transition-all duration-300 text-center hover:-translate-y-2 group w-full max-w-sm"
-            >
-              <div className="mb-6 flex justify-center">
-                <div className="w-80 h-40 overflow-hidden  flex items-center justify-center group-hover:scale-105 transition-transform bg-white rounded-2xl">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    width={1000}
-                    height={1000}
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-              <h3 className="text-2xl font-bold text-[#401b62] mb-4">
-                {feature.title}
-              </h3>
-              <p className="text-slate-600 text-[1.05rem] leading-relaxed">
-                {feature.description}
-              </p>
+        {/* Feature Highlights with Generated Image */}
+        <div className="mt-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div 
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="relative"
+          >
+            <div className="w-full aspect-square relative rounded-3xl overflow-hidden shadow-2xl bg-white border border-slate-100 floaty ring-1 ring-highlight/50">
+              <MedicalIllustration className="h-full w-full" />
             </div>
-          ))}
+            {/* Floating decoration */}
+            <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-white rounded-full shadow-xl flex items-center justify-center floaty" style={{ animationDelay: '1s' }}>
+              <div className="w-16 h-16 rounded-full bg-brand/10 text-brand flex items-center justify-center">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="space-y-12"
+          >
+            <div className="group">
+              <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-brand transition-colors">Smart RPM Dashboard</h3>
+              <p className="text-slate-600 text-lg leading-relaxed">Our platform delivers real-time monitoring, automated alerts, and an intuitive interface designed for both clinicians and patients.</p>
+            </div>
+            <div className="group">
+              <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-brand transition-colors">FDA-Approved Devices</h3>
+              <p className="text-slate-600 text-lg leading-relaxed">We provide top-tier, FDA-approved devices for accurate vitals tracking—from blood pressure monitors to pulse oximeters.</p>
+            </div>
+            <div className="group">
+              <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-brand transition-colors">Reimbursement Support</h3>
+              <p className="text-slate-600 text-lg leading-relaxed">We handle the complexity of RPM billing so your team can focus on care, covering Medicare and most private payers.</p>
+            </div>
+          </motion.div>
         </div>
       </div>
 
-      <div className="container-lg mx-auto px-4 py-16">
+      <div className="container-lg mx-auto px-4 pt-32">
         {/* Specialties We Serve */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#270949] mb-3">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={scrollVariants}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
             Specialties We Serve
-          </h1>
-          <p className="text-slate-600 max-w-3xl mx-auto">
-            We work with healthcare providers across multiple specialties,
-            delivering condition-specific monitoring and actionable insights:
+          </h2>
+          <p className="text-slate-600 text-lg max-w-2xl mx-auto mb-8">
+            Delivering condition-specific monitoring and actionable insights across multiple specialties.
           </p>
           <Link
             href="/for-organizations"
-            className="inline-flex items-center text-gray-500 underline hover:text-[#36036B] font-bold px-6 py-1 rounded-md transition"
+            className="inline-flex items-center text-brand font-bold px-8 py-4 rounded-full border border-brand hover:bg-brand hover:text-white transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1"
           >
-            Learn More →
+            Learn More <span className="ml-2">→</span>
           </Link>
-        </div>
+        </motion.div>
 
-        <div className="relative overflow-hidden">
-          {/* Left fade overlay */}
-          <div className="absolute left-0 top-0 w-40 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-
-          {/* Right fade overlay */}
-          <div className="absolute right-0 top-0 w-40 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+        <div className="relative overflow-hidden mt-12">
+          <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
 
           <div className="marquee">
-            <ul className="shrink-0 flex gap-4 md:gap-6 py-2 pr-4">
+            <ul className="shrink-0 flex gap-6 md:gap-8 py-4 pr-6">
               {[
                 "Family & Internal Medicine",
                 "Cardiology",
@@ -127,16 +122,13 @@ const FeatureSection = () => {
               ].map((item) => (
                 <li
                   key={item}
-                  className="shrink-0 rounded-2xl px-5 py-3 bg-white font-semibold"
+                  className="shrink-0 rounded-2xl px-8 py-4 bg-white border border-slate-100 shadow-md font-bold text-slate-700 hover:text-brand hover:border-brand/30 transition-colors"
                 >
-                  <span className="text-[#B187E8]">{item}</span>
+                  {item}
                 </li>
               ))}
             </ul>
-            <ul
-              className="shrink-0 flex gap-4 md:gap-6 py-2 pr-4"
-              aria-hidden="true"
-            >
+            <ul className="shrink-0 flex gap-6 md:gap-8 py-4 pr-6" aria-hidden="true">
               {[
                 "Family & Internal Medicine",
                 "Cardiology",
@@ -148,9 +140,9 @@ const FeatureSection = () => {
               ].map((item, idx) => (
                 <li
                   key={`${item}-${idx}`}
-                  className="shrink-0 rounded-2xl px-5 py-3 bg-white font-semibold"
+                  className="shrink-0 rounded-2xl px-8 py-4 bg-white border border-slate-100 shadow-md font-bold text-slate-700 hover:text-brand hover:border-brand/30 transition-colors"
                 >
-                  <span className="text-[#B187E8]">{item}</span>
+                  {item}
                 </li>
               ))}
             </ul>
@@ -159,16 +151,11 @@ const FeatureSection = () => {
             .marquee {
               display: flex;
               width: max-content;
-              animation: scrollLeft 28s linear infinite;
+              animation: scrollLeft 35s linear infinite;
             }
-
             @keyframes scrollLeft {
-              0% {
-                transform: translateX(0);
-              }
-              100% {
-                transform: translateX(-50%);
-              }
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
             }
           `}</style>
         </div>

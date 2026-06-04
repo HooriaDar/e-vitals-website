@@ -4,64 +4,64 @@ import Link from "next/link";
 
 const RPMReimbursement = () => {
   return (
-    <section className="bg-[#f9f5ff] py-24">
+    <section className="bg-slate-50 py-24">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Heading */}
-          <h2 className="text-3xl md:text-4xl font-bold text-[#270949] mb-8">
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-8 tracking-tight">
           Turn Better Care into Revenue
           </h2>
           
           {/* Subtitle */}
-          <p className="text-lg text-gray-700 mb-12 leading-relaxed">
+          <p className="text-lg text-slate-700 mb-12 leading-relaxed">
           Our RPM program is fully aligned with Medicare and private payer reimbursement policies, helping providers maximize earnings
           </p>
 
           {/* CPT Codes Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             {/* CPT 99453 */}
-            <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#c092e8]">
-              <h3 className="text-xl font-bold text-[#270949] mb-2">CPT 99453</h3>
-              <p className="text-gray-700">Patient Setup & Education</p>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow border-l-4 border-l-brand">
+              <h3 className="text-xl font-bold text-slate-900 mb-2">CPT 99453</h3>
+              <p className="text-slate-600">Patient Setup & Education</p>
             </div>
 
             {/* CPT 99454 */}
-            <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#c092e8]">
-              <h3 className="text-xl font-bold text-[#270949] mb-2">CPT 99454</h3>
-              <p className="text-gray-700">Device Supply & Data Transmission</p>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow border-l-4 border-l-brand">
+              <h3 className="text-xl font-bold text-slate-900 mb-2">CPT 99454</h3>
+              <p className="text-slate-600">Device Supply & Data Transmission</p>
             </div>
 
             {/* CPT 99457 */}
-            <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#c092e8]">
-              <h3 className="text-xl font-bold text-[#270949] mb-2">CPT 99457</h3>
-              <p className="text-gray-700">First 20 Minutes of Care Management</p>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow border-l-4 border-l-brand">
+              <h3 className="text-xl font-bold text-slate-900 mb-2">CPT 99457</h3>
+              <p className="text-slate-600">First 20 Minutes of Care Management</p>
             </div>
 
             {/* CPT 99458 */}
-            <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#c092e8]">
-              <h3 className="text-xl font-bold text-[#270949] mb-2">CPT 99458</h3>
-              <p className="text-gray-700">Additional 20 Minutes of Care</p>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow border-l-4 border-l-brand">
+              <h3 className="text-xl font-bold text-slate-900 mb-2">CPT 99458</h3>
+              <p className="text-slate-600">Additional 20 Minutes of Care</p>
             </div>
           </div>
 
           {/* Reimbursement Info */}
-          <div className="p-8 rounded-2xl mb-2 border border-gray-100">
+          <div className="p-8 rounded-2xl mb-2 border border-slate-200 bg-white">
             {/* Fist Row - Text */}
             <div className="flex items-center justify-center">
-               <p className="text-gray-700 text-lg text-center">
+               <p className="text-slate-700 text-lg text-center">
                  With our streamlined workflow, you can increase practice revenue with minimal staff time.
                </p>
              </div>
           </div>
             {/* Second Row - Horizontal Flex */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-              <h3 className="text-2xl font-bold text-gray-700">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+              <h3 className="text-2xl font-bold text-slate-800">
                 Potential Monthly Reimbursement:
               </h3>
-              <div className="bg-[#f9f5ff] p-4 rounded-xl border-2 border-[#c092e8] sm:flex-row">
+              <div className="bg-brand-tint p-4 rounded-xl border-2 border-brand/20 sm:flex-row shadow-sm">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-[#270949]">$120-150+</div>
-                  <div className="text-sm text-gray-600">per patient/month</div>
+                  <div className="text-3xl font-extrabold text-brand">$120-150+</div>
+                  <div className="text-sm text-slate-600 font-medium mt-1">per patient/month</div>
                 </div>
               </div>
             </div>
@@ -72,11 +72,11 @@ const RPMReimbursement = () => {
           <div className="flex justify-center">
             <Link
               href="/rpm-guide"
-              className="bg-[#270949] text-white px-8 py-4 rounded-full hover:opacity-90 transition font-semibold shadow-lg text-lg inline-flex items-center gap-2"
+              className="bg-brand text-white px-8 py-4 rounded-full hover:bg-brand-dark transition-all duration-300 font-semibold shadow-lg hover:shadow-brand/25 text-lg inline-flex items-center gap-2 hover:-translate-y-1"
             >
               Download Free RPM Reimbursement Guide
               <svg 
-                className="w-5 h-5" 
+                className="w-5 h-5 transition-transform group-hover:translate-x-1" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"

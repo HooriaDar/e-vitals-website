@@ -41,9 +41,9 @@ export default function ContactFormWrapper() {
   return (
     <main className="bg-white text-gray-800">
       {/* Options Section */}
-      <section className="py-16 bg-gradient-to-r from-purple-50 to-white">
+      <section className="py-16 bg-gradient-to-r from-slate-50 to-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-[#270949] mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-slate-900 mb-10 tracking-tight">
             How can we help you?
           </h2>
           <div className="grid sm:grid-cols-3 gap-8">
@@ -55,7 +55,7 @@ export default function ContactFormWrapper() {
               }}
               className="flex flex-col items-center bg-white rounded-xl shadow-md p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-gray-200"
             >
-              <FaCalendarAlt className="text-[#c092e8] w-10 h-10 mb-4" />
+              <FaCalendarAlt className="text-brand w-10 h-10 mb-4" />
               <span className="font-semibold text-lg text-gray-800">
                 Book a FREE Demo
               </span>
@@ -66,7 +66,7 @@ export default function ContactFormWrapper() {
               onClick={() => scrollToForm("General Inquiry")}
               className="flex flex-col items-center bg-white rounded-xl shadow-md p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-gray-200"
             >
-              <FaEnvelopeOpenText className="text-[#c092e8] w-10 h-10 mb-4" />
+              <FaEnvelopeOpenText className="text-brand w-10 h-10 mb-4" />
               <span className="font-semibold text-lg text-gray-800">
                 Send Inquiry
               </span>
@@ -77,7 +77,7 @@ export default function ContactFormWrapper() {
               onClick={() => scrollToForm("Partnership Opportunity")}
               className="flex flex-col items-center bg-white rounded-xl shadow-md p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-gray-200"
             >
-              <FaHandshake className="text-[#c092e8] w-10 h-10 mb-4" />
+              <FaHandshake className="text-brand w-10 h-10 mb-4" />
               <span className="font-semibold text-lg text-gray-800">
                 Explore Partnership
               </span>
@@ -89,7 +89,7 @@ export default function ContactFormWrapper() {
       {/* Contact Form / Calendly Section */}
       <section
         ref={formRef}
-        className="py-20 px-6 sm:px-12 lg:px-24 bg-gradient-to-br from-purple-50 to-white"
+        className="py-20 px-6 sm:px-12 lg:px-24 bg-gradient-to-br from-slate-50 to-white"
       >
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
           {/* Left Info */}
@@ -99,14 +99,14 @@ export default function ContactFormWrapper() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-[#270949] mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
               {showCalendly ? (
                 <>
-                  Book a <span className="text-[#b187e8]">Demo</span>
+                  Book a <span className="text-brand">Demo</span>
                 </>
               ) : (
                 <>
-                  Send Us a <span className="text-[#b187e8]">Message</span>
+                  Send Us a <span className="text-brand">Message</span>
                 </>
               )}
             </h2>
@@ -140,7 +140,7 @@ export default function ContactFormWrapper() {
                   </label>
                   <input
                     type="text"
-                    className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500"
+                    className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-brand focus:border-brand outline-none transition-shadow"
                     placeholder="John Doe"
                   />
                 </div>
@@ -150,7 +150,7 @@ export default function ContactFormWrapper() {
                   </label>
                   <input
                     type="email"
-                    className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500"
+                    className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-brand focus:border-brand outline-none transition-shadow"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -161,7 +161,7 @@ export default function ContactFormWrapper() {
                   <select
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
-                    className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500"
+                    className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-brand focus:border-brand outline-none transition-shadow"
                   >
                     <option>General Inquiry</option>
                     <option>Technical Support</option>
@@ -175,13 +175,13 @@ export default function ContactFormWrapper() {
                   </label>
                   <textarea
                     rows={4}
-                    className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500"
+                    className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-brand focus:border-brand outline-none transition-shadow"
                     placeholder="How can we help you?"
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-3 px-6 rounded-lg text-lg font-medium text-white bg-[#c092e8] hover:bg-[#270949] transition-all duration-300"
+                  className="w-full py-3 px-6 rounded-lg text-lg font-medium text-white bg-brand hover:bg-brand-dark transition-all duration-300 shadow-md hover:shadow-lg"
                 >
                   Send Message
                 </button>

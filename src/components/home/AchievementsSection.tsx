@@ -102,10 +102,10 @@ const StatsGrid: React.FC = () => {
   return (
     <section className="bg-white py-5 px-4 md:px-8">
       <div className="max-w-5xl mx-auto text-center px-4 py-8">
-        <h1 className="text-4xl font-bold text-[#270949] mb-4">
+        <h1 className="text-4xl font-bold text-slate-900 mb-4 tracking-tight">
           A high-quality care experience—anywhere, anytime
         </h1>
-        <p className="text-base md:text-lg text-black/80 mb-4">
+        <p className="text-base md:text-lg text-slate-700 mb-4 leading-relaxed">
           It started with a simple yet revolutionary idea. That everyone should
           have access to the best healthcare anywhere in the world on their
           terms. That includes you.
@@ -115,7 +115,7 @@ const StatsGrid: React.FC = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2E1065]">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
               How It Works
             </h2>
           </div>
@@ -123,15 +123,15 @@ const StatsGrid: React.FC = () => {
             {steps.map((item, index) => (
               <div
                 key={index}
-                className="bg-[#F9F5FF] p-6 rounded-xl border border-purple-100"
+                className="bg-slate-50 p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-md hover:border-brand/20 transition-all duration-300 group"
               >
-                <div className="text-[#B187E8] font-semibold mb-2">
+                <div className="text-brand font-semibold mb-2 group-hover:text-brand-dark transition-colors">
                   {item.step}
                 </div>
-                <h3 className="text-lg font-bold text-[#2E1065] mb-2">
+                <h3 className="text-lg font-bold text-slate-900 mb-2">
                   {item.title}
                 </h3>
-                <p className="text-gray-700">{item.desc}</p>
+                <p className="text-slate-600 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -144,114 +144,51 @@ const StatsGrid: React.FC = () => {
       >
         {/* COLUMN 1 */}
         <div className="flex flex-col space-y-6 h-full">
-          <div className="bg-gray-50 p-6 rounded-2xl shadow ">
-            <h3 className="text-[#32a852] text-3xl font-bold">
+          <div className="bg-slate-50 p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg transition-all duration-300">
+            <h3 className="text-brand text-4xl font-bold mb-4">
               <AnimatedCounter value={88} suffix="%" start={inView} />
             </h3>
-            <p className="text-sm text-gray-800">
+            <p className="text-base text-slate-700 leading-relaxed">
               of patients stick to care plans with eVitals continuous
               monitoring, improving clinical outcomes.
             </p>
-            {/* <p className="text-sm text-[#270949] underline cursor-pointer mt-1">
-              See reviews
-            </p> */}
           </div>
-
-          {/* <div className="relative flex-grow rounded-2xl overflow-hidden shadow group min-h-[300px]">
-            <Image
-              src="/assets/medical-stats.jpg"
-              alt="Trustpilot and Speaker"
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          </div> */}
         </div>
 
         {/* COLUMN 2 */}
         <div className="flex flex-col space-y-6 h-full">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 min-h-[150px]">
-            <div className="bg-gray-50 p-2 rounded-2xl shadow text-left justify-center flex flex-col">
-              <h3 className="text-[#d156bd] text-3xl font-bold">
+            <div className="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-center hover:shadow-lg transition-all duration-300">
+              <h3 className="text-accent text-3xl font-bold mb-2">
                 <AnimatedCounter value={100} suffix="k+" start={inView} />
               </h3>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm text-slate-700 leading-relaxed">
                 Patients adhere better to care plans with continuous monitoring.
               </p>
-              {/* <p className="text-xs text-[#270949] underline cursor-pointer mt-1">
-                Learn more
-              </p> */}
             </div>
-            <div className="bg-gray-50 p-6 rounded-2xl shadow text-left flex justify-center flex-col">
-              <h3 className="text-[#48c3c7] text-3xl font-bold">
+            <div className="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-100 flex justify-center flex-col hover:shadow-lg transition-all duration-300">
+              <h3 className="text-brand text-3xl font-bold mb-2">
                 <AnimatedCounter value={5} suffix="+" start={inView} />
               </h3>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm text-slate-700 leading-relaxed">
                 Years of remote patient monitoring services.
               </p>
             </div>
           </div>
-
-          {/* <div className="bg-gray-50 p-2 rounded-2xl shadow flex flex-col md:flex-row items-center  gap-4 min-h-[200px]">
-        ?
-            <div className="text-center md:text-left">
-              <h3 className="text-[#270949] text-2xl font-bold mb-2">
-                100 million+
-              </h3>
-              <p className="text-sm text-gray-700">
-                Members served across the U.S. through connected care.
-              </p>
-            </div>
-          </div> */}
-
-          {/* <div className="grid grid-cols-1 gap-4 min-h-[220px]">
-            <div className="bg-gray-50 p-6 rounded-2xl shadow flex flex-col justify-center text-left">
-              <h3 className="text-[#d156bd] text-4xl font-bold">40k+</h3>
-              <p className="text-sm text-gray-700">
-                Providers, therapists & coaches
-              </p>
-            </div>
-          </div> */}
         </div>
 
         {/* COLUMN 3 */}
         <div className="flex flex-col space-y-6 h-full">
-          {/* <div className="relative rounded-2xl overflow-hidden shadow group min-h-[200px]">
-            <Image
-              src="/assets/video-1.png"
-              alt="Therapy session"
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          </div> */}
-
-          <div className="bg-gray-50 p-6 rounded-2xl shadow text-center flex flex-col justify-center min-h-[150px]">
-            <p className="text-1xl text-gray-700 leading-tight mb-1">
+          <div className="bg-brand text-white p-8 rounded-2xl shadow-lg text-center flex flex-col justify-center min-h-[150px] transform hover:-translate-y-1 transition-all duration-300">
+            <p className="text-lg leading-relaxed mb-1">
               Top-Notch{" "}
-              <span className="text-[#45a5bf] font-semibold">
-                FDA-Approved{" "}
+              <span className="font-extrabold text-teal-100 tracking-wide">
+                FDA-APPROVED
               </span>{" "}
+              <br />
               vital monitoring devices.
             </p>
-            {/* <p className="text-xs text-[#270949] underline cursor-pointer">
-              See reviews
-            </p> */}
           </div>
-
-          {/* <div className="relative bg-gray-50 rounded-2xl shadow overflow-hidden min-h-[265px]">
-            <Image
-              src="/assets/video-call1.png"
-              alt="Remote provider call"
-              fill
-              className="object-cover"
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-
-            <div className="absolute bottom-0 p-4 text-white">
-              <h3 className="text-3xl font-bold">eVitals RPM</h3>
-              <p className="text-sm">Stay connected to your patients and elevate the quality of care.</p>
-            </div>
-          </div> */}
         </div>
       </div>
     </section>
