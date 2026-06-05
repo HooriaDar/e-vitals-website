@@ -141,7 +141,7 @@ const Home: React.FC = () => {
 
           <div className="mt-10 grid items-start gap-10 lg:grid-cols-[1fr_1.1fr]">
             <DashboardPreview heartRate={heartRate} className="floaty lg:sticky lg:top-24" />
-            <Stagger className="grid gap-4 sm:grid-cols-2">
+            <Stagger className="platform-feature-grid grid gap-4 sm:grid-cols-2">
             {[
               { iconBg: "bg-brand-tint text-brand", hoverBg: "group-hover:bg-brand group-hover:text-white", title: "FDA-cleared medical devices", desc: "Clinically validated BP, glucose, and weight devices.", icon: (<><circle cx="12" cy="10" r="7" /><path d="M9 10l2 2 4-4" /><path d="M8.5 15.5 7 22l5-2.5L17 22l-1.5-6.5" /></>) },
               { iconBg: "bg-blue-50 text-accent", hoverBg: "group-hover:bg-accent group-hover:text-white", title: "Device provisioning & setup", desc: "We enroll patients and ship ready-to-use devices directly to their doors.", icon: (<><rect x="5" y="2.5" width="14" height="19" rx="2.5" /><line x1="10" y1="18.5" x2="14" y2="18.5" /></>) },

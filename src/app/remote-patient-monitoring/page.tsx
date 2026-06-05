@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const CheckIcon = () => (
   <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
@@ -265,42 +266,44 @@ export default function RPMPage() {
         </div>
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           {/* BP + Glucose Monitor */}
-          <div className="rounded-2xl bg-white p-7 ring-1 ring-slate-200">
-            <div className="mb-5 flex h-32 items-center justify-center rounded-xl bg-gradient-to-br from-blue-50 to-teal-50 ring-1 ring-slate-100">
-              <svg viewBox="0 0 150 90" className="h-24 w-auto">
-                <path d="M104 44 q22 0 22 16 v6 q0 6 -6 6 h-18" fill="none" stroke="#0D7C84" strokeWidth="3" strokeLinecap="round" />
-                <rect x="30" y="18" width="74" height="54" rx="9" fill="#fff" stroke="#1E5FB4" strokeWidth="2.5" />
-                <rect x="40" y="28" width="54" height="24" rx="4" fill="#EFF6FF" />
-                <text x="67" y="44" fontSize="13" fontWeight="700" fill="#0A2540" textAnchor="middle" fontFamily="monospace">128/82</text>
-                <circle cx="52" cy="63" r="3.5" fill="#1E5FB4" />
-                <circle cx="67" cy="63" r="3.5" fill="#0D7C84" />
-                <circle cx="82" cy="63" r="3.5" fill="#cbd5e1" />
-              </svg>
+          <div className="rpm-device-card">
+            <div className="rpm-device-card__copy">
+              <h3 className="text-lg font-bold text-plum">2-in-1 Blood Pressure & Glucose Monitor</h3>
+              <ul className="mt-3 space-y-2 text-sm text-slate-600">
+                {['Audible results in English & Spanish', 'Atrial Fibrillation detection (AFib)', 'Automatic BP averaging per AHA/ACC', 'Built-in 4G cellular SIM'].map((f) => (
+                  <li key={f} className="flex gap-2"><CheckIcon /> {f}</li>
+                ))}
+              </ul>
             </div>
-            <h3 className="text-lg font-bold text-plum">2-in-1 Blood Pressure & Glucose Monitor</h3>
-            <ul className="mt-3 space-y-2 text-sm text-slate-600">
-              {['Audible results in English & Spanish', 'Atrial Fibrillation detection (AFib)', 'Automatic BP averaging per AHA/ACC', 'Built-in 4G cellular SIM'].map((f) => (
-                <li key={f} className="flex gap-2"><CheckIcon /> {f}</li>
-              ))}
-            </ul>
+            <div className="rpm-device-card__image" aria-hidden="true">
+              <Image
+                src="/assets/rpm-bp-glucose-monitor.png"
+                alt=""
+                fill
+                className="rpm-device-card__photo rpm-device-card__photo--monitor"
+                sizes="(max-width: 768px) 100vw, 45vw"
+              />
+            </div>
           </div>
           {/* Weight Scale */}
-          <div className="rounded-2xl bg-white p-7 ring-1 ring-slate-200">
-            <div className="mb-5 flex h-32 items-center justify-center rounded-xl bg-gradient-to-br from-teal-50 to-amber-50 ring-1 ring-slate-100">
-              <svg viewBox="0 0 150 90" className="h-24 w-auto">
-                <rect x="40" y="20" width="70" height="52" rx="11" fill="#fff" stroke="#0D7C84" strokeWidth="2.5" />
-                <rect x="57" y="30" width="36" height="17" rx="3" fill="#ECFEFF" />
-                <text x="75" y="42" fontSize="11" fontWeight="700" fill="#0A2540" textAnchor="middle" fontFamily="monospace">165 lb</text>
-                <path d="M60 62 a15 15 0 0 1 30 0" fill="none" stroke="#cbd5e1" strokeWidth="2.5" />
-                <line x1="75" y1="62" x2="84" y2="55" stroke="#f43f5e" strokeWidth="2.5" strokeLinecap="round" />
-              </svg>
+          <div className="rpm-device-card">
+            <div className="rpm-device-card__copy">
+              <h3 className="text-lg font-bold text-plum">Cellular Weight Scale</h3>
+              <ul className="mt-3 space-y-2 text-sm text-slate-600">
+                {['Supports up to 550 lbs', 'Large backlit, high-contrast LCD', 'Results in English, Spanish & French', 'Automatic step-on, auto-off'].map((f) => (
+                  <li key={f} className="flex gap-2"><CheckIcon /> {f}</li>
+                ))}
+              </ul>
             </div>
-            <h3 className="text-lg font-bold text-plum">Cellular Weight Scale</h3>
-            <ul className="mt-3 space-y-2 text-sm text-slate-600">
-              {['Supports up to 550 lbs', 'Large backlit, high-contrast LCD', 'Results in English, Spanish & French', 'Automatic step-on, auto-off'].map((f) => (
-                <li key={f} className="flex gap-2"><CheckIcon /> {f}</li>
-              ))}
-            </ul>
+            <div className="rpm-device-card__image" aria-hidden="true">
+              <Image
+                src="/assets/rpm-cellular-weight-scale.png"
+                alt=""
+                fill
+                className="rpm-device-card__photo rpm-device-card__photo--scale"
+                sizes="(max-width: 768px) 100vw, 45vw"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -410,28 +413,28 @@ export default function RPMPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-slate-50/70 border-y border-slate-100">
-        <div className="mx-auto max-w-3xl px-6 py-16">
-          <div>
-            <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
-              <span className="h-px w-6 bg-brand" />FAQ
+      <section className="mx-auto max-w-5xl px-6 py-16">
+        <div className="rpm-faq-panel">
+          <div className="max-w-3xl">
+            <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-[#FAF8F4]/82">
+              <span className="h-px w-6 bg-[#FAF8F4]/70" />FAQ
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl text-plum">Remote Patient Monitoring FAQs</h2>
-            <p className="mt-3 text-slate-600">
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#FAF8F4] sm:text-4xl">Remote Patient Monitoring FAQs</h2>
+            <p className="mt-3 text-[#FAF8F4]/72">
               Answers based on current CMS guidance (MLN901705) and HHS telehealth.hhs.gov RPM billing guidance. General
               information, not billing advice — confirm details against current CMS and payer rules.
             </p>
           </div>
-          <div className="mt-8 divide-y divide-slate-200 overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+          <div className="mt-8 grid gap-3">
             {rpmFaqs.map((faq, i) => (
-              <div key={i} className="px-6 py-5">
+              <div key={i} className="rounded-2xl bg-[#FAF8F4] px-6 py-5 shadow-lg shadow-[#1B1630]/18 ring-1 ring-[#D8CBBE]/80">
                 <button
                   className="flex w-full cursor-pointer items-center justify-between gap-4 text-left font-semibold text-plum"
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   aria-expanded={openFaq === i}
                 >
                   {faq.q}
-                  <svg className={`h-5 w-5 flex-none text-slate-400 transition ${openFaq === i ? 'rotate-45' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg className={`h-5 w-5 flex-none text-brand transition ${openFaq === i ? 'rotate-45' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M12 5v14M5 12h14" strokeLinecap="round" />
                   </svg>
                 </button>

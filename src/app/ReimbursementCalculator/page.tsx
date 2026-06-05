@@ -662,31 +662,31 @@ const RPMReimbursementCalculator: React.FC = () => {
             </div>
 
             {/* Live totals display */}
-            <div className="grid gap-6 rounded-2xl bg-deep p-7 text-white md:grid-cols-2 shadow-xl animate-rise">
+            <div className="grid gap-6 rounded-2xl bg-gradient-to-br from-[#1B1630] via-[#2A1830] to-[#7A1F3D] p-7 text-white shadow-xl shadow-[#1B1630]/20 ring-1 ring-white/10 md:grid-cols-2 animate-rise">
               <div>
-                <div className="text-sm text-white/70">Combined estimated monthly reimbursement</div>
-                <div className="mt-1 text-5xl font-extrabold text-brand-tint">{money(grandTotal)}</div>
-                <div className="mt-2 text-sm text-white/60">
-                  ≈ <span className="font-semibold text-white/80">{money(grandTotal * 12)}</span> per year
+                <div className="text-sm font-medium text-[#FAF8F4]/78">Combined estimated monthly reimbursement</div>
+                <div className="mt-1 text-5xl font-extrabold text-[#FAF8F4]">{money(grandTotal)}</div>
+                <div className="mt-2 text-sm text-[#FAF8F4]/68">
+                  ≈ <span className="font-semibold text-[#FAF8F4]/90">{money(grandTotal * 12)}</span> per year
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl bg-white/5 p-3 ring-1 ring-white/10">
-                  <div className="text-xs text-white/60">RPM / mo</div>
+                <div className="rounded-xl bg-white/10 p-3 ring-1 ring-white/15">
+                  <div className="text-xs text-[#FAF8F4]/68">RPM / mo</div>
                   <div className="mt-0.5 text-lg font-bold">{money(rpmTotal)}</div>
                 </div>
-                <div className="rounded-xl bg-white/5 p-3 ring-1 ring-white/10">
-                  <div className="text-xs text-white/60">CCM / mo</div>
+                <div className="rounded-xl bg-white/10 p-3 ring-1 ring-white/15">
+                  <div className="text-xs text-[#FAF8F4]/68">CCM / mo</div>
                   <div className="mt-0.5 text-lg font-bold">{money(ccmTotal)}</div>
                 </div>
-                <div className="rounded-xl bg-white/5 p-3 ring-1 ring-white/10">
-                  <div className="text-xs text-white/60">RPM avg / patient</div>
+                <div className="rounded-xl bg-white/10 p-3 ring-1 ring-white/15">
+                  <div className="text-xs text-[#FAF8F4]/68">RPM avg / patient</div>
                   <div className="mt-0.5 text-lg font-bold">
                     {rpmPts > 0 ? money(rpmTotal / rpmPts) : "$0"}
                   </div>
                 </div>
-                <div className="rounded-xl bg-white/5 p-3 ring-1 ring-white/10">
-                  <div className="text-xs text-white/60">CCM avg / patient</div>
+                <div className="rounded-xl bg-white/10 p-3 ring-1 ring-white/15">
+                  <div className="text-xs text-[#FAF8F4]/68">CCM avg / patient</div>
                   <div className="mt-0.5 text-lg font-bold">
                     {ccmPts > 0 ? money(ccmTotal / ccmPts) : "$0"}
                   </div>

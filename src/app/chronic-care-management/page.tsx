@@ -437,36 +437,38 @@ export default function CCMPage() {
       </section>
 
       {/* FAQ */}
-      <section className="mx-auto max-w-3xl px-6 py-16">
-        <div>
-          <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
-            <span className="h-px w-6 bg-brand" />FAQ
-          </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl text-plum">Chronic Care Management FAQs</h2>
-          <p className="mt-3 text-slate-600">
-            Answers based on current CMS guidance (MLN909188) and the CMS practitioner billing FAQ. This is general
-            information, not billing advice — confirm details against current CMS and payer rules.
-          </p>
-        </div>
-        <div className="mt-8 divide-y divide-slate-200 overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
-          {ccmFaqs.map((faq, i) => (
-            <div key={i} className="px-6 py-5">
-              <button
-                className="flex w-full cursor-pointer items-center justify-between gap-4 text-left font-semibold text-plum"
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                aria-expanded={openFaq === i}
-              >
-                {faq.q}
-                <svg
-                  className={`h-5 w-5 flex-none text-slate-400 transition ${openFaq === i ? 'rotate-45' : ''}`}
-                  viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+      <section className="ccm-faq-section mx-auto max-w-5xl px-6 py-16">
+        <div className="rpm-faq-panel">
+          <div className="max-w-3xl">
+            <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-[#FAF8F4]/82">
+              <span className="h-px w-6 bg-[#FAF8F4]/70" />FAQ
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#FAF8F4] sm:text-4xl">Chronic Care Management FAQs</h2>
+            <p className="mt-3 text-[#FAF8F4]/72">
+              Answers based on current CMS guidance (MLN909188) and the CMS practitioner billing FAQ. This is general
+              information, not billing advice — confirm details against current CMS and payer rules.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-3">
+            {ccmFaqs.map((faq, i) => (
+              <div key={i} className="ccm-faq-card rounded-2xl bg-[#FAF8F4] px-6 py-5 shadow-lg shadow-[#1B1630]/18 ring-1 ring-[#D8CBBE]/80">
+                <button
+                  className="flex w-full cursor-pointer items-center justify-between gap-4 text-left font-semibold text-plum"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  aria-expanded={openFaq === i}
                 >
-                  <path d="M12 5v14M5 12h14" strokeLinecap="round" />
-                </svg>
-              </button>
-              {openFaq === i && <p className="mt-3 leading-relaxed text-slate-600">{faq.a}</p>}
-            </div>
-          ))}
+                  {faq.q}
+                  <svg
+                    className={`h-5 w-5 flex-none text-brand transition ${openFaq === i ? 'rotate-45' : ''}`}
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                  >
+                    <path d="M12 5v14M5 12h14" strokeLinecap="round" />
+                  </svg>
+                </button>
+                {openFaq === i && <p className="mt-3 leading-relaxed text-slate-600">{faq.a}</p>}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>

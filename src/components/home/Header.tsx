@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   return (
     <>
       {/* HIPAA compliancy top banner */}
-      <div className="bg-plum text-white no-print w-full">
+      <div className="bg-gradient-to-r from-[#1B1630] via-[#2A1830] to-[#7A1F3D] text-white no-print w-full">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-1.5">
           <div className="flex items-center gap-3 text-[14px] leading-snug text-white/90">
             <Image
