@@ -37,7 +37,7 @@ const FooterSection: React.FC = () => {
           <Link href="/about" className="block py-1 text-sm transition-colors hover:text-white">
             About
           </Link>
-          <Link href="/how-we-serve" className="block py-1 text-sm transition-colors hover:text-white">
+          <Link href="/who-we-serve" className="block py-1 text-sm transition-colors hover:text-white">
             Who we serve
           </Link>
           <Link href="/support/resources" className="block py-1 text-sm transition-colors hover:text-white">

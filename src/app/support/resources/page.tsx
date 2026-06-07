@@ -79,7 +79,7 @@ const ResourcesPage: React.FC = () => {
           </Link>
 
           <Link 
-            href="/how-we-serve" 
+            href="/who-we-serve" 
             className="group rounded-2xl bg-white p-7 ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-300/30"
           >
             <h3 className="text-xl font-bold text-plum group-hover:text-brand transition-colors">

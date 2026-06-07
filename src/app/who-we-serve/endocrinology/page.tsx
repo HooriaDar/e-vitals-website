@@ -3,25 +3,25 @@
 import React from "react";
 import Link from "next/link";
 
-const NephrologyPage: React.FC = () => {
+const EndocrinologyPage: React.FC = () => {
   return (
     <div className="w-full">
       <section className="mx-auto max-w-7xl px-6 pt-12 pb-16 animate-rise">
         <nav className="mb-6 text-sm text-slate-500">
           <Link href="/" className="hover:text-brand">Home</Link> /{" "}
-          <Link href="/how-we-serve" className="hover:text-brand">Who We Serve</Link> /{" "}
-          <span className="text-plum">Nephrology</span>
+          <Link href="/who-we-serve" className="hover:text-brand">Who We Serve</Link> /{" "}
+          <span className="text-plum">Endocrinology</span>
         </nav>
         
         <div className="max-w-3xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
-            <span className="h-px w-6 bg-brand"></span>Who we serve · Nephrology
+            <span className="h-px w-6 bg-brand"></span>Who we serve · Endocrinology
           </p>
           <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl text-plum">
-            Remote care for nephrology practices.
+            Remote care for endocrinology practices.
           </h1>
           <p className="mt-5 text-lg text-slate-600">
-            Fluid status and blood pressure drive outcomes in chronic kidney disease. Continuous weight and BP tracking give your team an early signal when something shifts.
+            Endocrinology runs on what happens between visits. eVitals brings connected glucose and weight readings into a single trend view your team can act on.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link 
@@ -43,7 +43,7 @@ const NephrologyPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Benefits grid */}
+      {/* Benefits Grid */}
       <section className="bg-slate-50/70 border-y border-slate-100 w-full">
         <div className="mx-auto max-w-7xl px-6 py-16 animate-rise">
           <div className="grid gap-6 md:grid-cols-2">
@@ -61,25 +61,25 @@ const NephrologyPage: React.FC = () => {
                   <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span>Continuous weight and blood-pressure tracking</span>
+                  <span>Connected glucose and weight monitoring with clear trends</span>
                 </li>
                 <li className="flex gap-3 text-slate-600">
                   <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span>Better fluid management and fewer complications</span>
+                  <span>Tighter glycemic control and fewer hypo- and hyperglycemic events</span>
                 </li>
                 <li className="flex gap-3 text-slate-600">
                   <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span>Support managing a complex, long-term condition</span>
+                  <span>Coaching and check-ins that keep them on track</span>
                 </li>
                 <li className="flex gap-3 text-slate-600">
                   <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span>More frequent, lower-effort touchpoints with their team</span>
+                  <span>Less guesswork between appointments</span>
                 </li>
               </ul>
             </div>
@@ -98,31 +98,31 @@ const NephrologyPage: React.FC = () => {
                   <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span>Reimbursable monitoring for CKD and hypertension</span>
+                  <span>Reimbursable RPM and CCM for diabetes and metabolic care</span>
                 </li>
                 <li className="flex gap-3 text-slate-600">
                   <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span>Fluid and blood-pressure dashboards with trend alerts</span>
+                  <span>Trend analysis that makes each visit more productive</span>
                 </li>
                 <li className="flex gap-3 text-slate-600">
                   <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span>Fewer avoidable hospitalizations</span>
+                  <span>Fewer no-shows and better A1c outcomes</span>
                 </li>
                 <li className="flex gap-3 text-slate-600">
                   <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span>Tight coordination with each patient&apos;s care plan</span>
+                  <span>Documentation handled automatically</span>
                 </li>
               </ul>
             </div>
           </div>
           <p className="mt-8 text-sm text-slate-500">
-            <span className="font-semibold text-plum">Conditions we commonly support:</span> Chronic kidney disease, hypertension, and fluid-status monitoring.
+            <span className="font-semibold text-plum">Conditions we commonly support:</span> Type 1 &amp; 2 diabetes, obesity, and thyroid &amp; metabolic disorders.
           </p>
         </div>
       </section>
@@ -131,7 +131,7 @@ const NephrologyPage: React.FC = () => {
       <section className="mx-auto max-w-7xl px-6 py-20 animate-rise">
         <div className="rounded-3xl bg-brand-tint px-8 py-14 text-center ring-1 ring-brand/15 sm:px-12">
           <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-plum sm:text-4xl">
-            Bring eVitals to your nephrology practice.
+            Bring eVitals to your endocrinology practice.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-slate-600">
             Tell us about your patients and we’ll tailor a demo to your workflows and payers.
@@ -159,4 +159,4 @@ const NephrologyPage: React.FC = () => {
   );
 };
 
-export default NephrologyPage;
+export default EndocrinologyPage;

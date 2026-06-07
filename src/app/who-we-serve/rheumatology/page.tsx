@@ -173,7 +173,7 @@ const RheumatologyPage: React.FC = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
           rel="canonical"
-          href="https://www.evitals.com/how-we-serve/rheumatology"
+          href="https://www.evitals.com/who-we-serve/rheumatology"
         />
         <script type="application/ld+json">
           {`
@@ -182,7 +182,7 @@ const RheumatologyPage: React.FC = () => {
               "@type": "MedicalBusiness",
               "name": "eVitals Rheumatology Solutions",
               "description": "eVitals provides remote patient monitoring for rheumatology with FDA-approved devices, HIPAA-compliant data security, and reimbursement support for RA and lupus.",
-              "url": "https://www.evitals.com/how-we-serve/rheumatology",
+              "url": "https://www.evitals.com/who-we-serve/rheumatology",
               "logo": "https://www.evitals.com/logo.png",
               "contactPoint": {
                 "@type": "ContactPoint",

@@ -9,7 +9,7 @@ const PulmonologyPage: React.FC = () => {
       <section className="mx-auto max-w-7xl px-6 pt-12 pb-16 animate-rise">
         <nav className="mb-6 text-sm text-slate-500">
           <Link href="/" className="hover:text-brand">Home</Link> /{" "}
-          <Link href="/how-we-serve" className="hover:text-brand">Who We Serve</Link> /{" "}
+          <Link href="/who-we-serve" className="hover:text-brand">Who We Serve</Link> /{" "}
           <span className="text-plum">Pulmonology</span>
         </nav>
         

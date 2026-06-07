@@ -97,7 +97,7 @@ const Header: React.FC = () => {
               </AnimatePresence>
             </div>
 
-            <Link href="/how-we-serve" className="px-1 py-2 text-plum/75 transition hover:text-brand hover:underline hover:underline-offset-8">
+            <Link href="/who-we-serve" className="px-1 py-2 text-plum/75 transition hover:text-brand hover:underline hover:underline-offset-8">
               Who We Serve
             </Link>
 
@@ -191,7 +191,7 @@ const Header: React.FC = () => {
                   </Link>
                 </div>
 
-                <Link href="/how-we-serve" className="block border-b border-slate-50 py-3 font-medium text-plum hover:text-brand" onClick={() => setMobileMenuOpen(false)}>
+                <Link href="/who-we-serve" className="block border-b border-slate-50 py-3 font-medium text-plum hover:text-brand" onClick={() => setMobileMenuOpen(false)}>
                   Who We Serve
                 </Link>
                 <Link href="/about" className="block border-b border-slate-50 py-3 font-medium text-plum hover:text-brand" onClick={() => setMobileMenuOpen(false)}>

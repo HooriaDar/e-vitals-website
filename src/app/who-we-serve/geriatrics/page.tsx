@@ -173,7 +173,7 @@ const GeriatricsPage: React.FC = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
           rel="canonical"
-          href="https://www.evitals.com/how-we-serve/geriatrics"
+          href="https://www.evitals.com/who-we-serve/geriatrics"
         />
         <script type="application/ld+json">
           {`
@@ -182,7 +182,7 @@ const GeriatricsPage: React.FC = () => {
               "@type": "MedicalBusiness",
               "name": "eVitals Geriatrics Solutions",
               "description": "eVitals provides remote patient monitoring for geriatrics with FDA-approved devices, HIPAA-compliant data security, and reimbursement support for elderly chronic conditions and fall prevention.",
-              "url": "https://www.evitals.com/how-we-serve/geriatrics",
+              "url": "https://www.evitals.com/who-we-serve/geriatrics",
               "logo": "https://www.evitals.com/logo.png",
               "contactPoint": {
                 "@type": "ContactPoint",

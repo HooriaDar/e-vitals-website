@@ -10,34 +10,40 @@ export const metadata: Metadata = {
 
 const specialties = [
   {
-    href: '/how-we-serve/primary-care',
+    href: '/who-we-serve/primary-care',
     title: 'Primary Care',
     desc: 'Manage hypertension, diabetes, and more across your whole panel — without adding to your visit load.',
+    image: '/assets/specialty-primary-care.png',
   },
   {
-    href: '/how-we-serve/cardiology',
+    href: '/who-we-serve/cardiology',
     title: 'Cardiology',
     desc: 'Daily BP, heart-rate, and weight data to catch decompensation early and cut readmissions.',
+    image: '/assets/specialty-cardiology.png',
   },
   {
-    href: '/how-we-serve/endocrinology',
+    href: '/who-we-serve/endocrinology',
     title: 'Endocrinology',
     desc: 'Connected glucose and weight trends for tighter glycemic control between visits.',
+    image: '/assets/specialty-endocrinology.png',
   },
   {
-    href: '/how-we-serve/pulmonology',
+    href: '/who-we-serve/pulmonology',
     title: 'Pulmonology',
     desc: 'Remote SpO₂ and pulse monitoring to intervene before an exacerbation.',
+    image: '/assets/specialty-pulmonology.png',
   },
   {
-    href: '/how-we-serve/nephrology',
+    href: '/who-we-serve/nephrology',
     title: 'Nephrology',
     desc: 'Continuous weight and blood-pressure tracking for CKD and fluid management.',
+    image: '/assets/specialty-nephrology.png',
   },
   {
-    href: '/how-we-serve/internal-medicine',
+    href: '/who-we-serve/internal-medicine',
     title: 'Internal Medicine',
     desc: 'One platform to monitor and coordinate complex, multi-condition patients.',
+    image: '/assets/specialty-internal-medicine.png',
   },
 ];
 
@@ -86,25 +92,37 @@ export default function WhoWeServePage() {
         </div>
 
         {/* Specialty cards grid */}
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
+        <div className="mt-10 grid gap-5 lg:grid-cols-2">
           {specialties.map((s) => (
             <Link
               key={s.href}
               href={s.href}
-              className="group rounded-2xl bg-white p-7 ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-xl"
+              className="specialty-card group"
+              data-specialty={s.title.toLowerCase().replaceAll(' ', '-')}
             >
-              <h3 className="text-xl font-bold text-plum">{s.title}</h3>
-              <p className="mt-2 text-sm text-slate-600">{s.desc}</p>
-              <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand">
-                See how we help <ArrowIcon />
-              </span>
+              <div className="specialty-card__image" aria-hidden="true">
+                <Image
+                  src={s.image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 42vw, 100vw"
+                  className="specialty-card__photo"
+                />
+              </div>
+              <div className="specialty-card__copy">
+                <h3 className="text-xl font-bold text-plum">{s.title}</h3>
+                <p className="mt-2 text-sm text-slate-600">{s.desc}</p>
+                <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand">
+                  See how we help <ArrowIcon />
+                </span>
+              </div>
             </Link>
           ))}
 
           {/* Dark CTA card */}
           <Link
             href="/demo"
-            className="group flex flex-col rounded-2xl bg-plum p-7 text-white transition hover:-translate-y-1 hover:shadow-xl"
+            className="group flex flex-col rounded-2xl bg-plum p-7 text-white transition hover:-translate-y-1 hover:shadow-xl lg:col-span-2"
           >
             <h3 className="text-xl font-bold">Don&apos;t see your specialty?</h3>
             <p className="mt-2 text-sm text-white/75">

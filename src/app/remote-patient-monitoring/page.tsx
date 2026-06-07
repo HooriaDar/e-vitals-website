@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import ECGMonitor from '@/components/ECGMonitor';
 
 const CheckIcon = () => (
   <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
@@ -87,24 +88,29 @@ export default function RPMPage() {
             {' / '}
             <span className="text-plum">Remote Patient Monitoring</span>
           </nav>
-          <div className="max-w-3xl animate-[riseIn_.7s_cubic-bezier(.2,.7,.2,1)_both]">
-            <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
-              <span className="h-px w-6 bg-brand" />Services · RPM
-            </p>
-            <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl text-plum">
-              Remote Patient Monitoring built for outcomes and reimbursement.
-            </h1>
-            <p className="mt-5 text-lg text-slate-600">
-              e-Vitals collects, transmits, and displays physiologic data from FDA-cleared devices — giving providers
-              continuous visibility between visits, with the documentation and billing automation to make it sustainable.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/demo" className="inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-white hover:bg-brand-dark">
-                Book a demo <ArrowIcon />
-              </Link>
-              <Link href="/chronic-care-management" className="inline-flex items-center rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-plum ring-1 ring-slate-300 hover:ring-slate-400">
-                Add CCM
-              </Link>
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.82fr]">
+            <div className="max-w-3xl animate-[riseIn_.7s_cubic-bezier(.2,.7,.2,1)_both]">
+              <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
+                <span className="h-px w-6 bg-brand" />Services · RPM
+              </p>
+              <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl text-plum">
+                Remote Patient Monitoring built for outcomes and reimbursement.
+              </h1>
+              <p className="mt-5 text-lg text-slate-600">
+                e-Vitals collects, transmits, and displays physiologic data from FDA-cleared devices — giving providers
+                continuous visibility between visits, with the documentation and billing automation to make it sustainable.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/demo" className="inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-white hover:bg-brand-dark">
+                  Book a demo <ArrowIcon />
+                </Link>
+                <Link href="/chronic-care-management" className="inline-flex items-center rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-plum ring-1 ring-slate-300 hover:ring-slate-400">
+                  Add CCM
+                </Link>
+              </div>
+            </div>
+            <div className="rpm-ecg-hero animate-[riseIn_.85s_cubic-bezier(.2,.7,.2,1)_.12s_both]">
+              <ECGMonitor />
             </div>
           </div>
         </div>
