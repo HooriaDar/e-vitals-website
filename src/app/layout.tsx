@@ -16,17 +16,35 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: 'e-Vitals - Remote Patient Monitoring',
-  description: 'Care beyond clinic, always connected.',
-  icons: {
-    icon: 'assets/logo.png',
+  title: "E-Vitals RPM | Remote Patient Monitoring & Chronic Care Management",
+  description:
+    "E-Vitals RPM provides remote patient monitoring, chronic care management, and healthcare technology solutions for medical practices.",
+  openGraph: {
+    title: "E-Vitals RPM",
+    description:
+      "Remote patient monitoring and chronic care management solutions for healthcare providers.",
+    url: "https://evitalsrpm.com",
+    siteName: "E-Vitals RPM",
+    type: "website",
   },
 };
-
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`min-h-screen flex flex-col bg-[#F5EFE6] text-primary antialiased ${plusJakarta.className}`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "MedicalBusiness",
+              name: "E-Vitals RPM",
+              url: "https://evitalsrpm.com",
+              description:
+                "Remote patient monitoring and chronic care management solutions for healthcare providers.",
+            }),
+          }}
+        />
         <VisualEffects />
         <Header />
         <main className="flex-1">
