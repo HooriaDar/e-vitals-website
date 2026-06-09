@@ -127,6 +127,22 @@
     max-width: 78rem !important;
   }
 
+  main > section,
+  main > div > section,
+  main > main > section {
+    width: 100vw !important;
+    max-width: none !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+  }
+
+  main > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section),
+  main > div > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section),
+  main > main > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section) {
+    padding-left: max(1.5rem, calc((100vw - 88rem) / 2 + 1.5rem)) !important;
+    padding-right: max(1.5rem, calc((100vw - 88rem) / 2 + 1.5rem)) !important;
+  }
+
   .section-label {
     @apply inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand;
   }
@@ -2257,22 +2273,6 @@ main > section.rpm-faq-section[class*="max-w"] {
   position: relative;
   isolation: isolate;
   scroll-margin-top: 112px;
-}
-
-.rpm-visual-system main > section:not(.rpm-faq-section):not(.ccm-faq-section),
-.rpm-visual-system main > div > section:not(.rpm-faq-section):not(.ccm-faq-section),
-.rpm-visual-system main > main > section:not(.rpm-faq-section):not(.ccm-faq-section) {
-  width: 100% !important;
-  max-width: none !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-.rpm-visual-system main > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section),
-.rpm-visual-system main > div > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section),
-.rpm-visual-system main > main > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section) {
-  padding-left: max(1.5rem, calc((100vw - 88rem) / 2 + 1.5rem)) !important;
-  padding-right: max(1.5rem, calc((100vw - 88rem) / 2 + 1.5rem)) !important;
 }
 
 .rpm-visual-system main > section:nth-of-type(odd),
