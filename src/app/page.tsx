@@ -170,7 +170,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Provider Benefits Section */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="mx-auto w-full px-6 py-16">
         <Reveal className="max-w-2xl">
           <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl text-plum">
             Better care and a stronger bottom line
@@ -277,7 +277,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Reimbursement Section */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="mx-auto w-full px-6 py-16">
         <div className="grid items-center gap-10 md:grid-cols-2">
           <Reveal>
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl text-plum">
