@@ -101,7 +101,7 @@ const GeriatricsPage: React.FC = () => {
       icon: <Stethoscope className="w-8 h-8 text-purple-900" />,
       title: "Comprehensive Vital Signs Monitoring",
       description:
-        "Track blood pressure, heart rate, and oxygen for elderly with chronic conditions using FDA-approved devices. Wearable integration reduces visits by 35%.",
+        "Track blood pressure, heart rate, glucose, and weight for elderly patients with chronic conditions using FDA-approved devices. Wearable integration reduces visits by 35%.",
       image: "/assets/mewdicines.jpg",
     },
     {

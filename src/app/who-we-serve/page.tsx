@@ -30,7 +30,7 @@ const specialties = [
   {
     href: '/who-we-serve/pulmonology',
     title: 'Pulmonology',
-    desc: 'Remote SpO₂ and pulse monitoring to intervene before an exacerbation.',
+    desc: 'Remote pulse, blood pressure, and weight monitoring to intervene before an exacerbation.',
     image: '/assets/specialty-pulmonology.png',
   },
   {
@@ -57,42 +57,48 @@ export default function WhoWeServePage() {
   return (
     <>
       {/* Hero */}
-      <section className="mx-auto max-w-7xl px-6 pt-12 pb-16">
-        <nav className="mb-6 text-sm text-slate-500">
-          <Link href="/" className="hover:text-brand">Home</Link>
-          {' / '}
-          <span className="text-plum">Who We Serve</span>
-        </nav>
+      <section className="who-we-serve-hero">
+        <div className="mx-auto max-w-7xl px-6 pt-12 pb-16">
+          <nav className="mb-6 text-sm text-slate-500">
+            <Link href="/" className="hover:text-brand">Home</Link>
+            {' / '}
+            <span className="text-plum">Who We Serve</span>
+          </nav>
 
-        <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="max-w-3xl animate-[riseIn_.7s_cubic-bezier(.2,.7,.2,1)_both]">
-            <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
-              <span className="h-px w-6 bg-brand" />
-              Who we serve
-            </p>
-            <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl text-plum">
-              Built for your practice — whatever your specialty.
-            </h1>
-            <p className="mt-5 text-lg text-slate-600">
-              If you care for patients with chronic conditions, eVitals fits your practice. The specialties below are a few we
-              commonly support — it&apos;s far from an exhaustive list.
-            </p>
-          </div>
+          <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="max-w-3xl animate-[riseIn_.7s_cubic-bezier(.2,.7,.2,1)_both]">
+              <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
+                <span className="h-px w-6 bg-brand" />
+                Who we serve
+              </p>
+              <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl text-plum">
+                Built for your practice — whatever your specialty.
+              </h1>
+              <p className="mt-5 text-lg text-slate-600">
+                If you care for patients with chronic conditions, eVitals fits into your
+                existing workflow without friction. The specialties below are just a few 
+                we commonly support — whether you're a solo practitioner or a large multi-specialty group,
+                if chronic care is part of what you do, we're built for you.
+              </p>
+            </div>
 
-          <div className="static-specialty-orbit-frame">
-            <Image
-              src="/assets/specialty-orbit-static.svg"
-              alt="One e-Vitals platform connected to multiple medical specialties"
-              width={1200}
-              height={920}
-              priority
-              className="static-specialty-orbit-image"
-            />
+            <div className="static-specialty-orbit-frame">
+              <Image
+                src="/assets/specialty-orbit-static.svg"
+                alt="One e-Vitals platform connected to multiple medical specialties"
+                width={1200}
+                height={920}
+                priority
+                className="static-specialty-orbit-image"
+              />
+            </div>
           </div>
         </div>
+      </section>
 
+      <section className="who-we-serve-specialties">
         {/* Specialty cards grid */}
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-7xl gap-5 px-6 py-16 lg:grid-cols-2">
           {specialties.map((s) => (
             <Link
               key={s.href}
@@ -137,7 +143,7 @@ export default function WhoWeServePage() {
       </section>
 
       {/* Bottom banner */}
-      <section className="bg-slate-50/70 border-y border-slate-100">
+      <section className="who-we-serve-bottom border-y border-slate-100">
         <div className="mx-auto max-w-7xl px-6 py-14 text-center">
           <h2 className="text-2xl font-bold sm:text-3xl text-plum">Empowering every practice with smart monitoring</h2>
           <p className="mx-auto mt-3 max-w-2xl text-slate-600">

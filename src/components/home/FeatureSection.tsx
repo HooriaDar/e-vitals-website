@@ -72,7 +72,7 @@ const FeatureSection = () => {
             </div>
             <div className="group">
               <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-brand transition-colors">FDA-Approved Devices</h3>
-              <p className="text-slate-600 text-lg leading-relaxed">We provide top-tier, FDA-approved devices for accurate vitals tracking—from blood pressure monitors to pulse oximeters.</p>
+              <p className="text-slate-600 text-lg leading-relaxed">We provide top-tier, FDA-approved devices for accurate vitals tracking - from blood pressure and glucose monitors to cellular weight scales.</p>
             </div>
             <div className="group">
               <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-brand transition-colors">Reimbursement Support</h3>

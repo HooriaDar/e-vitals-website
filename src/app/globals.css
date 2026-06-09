@@ -220,6 +220,23 @@ main a[class*="rounded-3xl"][class*="ring"] > h3 {
       radial-gradient(ellipse 60% 40% at 50% 100%, rgba(27, 22, 48, 0.12), transparent 55%);
   }
 
+  .home-hero-section {
+    min-height: calc(100svh - 196px);
+    display: flex;
+    align-items: stretch;
+    background: #FAF8F4;
+  }
+
+  .home-hero-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .home-hero-content > .grid {
+    width: 100%;
+  }
+
   .homepage-hero-bg {
     position: absolute;
     inset: 12px;
@@ -271,6 +288,10 @@ main a[class*="rounded-3xl"][class*="ring"] > h3 {
 }
 
 @media (max-width: 1024px) {
+  .home-hero-section {
+    min-height: calc(100svh - 172px);
+  }
+
   .homepage-pulse-monitor {
     left: 58%;
     top: 34%;
@@ -280,6 +301,14 @@ main a[class*="rounded-3xl"][class*="ring"] > h3 {
 }
 
 @media (max-width: 640px) {
+  .home-hero-section {
+    min-height: calc(100svh - 132px);
+  }
+
+  .home-hero-content {
+    align-items: flex-start;
+  }
+
   .homepage-pulse-monitor {
     left: 50%;
     top: 50%;
@@ -599,6 +628,17 @@ main [class*="text-green"] {
   inset: -2px -10px -2px 28%;
 }
 
+.who-we-serve-hero,
+.who-we-serve-bottom {
+  background: #FAF8F4 !important;
+}
+
+.who-we-serve-specialties {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.36), transparent 32%),
+    linear-gradient(135deg, #E7D6C2 0%, #DCC5AB 100%) !important;
+}
+
 .home-hero-image-frame {
   border-radius: 32px !important;
   background: transparent !important;
@@ -894,7 +934,7 @@ main [class*="text-green"] {
 .ecg-card {
   position: relative;
   z-index: 1;
-  width: min(100%, 600px);
+  width: min(100%, 700px);
   overflow: hidden;
   border-radius: 28px;
   border: 1px solid rgba(216, 203, 190, 0.82);
@@ -972,7 +1012,7 @@ main [class*="text-green"] {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -1364,19 +1404,76 @@ main [class*="text-green"] {
 
 .rpm-faq-panel {
   position: relative;
-  overflow: hidden;
-  border-radius: 32px;
-  padding: 34px;
-  background:
-    radial-gradient(circle at 12% 10%, rgba(122, 31, 61, 0.34), transparent 32%),
-    radial-gradient(circle at 88% 18%, rgba(250, 248, 244, 0.12), transparent 34%),
-    linear-gradient(135deg, #1B1630 0%, #2A1830 54%, #7A1F3D 100%);
-  border: 1px solid rgba(216, 203, 190, 0.22);
-  box-shadow: 0 28px 70px rgba(27, 22, 48, 0.2);
+  width: min(100%, 78rem);
+  max-width: 78rem;
+  margin: 0 auto;
+  overflow: visible;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.rpm-faq-panel > div:first-child p,
+.rpm-faq-panel > div:first-child h2,
+.rpm-faq-panel > div:first-child span {
+  color: #1F1F1F !important;
+}
+
+.rpm-faq-panel > div:first-child p {
+  color: rgba(31, 31, 31, 0.68) !important;
+}
+
+.rpm-visual-system main > section.rpm-faq-section,
+.rpm-visual-system main > section.rpm-faq-section[class*="max-w"],
+main > section.rpm-faq-section,
+main > section.rpm-faq-section[class*="max-w"] {
+  width: 100vw !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 4.5rem clamp(1.25rem, 5vw, 6rem) !important;
+  color: inherit !important;
+  background: #FAF8F4 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+
+.rpm-faq-section .rpm-faq-panel {
+  width: min(calc(100vw - 4rem), 68rem);
+  max-width: 68rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 !important;
+  text-align: center;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.rpm-faq-section .rpm-faq-panel > div:first-child {
+  max-width: 50rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.rpm-faq-section .rpm-faq-panel > div:first-child p {
+  justify-content: center;
+}
+
+.rpm-faq-section .rpm-faq-panel > .mt-8 {
+  width: min(100%, 68rem);
+  max-width: 68rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
 }
 
 .rpm-visual-system main > section.ccm-faq-section {
-  background: transparent !important;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.36), transparent 32%),
+    linear-gradient(135deg, #E7D6C2 0%, #DCC5AB 100%) !important;
   border: 0 !important;
   box-shadow: none !important;
   color: inherit;
@@ -1442,7 +1539,7 @@ main [class*="text-green"] {
   }
 
   .stats-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .specialty-card {
@@ -2084,24 +2181,51 @@ main [class*="text-green"] {
   scroll-margin-top: 112px;
 }
 
-@media (min-width: 900px) {
-  .rpm-visual-system main > section {
-    min-height: calc(100svh - 112px);
-  }
+.rpm-visual-system main > section[class*="max-w"],
+.rpm-visual-system main > div > section[class*="max-w"],
+.rpm-visual-system main > main > section[class*="max-w"] {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
 
-  .rpm-visual-system main > section.rpm-workflow-card-section {
-    min-height: auto;
-  }
+.rpm-visual-system main > section:nth-of-type(odd),
+.rpm-visual-system main > div > section:nth-of-type(odd),
+.rpm-visual-system main > main > section:nth-of-type(odd) {
+  background: #FAF8F4 !important;
+  border-color: rgba(216, 203, 190, 0.8) !important;
+}
 
-  .about-page > section {
-    min-height: calc(100svh - 112px);
-    display: flex;
-    align-items: center;
-  }
+.rpm-visual-system main > section:nth-of-type(even),
+.rpm-visual-system main > div > section:nth-of-type(even),
+.rpm-visual-system main > main > section:nth-of-type(even) {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.36), transparent 32%),
+    linear-gradient(135deg, #E7D6C2 0%, #DCC5AB 100%) !important;
+  border-color: rgba(216, 203, 190, 0.8) !important;
+}
 
-  .about-page > section > .mx-auto,
-  .about-page > section > div:not(.rpm-hero-glow) {
+.rpm-workflow-card-section {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.36), transparent 32%),
+    linear-gradient(135deg, #E7D6C2 0%, #DCC5AB 100%) !important;
+}
+
+.rpm-workflow-card-section > div {
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 12% 22%, rgba(122, 31, 61, 0.18), transparent 32%),
+    radial-gradient(circle at 88% 18%, rgba(216, 203, 190, 0.12), transparent 34%),
+    linear-gradient(135deg, #1B1630 0%, #2A1830 54%, #7A1F3D 100%);
+  border: 1px solid rgba(216, 203, 190, 0.18);
+  box-shadow: 0 28px 70px rgba(31, 31, 31, 0.16);
+}
+
+@media (min-width: 1024px) {
+  .rpm-requirement-stats {
     width: 100%;
+    transform: translateY(-1.75rem);
   }
 }
 
@@ -2116,81 +2240,6 @@ main [class*="text-green"] {
   background:
     linear-gradient(90deg, rgba(122, 31, 61, 0.07), transparent);
   mask-image: linear-gradient(90deg, transparent, #000 22%, #000 72%, transparent);
-}
-
-.rpm-visual-system main > section:nth-of-type(4n) {
-  background:
-    radial-gradient(circle at 12% 22%, rgba(122, 31, 61, 0.18), transparent 32%),
-    radial-gradient(circle at 88% 18%, rgba(216, 203, 190, 0.12), transparent 34%),
-    linear-gradient(135deg, #1B1630 0%, #2A1830 54%, #7A1F3D 100%) !important;
-  color: #FAF8F4;
-  border-color: rgba(216, 203, 190, 0.18) !important;
-}
-
-.rpm-visual-system main > section:nth-of-type(4n)[class*="max-w"] {
-  width: min(calc(100% - 32px), 90rem);
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-  border-radius: 32px;
-  border: 1px solid rgba(216, 203, 190, 0.18);
-  box-shadow: 0 28px 70px rgba(31, 31, 31, 0.16);
-  overflow: hidden;
-}
-
-.rpm-visual-system main > section:nth-of-type(4n):not([class*="max-w"]) {
-  border-radius: 0;
-}
-
-.rpm-visual-system main > section:nth-of-type(4n) h1,
-.rpm-visual-system main > section:nth-of-type(4n) h2,
-.rpm-visual-system main > section:nth-of-type(4n) h3 {
-  color: #FAF8F4 !important;
-}
-
-.rpm-visual-system main > section:nth-of-type(4n) p,
-.rpm-visual-system main > section:nth-of-type(4n) li,
-.rpm-visual-system main > section:nth-of-type(4n) span:not([class*="bg-"]):not([class*="text-brand"]) {
-  color: rgba(250, 248, 244, 0.78);
-}
-
-.rpm-visual-system main > section:nth-of-type(4n) [data-rpm-card="true"],
-.rpm-visual-system main > section:nth-of-type(4n) .card-feature,
-.rpm-visual-system main > section:nth-of-type(4n) .card-premium,
-.rpm-visual-system main > section:nth-of-type(4n) form,
-.rpm-visual-system main > section:nth-of-type(4n) [class*="bg-white"] {
-  color: #1F1F1F;
-  background: rgba(250, 248, 244, 0.96) !important;
-  border-color: rgba(216, 203, 190, 0.9) !important;
-}
-
-.rpm-visual-system main > section:nth-of-type(4n) [data-rpm-card="true"] h3,
-.rpm-visual-system main > section:nth-of-type(4n) .card-feature h3,
-.rpm-visual-system main > section:nth-of-type(4n) .card-premium h3 {
-  color: #1F1F1F !important;
-}
-
-.rpm-visual-system main > section:nth-of-type(4n) [data-rpm-card="true"] p,
-.rpm-visual-system main > section:nth-of-type(4n) .card-feature p,
-.rpm-visual-system main > section:nth-of-type(4n) .card-premium p {
-  color: rgba(31, 31, 31, 0.72) !important;
-}
-
-.rpm-visual-system main > section:nth-of-type(4n) [data-rpm-card="true"] span,
-.rpm-visual-system main > section:nth-of-type(4n) .card-feature span,
-.rpm-visual-system main > section:nth-of-type(4n) .card-premium span,
-.rpm-visual-system main > section:nth-of-type(4n) [data-rpm-card="true"] a,
-.rpm-visual-system main > section:nth-of-type(4n) .card-feature a,
-.rpm-visual-system main > section:nth-of-type(4n) .card-premium a {
-  color: #7A1F3D !important;
-}
-
-@media (max-width: 768px) {
-  .rpm-visual-system main > section:nth-of-type(4n)[class*="max-w"] {
-    width: calc(100% - 20px);
-    border-radius: 24px;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-  }
 }
 
 [data-rpm-reveal="true"] {
@@ -2388,30 +2437,29 @@ svg [stroke-dasharray] {
 .rpm-visual-system main > section.ccm-faq-section,
 .rpm-visual-system main > section.ccm-faq-section[class*="max-w"],
 main > section.ccm-faq-section {
-  width: min(100%, 64rem) !important;
-  max-width: 64rem !important;
-  margin: 0 auto !important;
-  padding: 4rem 1.5rem !important;
+  width: 100vw !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 4.5rem clamp(1.25rem, 5vw, 6rem) !important;
   color: inherit !important;
-  background: transparent !important;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.36), transparent 32%),
+    linear-gradient(135deg, #E7D6C2 0%, #DCC5AB 100%) !important;
   border: 0 !important;
   border-radius: 0 !important;
-  box-shadow: none !important;
   overflow: visible !important;
 }
 
 .ccm-faq-section .rpm-faq-panel {
-  background:
-    radial-gradient(circle at 12% 10%, rgba(122, 31, 61, 0.34), transparent 32%),
-    radial-gradient(circle at 88% 18%, rgba(250, 248, 244, 0.12), transparent 34%),
-    linear-gradient(135deg, #1B1630 0%, #2A1830 54%, #7A1F3D 100%) !important;
-  border: 1px solid rgba(216, 203, 190, 0.22) !important;
-  box-shadow: 0 28px 70px rgba(27, 22, 48, 0.2) !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
 
 .ccm-faq-section .rpm-faq-panel > div:first-child p,
-.ccm-faq-section .rpm-faq-panel > div:first-child h2 {
-  color: #FAF8F4 !important;
+.ccm-faq-section .rpm-faq-panel > div:first-child h2,
+.ccm-faq-section .rpm-faq-panel > div:first-child span {
+  color: #1F1F1F !important;
 }
 
 .ccm-faq-section .ccm-faq-card {
@@ -2429,10 +2477,42 @@ main > section.ccm-faq-section {
   color: rgba(31, 31, 31, 0.68) !important;
 }
 
+.rpm-visual-system main > section.rpm-workflow-card-section,
+.rpm-visual-system main > section.rpm-workflow-card-section[class*="max-w"] {
+  color: inherit !important;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.36), transparent 32%),
+    linear-gradient(135deg, #E7D6C2 0%, #DCC5AB 100%) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.rpm-visual-system main > section.rpm-workflow-card-section > div {
+  color: #FAF8F4 !important;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 12% 22%, rgba(122, 31, 61, 0.18), transparent 32%),
+    radial-gradient(circle at 88% 18%, rgba(216, 203, 190, 0.12), transparent 34%),
+    linear-gradient(135deg, #1B1630 0%, #2A1830 54%, #7A1F3D 100%) !important;
+  border: 1px solid rgba(216, 203, 190, 0.18) !important;
+  box-shadow: 0 28px 70px rgba(31, 31, 31, 0.16) !important;
+}
+
 @media (max-width: 768px) {
   [data-rpm-reveal="true"] {
-    transform: translate3d(0, 18px, 0);
-    transition-duration: 560ms;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  [data-rpm-reveal="true"][data-rpm-past="true"],
+  [data-rpm-reveal="true"][data-rpm-visible="true"] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 
   [data-rpm-card="true"]:hover,

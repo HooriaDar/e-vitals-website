@@ -21,7 +21,7 @@ const PulmonologyPage: React.FC = () => {
             Remote care for pulmonology practices.
           </h1>
           <p className="mt-5 text-lg text-slate-600">
-            Respiratory disease can change quickly. Remote oxygen-saturation and pulse monitoring help your team step in before a flare becomes an emergency.
+            Respiratory disease can change quickly. Remote pulse, blood pressure, and weight trends help your team step in before a flare becomes an emergency.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link 
@@ -61,7 +61,7 @@ const PulmonologyPage: React.FC = () => {
                   <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span>Remote SpO₂ and pulse monitoring between visits</span>
+                  <span>Remote pulse, blood pressure, and weight monitoring between visits</span>
                 </li>
                 <li className="flex gap-3 text-slate-600">
                   <svg className="h-5 w-5 flex-none text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">

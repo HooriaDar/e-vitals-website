@@ -154,8 +154,9 @@ export default function CCMPage() {
                 Chronic Care Management, built to pair with RPM.
               </h1>
               <p className="mt-5 text-lg text-slate-600">
-                Reimbursable, largely non-face-to-face care coordination for patients with two or more chronic conditions —
-                running right alongside your RPM program, in the same dashboard.
+                Reimbursable, largely non-face-to-face care coordination for patients with two or more chronic conditions — billed under Medicare's Physician Fee Schedule and running
+                right alongside your RPM program, in the same dashboard. No extra device needed, no separate workflow. Just documented coordination time that pays for itself while keeping
+                your highest-risk patients supported between every visit.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href="/demo" className="inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-white hover:bg-brand-dark">
@@ -182,9 +183,13 @@ export default function CCMPage() {
             </p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl text-plum">What is CCM?</h2>
             <p className="mt-4 text-lg text-slate-600">
-              Chronic care management is the coordination patients with multiple chronic conditions need between office
-              visits — maintaining a care plan, reconciling medications, managing care transitions, and staying in touch.
-              Medicare has paid for it separately under the Physician Fee Schedule since 2015.
+              CCM is the ongoing coordination and support that patients with multiple chronic conditions need between office visits. 
+              It goes beyond the appointment — maintaining personalized care plans, reconciling medications, managing care transitions,
+              and keeping patients connected to their care team day to day.
+              Unlike RPM, which is driven by device readings, CCM is driven by documented care-coordination time. 
+              That means no device is required — and both RPM and CCM can run simultaneously for the same eligible patient, maximizing the quality of care they receive.
+              Medicare has recognized CCM as a reimbursable service under the Physician Fee Schedule since 2015, making it a long-established,
+              financially sustainable model for practices committed to proactive, continuous care.
             </p>
             <p className="mt-4 text-slate-600">
               Unlike RPM, which is driven by device readings, CCM is driven by documented care-coordination time — so it
@@ -443,7 +448,7 @@ export default function CCMPage() {
       </section>
 
       {/* FAQ */}
-      <section className="ccm-faq-section mx-auto max-w-5xl px-6 py-16">
+      <section className="rpm-faq-section ccm-faq-section">
         <div className="rpm-faq-panel">
           <div className="max-w-3xl">
             <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-[#FAF8F4]/82">

@@ -20,11 +20,11 @@ const Home: React.FC = () => {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="relative overflow-hidden" data-rpm-ignore-motion>
+      <section className="home-hero-section relative overflow-hidden" data-rpm-ignore-motion>
         <div className="homepage-hero-bg" aria-hidden="true" />
         <PulseMonitor className="homepage-pulse-monitor" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-6 pb-14 pt-6 md:pb-16 md:pt-8">
+        <div className="home-hero-content relative z-10 mx-auto max-w-7xl px-6 pb-14 pt-6 md:pb-16 md:pt-8">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
             <div>
               <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl text-plum">

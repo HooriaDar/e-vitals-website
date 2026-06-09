@@ -2,22 +2,36 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-function gaussian(t: number, center: number, width: number, height: number) {
-  const d = (t - center) / width;
-  return height * Math.exp(-0.5 * d * d);
-}
-
-function ecgY(x: number) {
+function heartRateY(x: number) {
   const cycle = 120;
   const t = ((x % cycle) + cycle) % cycle;
+  const points = [
+    [0, 0],
+    [20, 0],
+    [28, -5],
+    [36, 0],
+    [48, 0],
+    [53, -18],
+    [58, 52],
+    [63, -24],
+    [70, 0],
+    [88, 0],
+    [98, 10],
+    [108, 0],
+    [120, 0],
+  ] as const;
 
-  return (
-    gaussian(t, 13, 2.4, -2.6) +
-    gaussian(t, 22, 1.9, -12) +
-    gaussian(t, 27, 1.65, 46) +
-    gaussian(t, 31, 2.1, -15) +
-    gaussian(t, 43, 7.2, 7)
-  );
+  for (let i = 0; i < points.length - 1; i += 1) {
+    const [x1, y1] = points[i];
+    const [x2, y2] = points[i + 1];
+
+    if (t >= x1 && t <= x2) {
+      const progress = (t - x1) / (x2 - x1);
+      return y1 + (y2 - y1) * progress;
+    }
+  }
+
+  return 0;
 }
 
 export default function ECGMonitor() {
@@ -36,7 +50,7 @@ export default function ECGMonitor() {
     if (!ctx) return;
     const context = ctx;
 
-    const pixelsPerSecond = 58;
+    const pixelsPerSecond = 86;
     const trailLen = 420;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -78,13 +92,13 @@ export default function ECGMonitor() {
       const amp = h * 0.38;
 
       context.beginPath();
-      context.lineWidth = 2;
+      context.lineWidth = 2.4;
       context.lineJoin = 'round';
       context.lineCap = 'round';
 
       for (let px = 0; px <= w; px += 0.5) {
         const dataX = px + offsetRef.current;
-        const y = mid + ecgY(dataX * 0.5) * (amp / 60);
+        const y = mid + heartRateY(dataX * 0.7) * (amp / 60);
 
         if (px === 0) context.moveTo(px, y);
         else context.lineTo(px, y);
@@ -98,7 +112,7 @@ export default function ECGMonitor() {
       context.strokeStyle = grad;
       context.stroke();
 
-      const headY = mid + ecgY((w + offsetRef.current) * 0.5) * (amp / 60);
+      const headY = mid + heartRateY((w + offsetRef.current) * 0.7) * (amp / 60);
       context.shadowColor = 'rgba(122, 31, 61, 0.42)';
       context.shadowBlur = 14;
       context.beginPath();
@@ -137,9 +151,9 @@ export default function ECGMonitor() {
   }, []);
 
   return (
-    <div className="ecg-card" aria-label="Live ECG monitoring preview">
+    <div className="ecg-card" aria-label="Live heart-rate monitoring preview">
       <div className="ecg-header">
-        <span className="ecg-label">ECG - Lead II</span>
+        <span className="ecg-label">Heart rate pulse</span>
         <span className="live-pill">
           <span className="live-dot" />
           Live
@@ -154,13 +168,6 @@ export default function ECGMonitor() {
           <p className="stat-value bpm">
             {bpm} <span className="stat-unit">bpm</span>
           </p>
-          <p className="stat-ok">Normal sinus</p>
-        </div>
-        <div className="stat-card">
-          <p className="stat-label">SpO2</p>
-          <p className="stat-value">
-            97 <span className="stat-unit">%</span>
-          </p>
           <p className="stat-ok">Normal</p>
         </div>
         <div className="stat-card">
@@ -169,6 +176,20 @@ export default function ECGMonitor() {
             118 <span className="stat-unit">/76</span>
           </p>
           <p className="stat-ok">Optimal</p>
+        </div>
+        <div className="stat-card">
+          <p className="stat-label">Blood glucose</p>
+          <p className="stat-value">
+            104 <span className="stat-unit">mg/dL</span>
+          </p>
+          <p className="stat-ok">In range</p>
+        </div>
+        <div className="stat-card">
+          <p className="stat-label">Weight</p>
+          <p className="stat-value">
+            168 <span className="stat-unit">lb</span>
+          </p>
+          <p className="stat-ok">Stable</p>
         </div>
       </div>
     </div>

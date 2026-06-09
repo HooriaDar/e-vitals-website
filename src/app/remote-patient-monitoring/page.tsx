@@ -28,7 +28,7 @@ const rpmFaqs = [
   },
   {
     q: 'Which physiologic data can RPM capture?',
-    a: 'CMS lists examples such as oxygen saturation, blood pressure, blood sugar or blood oxygen levels, and weight loss or gain. The data must be tied to managing the patient\'s condition.',
+    a: 'RPM can capture clinically relevant physiologic data such as blood pressure, blood sugar, heart rate, and weight loss or gain. The data must be tied to managing the patient\'s condition.',
   },
   {
     q: 'Do I need an established relationship with the patient?',
@@ -67,7 +67,7 @@ const cptCodes = [
 ];
 
 const platformFeatures = [
-  { color: 'brand', title: 'Real-time data dashboard', body: 'Vitals — BP, heart rate, glucose, weight, SpO2 — in one intuitive interface.' },
+  { color: 'brand', title: 'Real-time data dashboard', body: 'Vitals — BP, heart rate, glucose, and weight — in one intuitive interface.' },
   { color: 'emerald', title: 'Automatic device sync', body: 'Cellular devices post readings straight to the chart with no patient setup.' },
   { color: 'blue', title: 'Smart alerts & triage', body: 'Thresholds learn each patient\'s baseline and escalate only what matters.' },
   { color: 'rose', title: 'EHR integration', body: 'Bi-directional sync with major EHR systems.' },
@@ -88,7 +88,7 @@ export default function RPMPage() {
             {' / '}
             <span className="text-plum">Remote Patient Monitoring</span>
           </nav>
-          <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.82fr]">
+          <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_0.95fr]">
             <div className="max-w-3xl animate-[riseIn_.7s_cubic-bezier(.2,.7,.2,1)_both]">
               <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
                 <span className="h-px w-6 bg-brand" />Services · RPM
@@ -125,13 +125,14 @@ export default function RPMPage() {
             </p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl text-plum">What is remote patient monitoring?</h2>
             <p className="mt-4 text-lg text-slate-600">
-              RPM lets a patient capture their own health data with a connected medical device that automatically transmits
-              it to your team — who use it to manage an acute or chronic condition between visits. Medicare pays for it
-              under the Physician Fee Schedule.
+              RPM empowers patients to take control of their health from the comfort of home. Using connected medical devices — like blood pressure cuffs,
+              glucometers, or pulse oximeters — patients capture their vital data daily, which is automatically transmitted to their care team in real time.
+              Clinicians use this continuous stream of data to spot trends, catch warning signs early, and intervene before a condition escalates —
+              all without requiring an in-person visit. For chronic conditions like hypertension, diabetes, and COPD, this means fewer hospitalizations and better long-term outcomes.
             </p>
             <p className="mt-5 text-sm font-semibold text-plum">Physiologic data RPM can capture includes:</p>
             <div className="mt-3 flex flex-wrap gap-2">
-              {['Blood pressure', 'Blood glucose', 'Blood oxygen (SpO2)', 'Weight'].map((d) => (
+              {['Heart rate', 'Blood pressure', 'Blood glucose', 'Weight'].map((d) => (
                 <span key={d} className="rounded-full bg-brand/10 px-3.5 py-1.5 text-sm font-medium text-brand ring-1 ring-brand/15">
                   {d}
                 </span>
@@ -158,7 +159,7 @@ export default function RPMPage() {
               </g>
             </svg>
             <div className="mt-6 flex flex-wrap gap-2">
-              {['Blood pressure', 'Blood glucose', 'Blood oxygen (SpO2)', 'Weight'].map((d) => (
+              {['Heart rate', 'Blood pressure', 'Blood glucose', 'Weight'].map((d) => (
                 <span key={d} className="rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-white ring-1 ring-inset ring-white/25">{d}</span>
               ))}
             </div>
@@ -192,7 +193,7 @@ export default function RPMPage() {
                 <li key={r} className="flex gap-3 text-slate-600"><CheckIcon /><span>{r}</span></li>
               ))}
             </ul>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="rpm-requirement-stats grid grid-cols-2 gap-4">
               {[
                 { stat: '16+ days', label: 'of readings in 30 days for the device-supply code' },
                 { stat: '1', label: 'practitioner bills RPM per 30-day period' },
@@ -419,7 +420,7 @@ export default function RPMPage() {
       </section>
 
       {/* FAQ */}
-      <section className="mx-auto max-w-5xl px-6 py-16">
+      <section className="rpm-faq-section">
         <div className="rpm-faq-panel">
           <div className="max-w-3xl">
             <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-[#FAF8F4]/82">

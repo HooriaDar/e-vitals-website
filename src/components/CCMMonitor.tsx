@@ -21,7 +21,7 @@ type Activity = {
 const milestones: Milestone[] = [
   { metric: 'A1c', val: '6.8%', label: 'HbA1c', change: 'Down 0.4 pts', warn: false },
   { metric: 'BP', val: '128/82', label: 'Blood pressure', change: 'Improving', warn: false },
-  { metric: 'O2', val: '94%', label: 'SpO2 saturation', change: 'Stable', warn: true },
+  { metric: 'Wt', val: '+1 lb', label: 'Weight trend', change: 'Stable', warn: true },
   { metric: 'Rx', val: '91%', label: 'Adherence', change: 'On track', warn: false },
 ];
 

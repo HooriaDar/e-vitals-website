@@ -222,7 +222,7 @@ const RPMSoftware = () => {
               {
                 title: "Real-Time Data Access",
                 points: [
-                  "View patient vitals instantly—blood pressure, glucose, weight, SpO₂, and more.",
+                  "View patient vitals instantly - heart rate, blood pressure, glucose, and weight.",
                   "Color-coded alerts for abnormal readings.",
                 ],
               },

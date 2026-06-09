@@ -150,7 +150,7 @@ const Header: React.FC = () => {
           </nav>
 
           <div className="flex items-center gap-6">
-            <Link href="https://www.evitals.life/login" className="hidden text-sm font-medium text-plum/75 transition hover:text-brand hover:underline hover:underline-offset-8 sm:inline-block">
+            <Link href="https://www.evitals.life/login" target="_blank" rel="noopener noreferrer" className="hidden text-sm font-medium text-plum/75 transition hover:text-brand hover:underline hover:underline-offset-8 sm:inline-block">
               Login
             </Link>
             <Link
