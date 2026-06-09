@@ -948,7 +948,7 @@ const RPMReimbursementCalculator: React.FC = () => {
               </ul>
             </details>
             
-            <p className="text-xs leading-relaxed text-slate-400">
+            <p className="text-xs leading-relaxed text-[#1B1630]">
               Estimates use editable, approximate national-average 2026 rates and your adoption assumptions. Actual reimbursement varies by payer, locality, documentation, and medical necessity. Educational only — not billing advice; verify against the current Medicare Physician Fee Schedule.
             </p>
           </div>

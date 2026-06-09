@@ -145,26 +145,22 @@ export default function CCMPage() {
             {' / '}
             <span className="text-plum">Chronic Care Management</span>
           </nav>
-          <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.88fr]">
-            <div className="max-w-3xl animate-[riseIn_.7s_cubic-bezier(.2,.7,.2,1)_both]">
-              <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
-                <span className="h-px w-6 bg-brand" />Services · CCM
-              </p>
-              <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl text-plum">
-                Chronic Care Management, built to pair with RPM.
+          <div className="service-hero-grid grid items-center gap-10 lg:grid-cols-[0.95fr_0.95fr]">
+            <div className="service-hero-copy max-w-3xl animate-[riseIn_.7s_cubic-bezier(.2,.7,.2,1)_both]">
+              <h1 className="service-hero-title mt-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl text-plum">
+                Chronic Care Management built for outcomes and continuity.
               </h1>
-              <p className="mt-5 text-lg text-slate-600">
-                Reimbursable, largely non-face-to-face care coordination for patients with two or more chronic conditions — billed under Medicare's Physician Fee Schedule and running
-                right alongside your RPM program, in the same dashboard. No extra device needed, no separate workflow. Just documented coordination time that pays for itself while keeping
-                your highest-risk patients supported between every visit.
+              <p className="service-hero-text mt-5 text-lg text-slate-600">
+                e-Vitals coordinates monthly chronic care workflows for eligible patients — giving providers
+                continuous visibility between visits, with documentation and billing support in the same dashboard.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="service-hero-actions mt-8 flex flex-wrap gap-3">
                 <Link href="/demo" className="inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-white hover:bg-brand-dark">
                   Book a demo <ArrowIcon />
                 </Link>
-                <a href="#ccm-codes" className="inline-flex items-center rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-plum ring-1 ring-slate-300 hover:ring-slate-400">
-                  See CCM codes
-                </a>
+                <Link href="/remote-patient-monitoring" className="inline-flex items-center rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-plum ring-1 ring-slate-300 hover:ring-slate-400">
+                  Add RPM
+                </Link>
               </div>
             </div>
             <div className="ccm-monitor-hero animate-[riseIn_.85s_cubic-bezier(.2,.7,.2,1)_.12s_both]">
@@ -197,9 +193,9 @@ export default function CCMPage() {
             </p>
             <div className="mt-6 inline-flex items-center gap-3 rounded-2xl bg-brand/10 px-5 py-3 ring-1 ring-brand/15">
               <span className="text-3xl font-extrabold text-brand">2 in 3</span>
-              <span className="text-sm text-slate-600">
+              <span className="text-sm text-plum-600">
                 Medicare beneficiaries have two or more chronic conditions
-                <span className="block text-xs text-slate-400">Source: CMS</span>
+                <span className="block text-xs text-plum-400">Source: CMS</span>
               </span>
             </div>
           </div>
@@ -382,7 +378,7 @@ export default function CCMPage() {
             </div>
           ))}
         </div>
-        <p className="mt-4 text-xs text-slate-400">
+        <p className="mt-4 text-xs text-[#1B1630]">
           Approximate national averages; actual payment varies by payer, locality, and program mix. Not billing advice — verify against the current Medicare Physician Fee Schedule. CPT© is a registered trademark of the AMA.
         </p>
       </section>
@@ -455,10 +451,6 @@ export default function CCMPage() {
               <span className="h-px w-6 bg-[#FAF8F4]/70" />FAQ
             </p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#FAF8F4] sm:text-4xl">Chronic Care Management FAQs</h2>
-            <p className="mt-3 text-[#FAF8F4]/72">
-              Answers based on current CMS guidance (MLN909188) and the CMS practitioner billing FAQ. This is general
-              information, not billing advice — confirm details against current CMS and payer rules.
-            </p>
           </div>
           <div className="mt-8 grid gap-3">
             {ccmFaqs.map((faq, i) => (

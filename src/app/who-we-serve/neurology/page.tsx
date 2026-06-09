@@ -202,7 +202,7 @@ const NeurologyPage: React.FC = () => {
       <section className="relative h-[90vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/assets/n.jpg"
+            src="/assets/neurologyhero.jpg"
             alt="Neurology Remote Patient Monitoring Hero"
             fill
             className="object-cover kenburns"

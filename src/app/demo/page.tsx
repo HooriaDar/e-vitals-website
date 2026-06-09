@@ -32,7 +32,7 @@ const DemoPage: React.FC = () => {
 
   return (
     <div className="w-full">
-      <section className="mx-auto max-w-5xl px-6 pt-12 pb-20">
+      <section className="mx-auto w-full px-6 pt-12 pb-20">
         <nav className="mb-6 text-sm text-slate-500">
           <Link href="/" className="hover:text-brand">Home</Link> / <span className="text-plum">Request a demo</span>
         </nav>

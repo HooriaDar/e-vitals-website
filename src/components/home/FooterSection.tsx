@@ -10,9 +10,7 @@ const FooterSection: React.FC = () => {
       <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#F5EFE6]/40 to-transparent" aria-hidden="true" />
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
         <div>
-          <span className="inline-flex rounded-lg bg-white px-3 py-2 shadow-lg shadow-black/10">
-            <Image src="/assets/logo.png" alt="e-Vitals" width={144} height={36} className="h-9 w-auto" />
-          </span>
+          <Image src="/assets/footer-logo-white-transparent.png" alt="e-Vitals" width={320} height={95} className="h-14 w-auto max-w-full object-contain sm:h-16" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#FAF8F4]/72">
             Turn-key Remote Patient Monitoring and Chronic Care Management — devices, clinical dashboards, and compliant billing for practices of any size.
           </p>

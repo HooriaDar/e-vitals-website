@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 const PulmonologyPage: React.FC = () => {
@@ -13,32 +14,37 @@ const PulmonologyPage: React.FC = () => {
           <span className="text-plum">Pulmonology</span>
         </nav>
         
-        <div className="max-w-3xl">
-          <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
-            <span className="h-px w-6 bg-brand"></span>Who we serve · Pulmonology
-          </p>
-          <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl text-plum">
-            Remote care for pulmonology practices.
-          </h1>
-          <p className="mt-5 text-lg text-slate-600">
-            Respiratory disease can change quickly. Remote pulse, blood pressure, and weight trends help your team step in before a flare becomes an emergency.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link 
-              href="/demo" 
-              className="inline-flex items-center gap-2 rounded-lg bg-brand px-7 py-3.5 text-sm font-semibold text-white hover:bg-brand-dark transition-colors"
-            >
-              Request a demo 
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
-                <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </Link>
-            <Link 
-              href="/ReimbursementCalculator" 
-              className="inline-flex items-center rounded-lg bg-white px-7 py-3.5 text-sm font-semibold text-plum ring-1 ring-slate-300 hover:ring-slate-400 transition-colors"
-            >
-              See reimbursement
-            </Link>
+        <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="max-w-3xl">
+            <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
+              <span className="h-px w-6 bg-brand"></span>Who we serve · Pulmonology
+            </p>
+            <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl text-plum">
+              Remote care for pulmonology practices.
+            </h1>
+            <p className="mt-5 text-lg text-slate-600">
+              Respiratory disease can change quickly. Remote pulse, blood pressure, and weight trends help your team step in before a flare becomes an emergency.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link 
+                href="/demo" 
+                className="inline-flex items-center gap-2 rounded-lg bg-brand px-7 py-3.5 text-sm font-semibold text-white hover:bg-brand-dark transition-colors"
+              >
+                Request a demo 
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                  <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
+              <Link 
+                href="/ReimbursementCalculator" 
+                className="inline-flex items-center rounded-lg bg-white px-7 py-3.5 text-sm font-semibold text-plum ring-1 ring-slate-300 hover:ring-slate-400 transition-colors"
+              >
+                See reimbursement
+              </Link>
+            </div>
+          </div>
+          <div className="specialty-hero-image-panel" aria-hidden="true">
+            <Image src="/assets/specialty-hero-pulmonology.jpg" alt="" fill sizes="(min-width: 1024px) 42vw, 100vw" className="specialty-hero-image" priority />
           </div>
         </div>
       </section>
@@ -121,7 +127,7 @@ const PulmonologyPage: React.FC = () => {
               </ul>
             </div>
           </div>
-          <p className="mt-8 text-sm text-slate-500">
+          <p className="mt-8 text-sm text-plum-500">
             <span className="font-semibold text-plum">Conditions we commonly support:</span> COPD, asthma, chronic respiratory disease, and post-discharge monitoring.
           </p>
         </div>

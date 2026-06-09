@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -46,31 +47,36 @@ export default function InternalMedicinePage() {
           <span className="text-plum">Internal Medicine</span>
         </nav>
 
-        <div className="max-w-3xl animate-[riseIn_.7s_cubic-bezier(.2,.7,.2,1)_both]">
-          <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
-            <span className="h-px w-6 bg-brand" />
-            Who we serve · Internal Medicine
-          </p>
-          <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl text-plum">
-            Remote care for internal medicine practices.
-          </h1>
-          <p className="mt-5 text-lg text-slate-600">
-            Internists care for complex patients with several conditions at once. eVitals unifies monitoring and care
-            coordination across all of them in one place.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/demo"
-              className="inline-flex items-center gap-2 rounded-lg bg-brand px-7 py-3.5 text-sm font-semibold text-white hover:bg-brand-dark"
-            >
-              Request a demo <ArrowIcon />
-            </Link>
-            <Link
-              href="/ReimbursementCalculator"
-              className="inline-flex items-center rounded-lg bg-white px-7 py-3.5 text-sm font-semibold text-plum ring-1 ring-slate-300 hover:ring-slate-400"
-            >
-              See reimbursement
-            </Link>
+        <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="max-w-3xl animate-[riseIn_.7s_cubic-bezier(.2,.7,.2,1)_both]">
+            <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
+              <span className="h-px w-6 bg-brand" />
+              Who we serve · Internal Medicine
+            </p>
+            <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl text-plum">
+              Remote care for internal medicine practices.
+            </h1>
+            <p className="mt-5 text-lg text-slate-600">
+              Internists care for complex patients with several conditions at once. eVitals unifies monitoring and care
+              coordination across all of them in one place.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/demo"
+                className="inline-flex items-center gap-2 rounded-lg bg-brand px-7 py-3.5 text-sm font-semibold text-white hover:bg-brand-dark"
+              >
+                Request a demo <ArrowIcon />
+              </Link>
+              <Link
+                href="/ReimbursementCalculator"
+                className="inline-flex items-center rounded-lg bg-white px-7 py-3.5 text-sm font-semibold text-plum ring-1 ring-slate-300 hover:ring-slate-400"
+              >
+                See reimbursement
+              </Link>
+            </div>
+          </div>
+          <div className="specialty-hero-image-panel" aria-hidden="true">
+            <Image src="/assets/specialty-hero-internal-medicine.jpg" alt="" fill sizes="(min-width: 1024px) 42vw, 100vw" className="specialty-hero-image" priority />
           </div>
         </div>
       </section>
@@ -121,7 +127,7 @@ export default function InternalMedicinePage() {
             </div>
           </div>
 
-          <p className="mt-8 text-sm text-slate-500">
+          <p className="mt-8 text-sm text-plum-500">
             <span className="font-semibold text-plum">Conditions we commonly support:</span>{' '}
             Multiple chronic conditions, hypertension, diabetes, and heart failure.
           </p>

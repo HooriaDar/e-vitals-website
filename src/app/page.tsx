@@ -220,7 +220,7 @@ const Home: React.FC = () => {
               <div className="mt-1 text-xs text-white/70">cellular devices — no app or pairing</div>
             </div>
           </div>
-          <p className="mt-3 text-xs text-slate-400">*Approximate; varies by payer, locality, and program mix. Not billing advice.</p>
+          <p className="mt-3 text-xs text-[#1B1630]">*Approximate; varies by payer, locality, and program mix. Not billing advice.</p>
         </Reveal>
       </section>
 
@@ -334,7 +334,7 @@ const Home: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <p className="mt-4 text-xs text-slate-400">*Approximate; varies by payer and locality. Not billing advice.</p>
+              <p className="mt-4 text-xs text-[#1B1630]">*Approximate; varies by payer and locality. Not billing advice.</p>
             </div>
           </Reveal>
         </div>
