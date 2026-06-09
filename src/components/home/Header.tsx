@@ -212,6 +212,16 @@ const Header: React.FC = () => {
                   Resources
                 </Link>
 
+                <Link
+                  href="https://www.evitals.life/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block border-b border-slate-50 py-3 font-medium text-plum hover:text-brand"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Login
+                </Link>
+
                 <Link href="/demo" className="block py-3 text-sm font-semibold text-plum transition hover:text-brand hover:underline hover:underline-offset-8" onClick={() => setMobileMenuOpen(false)}>
                   Request a Demo
                 </Link>
