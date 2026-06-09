@@ -1624,6 +1624,50 @@ main > section.rpm-faq-section[class*="max-w"] {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .rpm-device-card {
+    min-height: 420px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .rpm-device-card::before {
+    background:
+      linear-gradient(180deg, rgba(250, 248, 244, 0.02) 0%, rgba(250, 248, 244, 0.34) 42%, rgba(250, 248, 244, 0.98) 70%),
+      radial-gradient(circle at 50% 76%, rgba(245, 239, 230, 0.92), transparent 42%);
+  }
+
+  .rpm-device-card::after {
+    right: 14%;
+    top: 12%;
+    width: 70%;
+    height: 42%;
+    transform: none;
+  }
+
+  .rpm-device-card__copy {
+    width: 100%;
+    min-height: 0;
+    padding: 220px 24px 24px;
+  }
+
+  .rpm-device-card__image {
+    inset: 0;
+  }
+
+  .rpm-device-card__photo,
+  .rpm-device-card__photo--monitor,
+  .rpm-device-card__photo--scale {
+    height: 260px !important;
+    object-fit: cover;
+    object-position: center top;
+    transform: scale(1.08);
+    transform-origin: center top;
+  }
+
+  .rpm-device-card:hover .rpm-device-card__photo {
+    transform: scale(1.1);
+  }
+
   .specialty-card {
     min-height: 420px;
     align-items: flex-end;
