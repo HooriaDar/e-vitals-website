@@ -69,7 +69,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Care Programs Section */}
-      <section id="programs" className="mx-auto max-w-7xl px-6 py-16">
+      <section id="programs" className="mx-auto w-full px-6 py-16">
         <Reveal className="max-w-2xl">
           <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl text-plum">
             Care programs, delivered turn-key
