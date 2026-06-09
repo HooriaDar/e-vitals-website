@@ -62,7 +62,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Mission Section */}
-      <section className="mx-auto max-w-7xl px-6 py-16 animate-rise">
+      <section className="mx-auto w-full px-6 py-16 animate-rise">
         <div className="grid items-center gap-12 md:grid-cols-2">
           <div>
             <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
@@ -170,7 +170,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Beliefs Section */}
-      <section className="about-beliefs-section mx-auto max-w-7xl px-6 py-14 animate-rise">
+      <section className="about-beliefs-section mx-auto w-full px-6 py-14 animate-rise">
         <div className="about-beliefs-panel">
           <div className="about-beliefs-header">
           <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">

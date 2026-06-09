@@ -175,7 +175,7 @@ export default function CCMPage() {
       </section>
 
       {/* What is CCM */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="mx-auto w-full px-6 py-16">
         <div className="grid items-center gap-12 md:grid-cols-2">
           <div>
             <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
@@ -271,7 +271,7 @@ export default function CCMPage() {
       </section>
 
       {/* Scope of service */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="mx-auto w-full px-6 py-16">
         <div className="max-w-2xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
             <span className="h-px w-6 bg-brand" />Scope of service
@@ -318,7 +318,7 @@ export default function CCMPage() {
       </section>
 
       {/* CPT Codes */}
-      <section id="ccm-codes" className="mx-auto max-w-7xl px-6 py-16">
+      <section id="ccm-codes" className="mx-auto w-full px-6 py-16">
         <div className="max-w-2xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
             <span className="h-px w-6 bg-brand" />Billing

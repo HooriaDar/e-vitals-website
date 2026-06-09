@@ -6,7 +6,7 @@ import Link from "next/link";
 const ResourcesPage: React.FC = () => {
   return (
     <div className="w-full">
-      <section className="mx-auto max-w-7xl px-6 pt-12 pb-16 animate-rise">
+      <section className="mx-auto w-full px-6 pt-12 pb-16 animate-rise">
         <nav className="mb-6 text-sm text-slate-500">
           <Link href="/" className="hover:text-brand">Home</Link> / <span className="text-plum">Resources</span>
         </nav>

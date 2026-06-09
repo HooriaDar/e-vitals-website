@@ -117,7 +117,7 @@ export default function RPMPage() {
       </section>
 
       {/* What is RPM */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="mx-auto w-full px-6 py-16">
         <div className="grid items-start gap-12 md:grid-cols-2">
           <div>
             <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
@@ -211,7 +211,7 @@ export default function RPMPage() {
       </section>
 
       {/* 4-step workflow */}
-      <section className="rpm-workflow-card-section mx-auto max-w-7xl px-6 py-10">
+      <section className="rpm-workflow-card-section mx-auto w-full px-6 py-10">
         <div className="p-7 md:p-9">
           <div className="max-w-2xl">
             <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-[#F5EFE6]/80">
@@ -263,7 +263,7 @@ export default function RPMPage() {
       </section>
 
       {/* Devices */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="mx-auto w-full px-6 py-16">
         <div className="max-w-2xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
             <span className="h-px w-6 bg-brand" />Devices
@@ -370,7 +370,7 @@ export default function RPMPage() {
       </section>
 
       {/* Concurrent billing */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="mx-auto w-full px-6 py-16">
         <div className="max-w-2xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
             <span className="h-px w-6 bg-brand" />Concurrent billing

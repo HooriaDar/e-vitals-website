@@ -218,7 +218,7 @@ const RPMReimbursementCalculator: React.FC = () => {
   return (
     <div className="w-full">
       {/* Header Info Section */}
-      <section className="mx-auto max-w-7xl px-6 pt-12 pb-10">
+      <section className="mx-auto w-full px-6 pt-12 pb-10">
         <nav className="mb-6 text-sm text-slate-500">
           <Link href="/" className="hover:text-brand">Home</Link> / <span className="text-plum">Reimbursement</span>
         </nav>
@@ -956,7 +956,7 @@ const RPMReimbursementCalculator: React.FC = () => {
       </section>
 
       {/* Monthly Workflow Section */}
-      <section className="mx-auto max-w-7xl px-6 py-16 animate-rise">
+      <section className="mx-auto w-full px-6 py-16 animate-rise">
         <h2 className="text-2xl font-bold text-plum">Sample monthly workflow</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-xl bg-white p-5 ring-1 ring-slate-200 shadow-sm flex flex-col items-start">
