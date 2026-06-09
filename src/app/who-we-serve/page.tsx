@@ -57,22 +57,23 @@ export default function WhoWeServePage() {
   return (
     <>
       {/* Hero */}
-      <section className="who-we-serve-hero">
-        <div className="mx-auto max-w-7xl px-6 pt-12 pb-16">
+      <section className="who-we-serve-hero relative overflow-hidden bg-gradient-to-b from-brand-tint/40 to-white w-full">
+        <div className="rpm-hero-glow absolute inset-0" aria-hidden="true" />
+        <div className="relative mx-auto max-w-7xl px-6 pt-12 pb-16 animate-rise">
           <nav className="mb-6 text-sm text-slate-500">
             <Link href="/" className="hover:text-brand">Home</Link>
             {' / '}
             <span className="text-plum">Who We Serve</span>
           </nav>
 
-          <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="max-w-3xl animate-[riseIn_.7s_cubic-bezier(.2,.7,.2,1)_both]">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div className="max-w-3xl">
               <p className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand">
                 <span className="h-px w-6 bg-brand" />
                 Who we serve
               </p>
-              <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl text-plum">
-                Built for your practice — whatever your specialty.
+              <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl text-plum">
+                Built for your practice <span className="text-brand">whatever your specialty</span>.
               </h1>
               <p className="mt-5 text-lg text-slate-600">
                 If you care for patients with chronic conditions, eVitals fits into your
@@ -82,15 +83,17 @@ export default function WhoWeServePage() {
               </p>
             </div>
 
-            <div className="static-specialty-orbit-frame">
-              <Image
-                src="/assets/specialty-orbit-static.svg"
-                alt="One e-Vitals platform connected to multiple medical specialties"
-                width={1200}
-                height={920}
-                priority
-                className="static-specialty-orbit-image"
-              />
+            <div className="relative hidden lg:block">
+              <div className="about-hero-visual who-we-serve-hero-orbit" aria-hidden="true">
+                <Image
+                  src="/assets/specialty-orbit-static.svg"
+                  alt=""
+                  fill
+                  priority
+                  sizes="44vw"
+                  className="object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>

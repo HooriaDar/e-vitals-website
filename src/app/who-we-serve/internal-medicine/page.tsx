@@ -76,7 +76,7 @@ export default function InternalMedicinePage() {
             </div>
           </div>
           <div className="specialty-hero-image-panel" aria-hidden="true">
-            <Image src="/assets/specialty-hero-internal-medicine.jpg" alt="" fill sizes="(min-width: 1024px) 42vw, 100vw" className="specialty-hero-image" priority />
+            <Image src="/assets/specialty-hero-internal-medicine-new.png" alt="" fill sizes="(min-width: 1024px) 42vw, 100vw" className="specialty-hero-image" priority />
           </div>
         </div>
       </section>

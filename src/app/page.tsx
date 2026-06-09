@@ -53,7 +53,7 @@ const Home: React.FC = () => {
                 <div className="home-hero-image-frame relative overflow-hidden rounded-[2rem] shadow-2xl shadow-secondary/15 ring-1 ring-highlight/60 floaty">
                   <div className="relative aspect-[4/3]">
                     <Image
-                      src="/assets/home-hero-laptop-phone.png"
+                      src="/assets/home-hero-dashboard-new.png"
                       alt="eVitals clinical monitoring dashboard"
                       fill
                       className="home-hero-image object-cover object-center"

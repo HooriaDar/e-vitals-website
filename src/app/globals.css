@@ -604,7 +604,7 @@ main [class*="text-green"] {
 
 .specialty-card {
   position: relative;
-  min-height: 250px;
+  min-height: 200px;
   overflow: hidden;
   isolation: isolate;
   display: flex;
@@ -651,7 +651,7 @@ main [class*="text-green"] {
   position: relative;
   z-index: 3;
   width: min(48%, 310px);
-  min-height: 250px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -698,7 +698,6 @@ main [class*="text-green"] {
   inset: -2px -10px -2px 28%;
 }
 
-.who-we-serve-hero,
 .who-we-serve-bottom {
   background: #FAF8F4 !important;
 }
@@ -707,6 +706,20 @@ main [class*="text-green"] {
   background:
     radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.36), transparent 32%),
     linear-gradient(135deg, #E2D6C5 0%, #E2D6C5 100%) !important;
+}
+
+.who-we-serve-hero-orbit {
+  width: min(100%, 40rem);
+  min-height: 470px;
+  justify-self: end;
+}
+
+.who-we-serve-hero-orbit::after {
+  border: 0;
+}
+
+.who-we-serve-hero-orbit img {
+  padding: 8px;
 }
 
 .home-hero-image-frame {
@@ -1217,6 +1230,7 @@ main [class*="text-green"] {
   object-position: center;
 }
 
+
 @media (max-width: 768px) {
   .service-hero-grid,
   .service-hero-copy,
@@ -1236,9 +1250,16 @@ main [class*="text-green"] {
   }
 
   .specialty-hero-image-panel {
-    min-height: 260px;
+    aspect-ratio: 1536 / 994;
+    min-height: 0;
     border-radius: 24px;
   }
+
+  .specialty-hero-image {
+    object-fit: contain;
+    object-position: center;
+  }
+
 }
 
 .ccm-monitor-card::before {
