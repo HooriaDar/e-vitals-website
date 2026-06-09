@@ -23,10 +23,12 @@ export const metadata = {
     "E-Vitals RPM provides remote patient monitoring, chronic care management, and healthcare technology solutions for medical practices.",
   icons: {
     icon: [
-      { url: "/assets/eVitals-favicon.png", type: "image/png", sizes: "499x499" },
+      { url: "/favicon-48x48.png", type: "image/png", sizes: "48x48" },
+      { url: "/icon.png", type: "image/png", sizes: "96x96" },
+      { url: "/android-chrome-192x192.png", type: "image/png", sizes: "192x192" },
     ],
-    shortcut: "/assets/eVitals-favicon.png",
-    apple: "/assets/eVitals-favicon.png",
+    shortcut: "/favicon-48x48.png",
+    apple: "/apple-icon.png",
   },
   openGraph: {
     title: "E-Vitals RPM",
