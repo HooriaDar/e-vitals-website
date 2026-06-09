@@ -4,6 +4,7 @@ import FooterSection from '../components/home/FooterSection';
 import { ReactNode } from 'react';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import VisualEffects from '@/components/home/VisualEffects';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 interface RootLayoutProps {
   children: ReactNode;
