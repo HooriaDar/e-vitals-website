@@ -143,6 +143,13 @@
     padding-right: max(1.5rem, calc((100vw - 88rem) / 2 + 1.5rem)) !important;
   }
 
+  main > section[class*="w-full"][class*="px-6"]:not(.home-hero-section):not(.rpm-faq-section):not(.ccm-faq-section),
+  main > div > section[class*="w-full"][class*="px-6"]:not(.home-hero-section):not(.rpm-faq-section):not(.ccm-faq-section),
+  main > main > section[class*="w-full"][class*="px-6"]:not(.home-hero-section):not(.rpm-faq-section):not(.ccm-faq-section) {
+    padding-left: max(1.5rem, calc((100vw - 88rem) / 2 + 1.5rem)) !important;
+    padding-right: max(1.5rem, calc((100vw - 88rem) / 2 + 1.5rem)) !important;
+  }
+
   .section-label {
     @apply inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-brand;
   }
