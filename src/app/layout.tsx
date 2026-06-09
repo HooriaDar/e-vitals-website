@@ -5,6 +5,7 @@ import { ReactNode } from 'react';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import VisualEffects from '@/components/home/VisualEffects';
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -52,6 +53,8 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
           {children}
         </main>
         <FooterSection />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
