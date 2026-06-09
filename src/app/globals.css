@@ -2259,15 +2259,6 @@ main > section.rpm-faq-section[class*="max-w"] {
   scroll-margin-top: 112px;
 }
 
-.rpm-visual-system main > section[class*="max-w"],
-.rpm-visual-system main > div > section[class*="max-w"],
-.rpm-visual-system main > main > section[class*="max-w"] {
-  width: 100% !important;
-  max-width: none !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
 .rpm-visual-system main > section:nth-of-type(odd),
 .rpm-visual-system main > div > section:nth-of-type(odd),
 .rpm-visual-system main > main > section:nth-of-type(odd) {
