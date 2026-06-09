@@ -25,7 +25,7 @@ const Home: React.FC = () => {
         <PulseMonitor className="homepage-pulse-monitor" />
 
         <div className="home-hero-content relative z-10 mx-auto max-w-7xl px-6 pb-14 pt-6 md:pb-16 md:pt-8">
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+          <div className="home-hero-grid grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
             <div>
               <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl text-plum">
                 <span className="hero-keyword">Turn-key</span> care programs for chronic conditions.
@@ -47,7 +47,7 @@ const Home: React.FC = () => {
             </div>
 
             <div className="relative flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-xl">
+              <div className="home-hero-media relative w-full max-w-xl">
                 <div className="absolute -right-6 -top-6 h-32 w-32 rounded-full bg-accent/20 blur-3xl" aria-hidden="true" />
                 <div className="absolute -bottom-4 -left-4 h-28 w-28 rounded-full bg-highlight/50 blur-2xl" aria-hidden="true" />
                 <div className="home-hero-image-frame relative overflow-hidden rounded-[2rem] shadow-2xl shadow-secondary/15 ring-1 ring-highlight/60 floaty">
