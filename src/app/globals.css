@@ -2259,12 +2259,21 @@ main > section.rpm-faq-section[class*="max-w"] {
   scroll-margin-top: 112px;
 }
 
+.rpm-visual-system main > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section),
+.rpm-visual-system main > div > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section),
+.rpm-visual-system main > main > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section) {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: max(1.5rem, calc((100vw - 88rem) / 2 + 1.5rem)) !important;
+  padding-right: max(1.5rem, calc((100vw - 88rem) / 2 + 1.5rem)) !important;
+}
+
 .rpm-visual-system main > section:nth-of-type(odd),
 .rpm-visual-system main > div > section:nth-of-type(odd),
 .rpm-visual-system main > main > section:nth-of-type(odd) {
   background: #FAF8F4 !important;
-  box-shadow: 0 0 0 100vmax #FAF8F4 !important;
-  clip-path: inset(0 -100vmax) !important;
   border-color: rgba(216, 203, 190, 0.8) !important;
 }
 
@@ -2274,8 +2283,6 @@ main > section.rpm-faq-section[class*="max-w"] {
   background:
     radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.36), transparent 32%),
     linear-gradient(135deg, #E7D6C2 0%, #DCC5AB 100%) !important;
-  box-shadow: 0 0 0 100vmax #DCC5AB !important;
-  clip-path: inset(0 -100vmax) !important;
   border-color: rgba(216, 203, 190, 0.8) !important;
 }
 
