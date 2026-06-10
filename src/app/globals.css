@@ -1256,7 +1256,7 @@ main > div > section:first-child:has(nav + .max-w-3xl) p {
 .specialty-hero-image-panel {
   position: relative;
   width: 100%;
-  min-height: clamp(340px, 28vw, 430px);
+  aspect-ratio: 1536 / 994;
   overflow: hidden;
   border-radius: 32px;
   border: 1px solid rgba(216, 203, 190, 0.82);
@@ -1265,7 +1265,7 @@ main > div > section:first-child:has(nav + .max-w-3xl) p {
 }
 
 .specialty-hero-image {
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
 
