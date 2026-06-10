@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 const DemoPage: React.FC = () => {
-  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -16,11 +15,6 @@ const DemoPage: React.FC = () => {
     providersCount: "",
     message: ""
   });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -70,7 +64,15 @@ const DemoPage: React.FC = () => {
             </ul>
           </div>
           
-          <form onSubmit={handleSubmit} className="rounded-2xl bg-slate-50 p-7 ring-1 ring-slate-200 shadow-sm animate-rise">
+          <form
+            action="https://formsubmit.co/info@evitalsrpm.com"
+            method="POST"
+            className="rounded-2xl bg-slate-50 p-7 ring-1 ring-slate-200 shadow-sm animate-rise"
+          >
+            <input type="hidden" name="_subject" value="New eVitals demo request" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="https://www.evitalsrpm.com/demo" />
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block">
                 <span className="text-xs font-semibold text-slate-600">First name</span>
@@ -177,13 +179,7 @@ const DemoPage: React.FC = () => {
             <button type="submit" className="mt-5 w-full rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-dark cursor-pointer transition-colors">
               Submit
             </button>
-            
-            {submitted && (
-              <p id="done" className="mt-3 rounded-lg bg-green-50 px-4 py-3 text-sm text-green-700 ring-1 ring-green-200">
-                Thanks! This is a demo form — connect it to your CRM to capture submissions.
-              </p>
-            )}
-            
+
             <p className="mt-3 text-xs text-slate-400">
               By submitting, you agree to be contacted about eVitals. You can opt out at any time.
             </p>
