@@ -136,9 +136,9 @@
     margin-right: calc(50% - 50vw) !important;
   }
 
-  main > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section),
-  main > div > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section),
-  main > main > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section) {
+  main > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section):not(:has(.specialty-hero-image-panel)),
+  main > div > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section):not(:has(.specialty-hero-image-panel)),
+  main > main > section[class*="max-w"]:not(.rpm-faq-section):not(.ccm-faq-section):not(:has(.specialty-hero-image-panel)) {
     padding-left: max(1.5rem, calc((100vw - 88rem) / 2 + 1.5rem)) !important;
     padding-right: max(1.5rem, calc((100vw - 88rem) / 2 + 1.5rem)) !important;
   }
@@ -726,10 +726,17 @@ main [class*="text-green"] {
 
 .about-page > section:first-child .grid,
 .who-we-serve-hero .grid,
-main > section:has(.specialty-hero-image-panel) > .grid,
-main > div > section:has(.specialty-hero-image-panel) > .grid {
+main > section:has(.specialty-hero-image-panel) .grid,
+main > div > section:has(.specialty-hero-image-panel) .grid {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr)) !important;
   gap: clamp(2rem, 3vw, 3rem) !important;
+}
+
+@media (min-width: 1024px) {
+  main > section:has(.specialty-hero-image-panel) .grid,
+  main > div > section:has(.specialty-hero-image-panel) .grid {
+    grid-template-columns: 0.95fr 1.05fr !important;
+  }
 }
 
 .about-page > section:first-child h1,

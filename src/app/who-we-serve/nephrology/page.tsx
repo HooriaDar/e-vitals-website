@@ -7,7 +7,8 @@ import Link from "next/link";
 const NephrologyPage: React.FC = () => {
   return (
     <div className="w-full">
-      <section className="relative mx-auto max-w-7xl px-6 pt-12 pb-16 md:pb-16 md:pt-8 animate-rise">
+      <section className="relative w-full animate-rise">
+        <div className="mx-auto max-w-7xl px-6 pt-12 pb-16 md:pb-16 md:pt-8">
         <nav className="mb-6 text-sm text-slate-500">
           <Link href="/" className="hover:text-brand">Home</Link> /{" "}
           <Link href="/who-we-serve" className="hover:text-brand">Who We Serve</Link> /{" "}
@@ -46,6 +47,7 @@ const NephrologyPage: React.FC = () => {
           <div className="specialty-hero-image-panel" aria-hidden="true">
             <Image src="/assets/specialty-hero-nephrology-new.png" alt="" fill sizes="(min-width: 1024px) 42vw, 100vw" className="specialty-hero-image" priority />
           </div>
+        </div>
         </div>
       </section>
 
@@ -134,7 +136,8 @@ const NephrologyPage: React.FC = () => {
       </section>
 
       {/* CTA Box */}
-      <section className="mx-auto max-w-7xl px-6 py-20 animate-rise">
+      <section className="w-full py-20 animate-rise">
+        <div className="mx-auto max-w-7xl px-6">
         <div className="rounded-3xl bg-brand-tint px-8 py-14 text-center ring-1 ring-brand/15 sm:px-12">
           <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-plum sm:text-4xl">
             Bring eVitals to your nephrology practice.
@@ -159,6 +162,7 @@ const NephrologyPage: React.FC = () => {
               Estimate revenue
             </Link>
           </div>
+        </div>
         </div>
       </section>
     </div>

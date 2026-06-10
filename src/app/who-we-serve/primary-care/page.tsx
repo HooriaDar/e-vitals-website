@@ -38,7 +38,8 @@ export default function PrimaryCarePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative mx-auto max-w-7xl px-6 pt-12 pb-16 md:pb-16 md:pt-8 animate-rise">
+      <section className="relative w-full animate-rise">
+        <div className="mx-auto max-w-7xl px-6 pt-12 pb-16 md:pb-16 md:pt-8">
         <nav className="mb-6 text-sm text-slate-500">
           <Link href="/" className="hover:text-brand">Home</Link>
           {' / '}
@@ -78,6 +79,7 @@ export default function PrimaryCarePage() {
           <div className="specialty-hero-image-panel" aria-hidden="true">
             <Image src="/assets/specialty-hero-primary-care-new.png" alt="" fill sizes="(min-width: 1024px) 42vw, 100vw" className="specialty-hero-image" priority />
           </div>
+        </div>
         </div>
       </section>
 
@@ -135,7 +137,8 @@ export default function PrimaryCarePage() {
       </section>
 
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-6 py-20">
+      <section className="w-full py-20">
+        <div className="mx-auto max-w-7xl px-6">
         <div className="rounded-3xl bg-brand/5 px-8 py-14 text-center ring-1 ring-brand/15 sm:px-12">
           <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-plum sm:text-4xl">
             Bring eVitals to your primary care practice.
@@ -157,6 +160,7 @@ export default function PrimaryCarePage() {
               Estimate revenue
             </Link>
           </div>
+        </div>
         </div>
       </section>
     </>
