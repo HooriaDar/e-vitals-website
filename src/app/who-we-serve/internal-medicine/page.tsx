@@ -38,7 +38,7 @@ export default function InternalMedicinePage() {
   return (
     <>
       {/* Hero */}
-      <section className="mx-auto max-w-7xl px-6 pt-12 pb-16">
+      <section className="mx-auto max-w-7xl px-6 pt-12 md:pb-16 md:pt-8 pb-16">
         <nav className="mb-6 text-sm text-slate-500">
           <Link href="/" className="hover:text-brand">Home</Link>
           {' / '}

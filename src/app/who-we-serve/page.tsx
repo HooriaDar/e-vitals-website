@@ -59,7 +59,7 @@ export default function WhoWeServePage() {
       {/* Hero */}
       <section className="who-we-serve-hero relative overflow-hidden bg-gradient-to-b from-brand-tint/40 to-white w-full">
         <div className="rpm-hero-glow absolute inset-0" aria-hidden="true" />
-        <div className="relative mx-auto max-w-7xl px-6 pt-12 pb-16 animate-rise">
+        <div className="relative mx-auto max-w-7xl px-6 pt-12 pb-16 md:pb-16 md:pt-8 animate-rise">
           <nav className="mb-6 text-sm text-slate-500">
             <Link href="/" className="hover:text-brand">Home</Link>
             {' / '}

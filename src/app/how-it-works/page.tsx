@@ -34,7 +34,7 @@ export default function HowItWorksPage() {
   return (
     <>
       {/* Hero */}
-      <section className="mx-auto w-full px-6 pt-12 pb-16">
+      <section className="mx-auto w-full px-6 pt-12 pb-16 md:pb-16 md:pt-8 animate-rise">
         <nav className="mb-6 text-sm text-slate-500">
           <Link href="/" className="hover:text-brand">Home</Link>
           {' / '}
