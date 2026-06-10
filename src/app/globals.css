@@ -1265,8 +1265,8 @@ main > div > section:first-child:has(nav + .max-w-3xl) p {
 }
 
 .specialty-hero-image {
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: center bottom;
 }
 
 
@@ -1295,8 +1295,8 @@ main > div > section:first-child:has(nav + .max-w-3xl) p {
   }
 
   .specialty-hero-image {
-    object-fit: contain;
-    object-position: center;
+    object-fit: cover;
+    object-position: center bottom;
   }
 
 }
