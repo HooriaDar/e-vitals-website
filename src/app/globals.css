@@ -722,6 +722,22 @@ main [class*="text-green"] {
   padding: 8px;
 }
 
+@media (min-width: 1024px) and (max-width: 1535px) {
+  .who-we-serve-hero > .max-w-7xl {
+    width: min(100% - 2rem, 106rem) !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  main > section:has(.specialty-hero-image-panel),
+  main > div > section:has(.specialty-hero-image-panel),
+  main > section:first-child:has(nav + .max-w-3xl),
+  main > div > section:first-child:has(nav + .max-w-3xl) {
+    padding-left: clamp(1rem, 2.2vw, 2rem) !important;
+    padding-right: clamp(1rem, 2.2vw, 2rem) !important;
+  }
+}
+
 .home-hero-image-frame {
   border-radius: 32px !important;
   background: transparent !important;

@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 const DemoPage: React.FC = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [feedback, setFeedback] = useState<"success" | "error" | null>(null);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -15,6 +17,49 @@ const DemoPage: React.FC = () => {
     providersCount: "",
     message: ""
   });
+
+  const initialFormData = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    practiceName: "",
+    website: "",
+    specialty: "Primary Care",
+    providersCount: "",
+    message: ""
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setFeedback(null);
+
+    const submitData = new FormData(e.currentTarget);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/info@evitalsrpm.com", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: submitData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
+
+      setFormData(initialFormData);
+      setFeedback("success");
+      window.setTimeout(() => setFeedback(null), 3000);
+    } catch {
+      setFeedback("error");
+      window.setTimeout(() => setFeedback(null), 3000);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -65,14 +110,12 @@ const DemoPage: React.FC = () => {
           </div>
           
           <form
-            action="https://formsubmit.co/info@evitalsrpm.com"
-            method="POST"
+            onSubmit={handleSubmit}
             className="rounded-2xl bg-slate-50 p-7 ring-1 ring-slate-200 shadow-sm animate-rise"
           >
             <input type="hidden" name="_subject" value="New eVitals demo request" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://www.evitalsrpm.com/demo" />
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block">
                 <span className="text-xs font-semibold text-slate-600">First name</span>
@@ -176,9 +219,25 @@ const DemoPage: React.FC = () => {
               </label>
             </div>
             
-            <button type="submit" className="mt-5 w-full rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-dark cursor-pointer transition-colors">
-              Submit
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="mt-5 w-full rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-70 cursor-pointer transition-colors"
+            >
+              {isSubmitting ? "Submitting..." : "Submit"}
             </button>
+
+            {feedback === "success" && (
+              <p className="mt-3 rounded-lg bg-green-50 px-4 py-3 text-sm font-semibold text-green-700 ring-1 ring-green-200">
+                Form successfully submitted.
+              </p>
+            )}
+
+            {feedback === "error" && (
+              <p className="mt-3 rounded-lg bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-700 ring-1 ring-rose-200">
+                Something went wrong. Please try again.
+              </p>
+            )}
 
             <p className="mt-3 text-xs text-slate-400">
               By submitting, you agree to be contacted about eVitals. You can opt out at any time.
