@@ -135,10 +135,20 @@ const AboutPage: React.FC = () => {
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             <div className="rounded-2xl bg-white p-7 text-center ring-1 ring-slate-200 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/60">
               <div className="mx-auto h-28 w-28 rounded-full bg-gradient-to-br from-brand to-accent p-1">
-                <Image src="/assets/team-mohamed.png" alt="Mohamed Rahman" width={112} height={112} className="h-full w-full rounded-full object-cover bg-white" />
+                <Image src="/assets/team-muhammed-rahman.jpg" alt="Muhammed Rahman" width={112} height={112} className="h-full w-full !rounded-full bg-white object-cover ![clip-path:circle(50%)]" />
               </div>
-              <h3 className="mt-5 text-lg font-bold text-plum">Mohamed Rahman</h3>
+              <h3 className="mt-5 text-lg font-bold text-plum">Muhammad Shakeelur Rahman</h3>
               <p className="text-sm font-semibold text-brand">Chief Medical Officer</p>
+              <a
+                href="https://www.linkedin.com/in/m-shakeelur-rahman-b2b60921b/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Muhammed Rahman on LinkedIn"
+                className="mx-auto mt-2 inline-flex items-center gap-1.5 rounded-full border border-[#D8CBBE] bg-white px-2.5 py-1 text-xs font-semibold text-[#071b34] transition hover:-translate-y-0.5 hover:border-[#071b34]/30 hover:bg-[#F5EFE6]"
+              >
+                <Image src="/assets/linkedin-icon.png" alt="" width={18} height={18} className="h-[18px] w-[18px] !rounded-[4px] object-contain ![clip-path:none]" />
+                View LinkedIn
+              </a>
               <p className="mt-3 text-sm text-slate-600">
                 Sets e-Vitals&apos; clinical direction — shaping care-program design, monitoring protocols, and quality so every program is grounded in good medicine.
               </p>
@@ -146,10 +156,20 @@ const AboutPage: React.FC = () => {
             
             <div className="rounded-2xl bg-white p-7 text-center ring-1 ring-slate-200 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/60">
               <div className="mx-auto h-28 w-28 rounded-full bg-gradient-to-br from-brand to-accent p-1">
-                <Image src="/assets/team-aiman.png" alt="Aiman Rahman" width={112} height={112} className="h-full w-full rounded-full object-cover bg-white" />
+                <Image src="/assets/team-aiman-rahman.jpeg" alt="Aiman Rahman" width={112} height={112} className="h-full w-full rounded-full object-cover bg-white" />
               </div>
               <h3 className="mt-5 text-lg font-bold text-plum">Aiman Rahman</h3>
               <p className="text-sm font-semibold text-brand">Chief Product Officer</p>
+              <a
+                href="https://www.linkedin.com/in/aiman-rahman/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Aiman Rahman on LinkedIn"
+                className="mx-auto mt-2 inline-flex items-center gap-1.5 rounded-full border border-[#D8CBBE] bg-white px-2.5 py-1 text-xs font-semibold text-[#071b34] transition hover:-translate-y-0.5 hover:border-[#071b34]/30 hover:bg-[#F5EFE6]"
+              >
+                <Image src="/assets/linkedin-icon.png" alt="" width={18} height={18} className="h-[18px] w-[18px] !rounded-[4px] object-contain ![clip-path:none]" />
+                View LinkedIn
+              </a>
               <p className="mt-3 text-sm text-slate-600">
                 Leads product and platform — turning complex care-management requirements into software that clinical teams actually enjoy using.
               </p>
@@ -157,10 +177,20 @@ const AboutPage: React.FC = () => {
             
             <div className="rounded-2xl bg-white p-7 text-center ring-1 ring-slate-200 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/60">
               <div className="mx-auto h-28 w-28 rounded-full bg-gradient-to-br from-brand to-accent p-1">
-                <Image src="/assets/team-summan.png" alt="Summan Rahman" width={112} height={112} className="h-full w-full rounded-full object-cover bg-white" />
+                <Image src="/assets/team-summan-rahman.jpeg" alt="Summan Rahman" width={112} height={112} className="h-full w-full rounded-full object-cover bg-white" />
               </div>
               <h3 className="mt-5 text-lg font-bold text-plum">Summan Rahman</h3>
               <p className="text-sm font-semibold text-brand">Chief Operations Officer</p>
+              <a
+                href="https://www.linkedin.com/in/summan-rahman/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Summan Rahman on LinkedIn"
+                className="mx-auto mt-2 inline-flex items-center gap-1.5 rounded-full border border-[#D8CBBE] bg-white px-2.5 py-1 text-xs font-semibold text-[#071b34] transition hover:-translate-y-0.5 hover:border-[#071b34]/30 hover:bg-[#F5EFE6]"
+              >
+                <Image src="/assets/linkedin-icon.png" alt="" width={18} height={18} className="h-[18px] w-[18px] !rounded-[4px] object-contain ![clip-path:none]" />
+                View LinkedIn
+              </a>
               <p className="mt-3 text-sm text-slate-600">
                 Runs operations — device logistics, onboarding, and support — so launching a program stays genuinely turn-key.
               </p>

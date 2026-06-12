@@ -40,14 +40,11 @@ const Header: React.FC = () => {
       {/* Main Header */}
       <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-md no-print w-full shadow-sm shadow-slate-200/40">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-          <Link href="/" className="flex items-center transition-opacity hover:opacity-90" aria-label="e-Vitals home">
-            <Image
+          <Link href="/" className="flex w-[220px] shrink-0 items-center transition-opacity hover:opacity-90" aria-label="e-Vitals home">
+            <img
               src="/assets/logo.png"
               alt="e-Vitals — Remote Patient Monitoring"
-              width={364}
-              height={72}
-              className="h-12 w-auto object-contain md:h-14"
-              priority
+              className="block h-12 w-auto max-w-full object-contain object-left md:h-14"
             />
           </Link>
 
